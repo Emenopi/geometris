@@ -2,7 +2,9 @@ package com.mygdx.geometris;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+
 import mygdx.geometris.Geometris;
+import mygdx.geometris.Matrix;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -12,5 +14,6 @@ public class DesktopLauncher {
 		config.setTitle("Geometris");
 		config.setWindowedMode(900, 900);
 		new Lwjgl3Application(new Geometris(), config);
+		
 	}
 }
