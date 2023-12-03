@@ -28,7 +28,7 @@ public class Matrix {
 			for (int j = 0; j < matrixWidth; j++) {
 				matrix[i][j] = new Block(i, j, colour.CYAN, addBlockOffset);
 			}
-			addBlockOffset += getBlockSprite(i, 0).getHeight() + 3;
+			addBlockOffset += matrix[i][0].getHeight() + 4;
 		}
 	}
 	

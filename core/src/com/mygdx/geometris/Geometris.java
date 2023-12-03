@@ -56,7 +56,7 @@ public class Geometris extends Game {
 		
 		innerCircle.setColor(Color.FIREBRICK);
 		innerCircle.begin(ShapeType.Filled);
-		innerCircle.circle(screenCentre, screenCentre, innerCircleRadius);
+		innerCircle.circle((float) (screenCentre - 11), (float) (screenCentre - 3), innerCircleRadius);
 		innerCircle.end();
 		
 		

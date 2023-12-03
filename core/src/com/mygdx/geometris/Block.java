@@ -51,13 +51,13 @@ public class Block {
 	private double[] getBlockSize(int hIndex, int wIndex) {
 		double [] size = new double[2];
 		
-		double minBlockWidth = 11.925;
-		double minBlockHeight = 10.125;
+		double minBlockWidth = 12;
+		double minBlockHeight = 9;
 		
-		double widthScaleFactor = (hIndex + 1) / 16;
-		double heightScaleFactor = (hIndex + 1) / 120;
+		double widthScaleFactor = (hIndex + 1) / 8.0;
+		double heightScaleFactor = (hIndex + 1) / 17.5;
 		
-		double blockWidth = minBlockWidth + (minBlockWidth * widthScaleFactor);
+		double blockWidth = minBlockHeight + (minBlockWidth * widthScaleFactor);
 		double blockHeight = minBlockHeight + (minBlockHeight * heightScaleFactor);
 		
 		size[0] = blockHeight;
@@ -114,24 +114,29 @@ public class Block {
 	
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2);
-		double centreMargin = 115.09 + additionalOffset;
+		double centreMargin = 115 + additionalOffset;
 		double positionX;
 		double defaultPositionX = centre - rotatedWidth/7;
-		positionX = defaultPositionX+(centreMargin*getOffsetX());
+		positionX = defaultPositionX+(centreMargin*getOffsetX())-9.5;
 		return (float) positionX;
 	}
 	
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2);
-		double centreMargin = 115.09  + additionalOffset;
+		double centreMargin = 115  + additionalOffset;
 		double positionY;
 		double defaultPositionY = centre - rotatedHeight/7;
-		positionY = defaultPositionY-(centreMargin*getOffsetY());
+		positionY = defaultPositionY-(centreMargin*getOffsetY()) - 2.5;
 		return (float) positionY;
 	}
 	
 	public Sprite getBlockSprite() {
 		return blockSprite;
+	}
+	
+	public double getHeight() {
+		double[] size = getBlockSize(heightIndex, widthIndex);
+		return size[0];
 	}
 	
 }
