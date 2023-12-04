@@ -3,12 +3,14 @@ import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 import geometris.ActiveBlockMatrix;
+import geometris.Geometris;
 
 
 public class ActiveBlockTest {
+	Geometris geometris = new Geometris();
 	@Test
 	public void activeBlockCyanTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("CYAN");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("CYAN", geometris);
 		String[][] cyanBlock = {
 				{"CYAN", "NULL", "NULL"},
 				{"NULL", "NULL", "NULL"},
@@ -19,7 +21,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockPurpleTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("PURPLE");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("PURPLE", geometris);
 		String[][] purpleBlock = {
 				{"PURPLE", "NULL", "NULL"},
 				{"PURPLE", "NULL", "NULL"},
@@ -30,7 +32,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMagentaTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("MAGENTA");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("MAGENTA", geometris);
 		String[][] magentaBlock = {
 				{"MAGENTA", "MAGENTA", "NULL"},
 				{"MAGENTA", "MAGENTA", "NULL"},
@@ -41,7 +43,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockOrangeTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("ORANGE");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("ORANGE", geometris);
 		String[][] orangeBlock = {
 				{"ORANGE", "NULL", "NULL"},
 				{"ORANGE", "ORANGE", "NULL"},
@@ -52,7 +54,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMatrixYellowTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("YELLOW");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("YELLOW", geometris);
 		String[][] yellowBlock = {
 				{"YELLOW", "YELLOW", "NULL"},
 				{"YELLOW", "NULL", "NULL"},
@@ -63,7 +65,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockGreenTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("GREEN");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("GREEN", geometris);
 		String[][] greenBlock = {
 				{"GREEN", "NULL", "NULL"},
 				{"GREEN", "GREEN", "NULL"},

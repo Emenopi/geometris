@@ -3,8 +3,10 @@ package geometris;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,23 +14,29 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class Geometris extends Game {
 	SpriteBatch batch;
-	Texture boundaryCircle;
+	Assets assets;
+	AssetManager assetManager;
 	ShapeRenderer innerCircle;
 	Matrix gameMatrix;
 	ActiveBlockMatrix activeBlockMatrix;
 	String activeColour;
+	Texture boundaryCircle;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		boundaryCircle = new Texture("circle.png");
+		assets = new Assets();
+		assetManager = new AssetManager();
+		assets.load();
+		assets.manager.finishLoading();
+		boundaryCircle = assets.manager.get(Assets.boundaryCircle);
 		
 		innerCircle = new ShapeRenderer();
 		
-		gameMatrix = new Matrix(15, 60);
+		gameMatrix = new Matrix(15, 60, this);
 		activeColour = getActiveColour();
 
-		activeBlockMatrix = new ActiveBlockMatrix(activeColour);
+		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
 	}
 	
 	private String getActiveColour() {
@@ -84,9 +92,12 @@ public class Geometris extends Game {
 		
 		batch.begin();
 		batch.draw(boundaryCircle, boundaryCircleBorderX, boundaryCircleBorderY, boundaryCircleWidth, boundaryCircleHeight);
-		for (int i = 0; i < gameMatrix.matrixHeight; i++) {
-			for (int j = 0; j < gameMatrix.matrixWidth; j++) {
-				gameMatrix.getBlockSprite(i, j).draw(batch);
+		if (assets.manager.update()) {
+			for (int i = 0; i < gameMatrix.matrixHeight; i++) {
+				for (int j = 0; j < gameMatrix.matrixWidth; j++) {
+					Sprite block = gameMatrix.getBlockSprite(i, j);
+					block.draw(batch);
+				}
 			}
 		}
 		
@@ -102,6 +113,10 @@ public class Geometris extends Game {
 		
 	}
 	
+	public AssetManager getAssetManager() { 
+		return assetManager;
+	}
+	
 	@Override
 	public void resize(int width, int height) {
 		
@@ -111,5 +126,6 @@ public class Geometris extends Game {
 	public void dispose () {
 		batch.dispose();
 		boundaryCircle.dispose();
+		assetManager.dispose();
 	}
 }

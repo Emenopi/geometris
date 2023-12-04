@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class ActiveBlock extends Block {
-
-	public ActiveBlock(int hIndex, int wIndex, geometris.Matrix.colour col, float offset) {
-		super(hIndex, wIndex, col, offset);
+	
+	public ActiveBlock(int hIndex, int wIndex, geometris.Matrix.colour col, float offset, Geometris geo) {
+		super(hIndex, wIndex, col, offset, geo);
 	}
 	
 	private double getOffsetX() {

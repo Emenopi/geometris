@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import geometris.Matrix.colour;
 
 public class Block {
+	Assets assets;
 	Sprite blockSprite;
-	
 	double[] blockSize = new double[2];
 	
 	float rotatedHeight;
@@ -20,7 +20,8 @@ public class Block {
 	colour colour;
 	
 	
-	public Block(int hIndex, int wIndex, colour col, float offset) {
+	public Block(int hIndex, int wIndex, colour col, float offset, Geometris geo) {
+		assets = geo.assets;
 		widthIndex = wIndex;
 		heightIndex = hIndex;
 		colour = col;
@@ -55,38 +56,37 @@ public class Block {
 		
 	}
 	
-	protected static Sprite getBlockSprite(colour colour) {	
+	protected Sprite getBlockSprite(colour colour) {	
 		Texture blockImg;
 		switch(colour) {
 		case CYAN:
-			blockImg = new Texture("cyan.png");
+			blockImg = assets.manager.get(Assets.cyanBlock);
 			break;
 		case PURPLE:
-			blockImg = new Texture("purple.png");
+			blockImg = assets.manager.get(Assets.purpleBlock);
 			break;
 		case MAGENTA:
-			blockImg = new Texture("magenta.png");
+			blockImg = assets.manager.get(Assets.magentaBlock);
 			break;
 		case ORANGE:
-			blockImg = new Texture("orange.png");
+			blockImg = assets.manager.get(Assets.orangeBlock);
 			break;
 		case YELLOW:
-			blockImg = new Texture("yellow.png");
+			blockImg = assets.manager.get(Assets.yellowBlock);
 			break;
 		case GREEN:
-			blockImg = new Texture("green.png");
+			blockImg = assets.manager.get(Assets.greenBlock);
 			break;
 		case BLACK:
-			blockImg = new Texture("black.png");
+			blockImg = assets.manager.get(Assets.blackBlock);
 			break;
 		default:
-			blockImg = new Texture("black.png");
+			blockImg = assets.manager.get(Assets.blackBlock);
 			break;
 		}
 		
 		Sprite sprite = new Sprite(blockImg);
 		sprite.flip(false, true);
-
 		return sprite;
 	}
 	

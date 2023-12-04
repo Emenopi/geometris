@@ -3,6 +3,7 @@ package geometris;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Matrix {
+	Geometris geometris;
 	int matrixHeight;
 	int matrixWidth;
 	Block[][] matrix;
@@ -19,7 +20,8 @@ public class Matrix {
 	}
 
 	// Constructor	
-	public Matrix(int h, int w) {
+	public Matrix(int h, int w, Geometris geo) {
+		this.geometris = geo;
 		matrixHeight = h;
 		matrixWidth = w;
 		
@@ -27,7 +29,7 @@ public class Matrix {
 		float addBlockOffset = 0;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
-				matrix[i][j] = new Block(i, j, colour.CYAN, addBlockOffset);
+				matrix[i][j] = new Block(i, j, colour.CYAN, addBlockOffset, geometris);
 			}
 			addBlockOffset += matrix[i][0].getHeight() + 4;
 		}

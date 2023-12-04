@@ -2,12 +2,13 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import geometris.Geometris;
 import geometris.Matrix;
 
 
 public class GeometrisTest {
-	
-	Matrix gameMatrix = new Matrix(15, 60);
+	Geometris geometris = new Geometris();
+	Matrix gameMatrix = new Matrix(15, 60, geometris);
 
 	@Test
 	public void gameMatrixHeightTest() {
