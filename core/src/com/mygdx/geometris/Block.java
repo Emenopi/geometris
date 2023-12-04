@@ -43,7 +43,7 @@ public class Block {
 		double[] size = getBlockSize(heightIndex, widthIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
-		blockSprite.setOrigin(newWidth/2, newHeight/2);
+		blockSprite.setOrigin(newWidth/3, newHeight/2);
 		blockSprite.setSize(newWidth, newHeight);
 		
 	}
@@ -116,8 +116,8 @@ public class Block {
 		double centre = (Gdx.graphics.getWidth() / 2);
 		double centreMargin = 115 + additionalOffset;
 		double positionX;
-		double defaultPositionX = centre - rotatedWidth/7;
-		positionX = defaultPositionX+(centreMargin*getOffsetX())-9.5;
+		double defaultPositionX = centre - rotatedWidth/5;
+		positionX = defaultPositionX+(centreMargin*getOffsetX());
 		return (float) positionX;
 	}
 	
@@ -125,8 +125,8 @@ public class Block {
 		double centre = (Gdx.graphics.getHeight() / 2);
 		double centreMargin = 115  + additionalOffset;
 		double positionY;
-		double defaultPositionY = centre - rotatedHeight/7;
-		positionY = defaultPositionY-(centreMargin*getOffsetY()) - 2.5;
+		double defaultPositionY = centre - rotatedHeight/5;
+		positionY = defaultPositionY-(centreMargin*getOffsetY());
 		return (float) positionY;
 	}
 	
