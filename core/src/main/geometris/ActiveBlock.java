@@ -10,38 +10,38 @@ public class ActiveBlock extends Block {
 	}
 	
 	private double getOffsetX() {
-		double offset = Math.sin(Math.toRadians(widthIndex * 6));
+		double offset = Math.sin(Math.toRadians(widthIndex * 6.0));
 		return offset;
 	}
 	
 	private double getOffsetY() {
-		double offset = Math.cos(Math.toRadians(widthIndex* 6));
+		double offset = Math.cos(Math.toRadians(widthIndex* 6.0));
 		return offset;
 	}
 	
 	public float getPositionX() {
-		double centre = (Gdx.graphics.getWidth() / 2);
+		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 75 - additionalOffset;
 		double positionX;
-		double defaultPositionX = centre - rotatedWidth/5;
-		positionX = defaultPositionX+(centreMargin*getOffsetX());
+		double defaultPositionX = centre;
+		positionX = defaultPositionX-(centreMargin*getOffsetX());
 		return (float) positionX;
 	}
 	
 	public float getPositionY() {
-		double centre = (Gdx.graphics.getHeight() / 2);
+		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 75  - additionalOffset;
 		double positionY;
-		double defaultPositionY = centre - rotatedHeight/5;
-		positionY = defaultPositionY-(centreMargin*getOffsetY());
+		double defaultPositionY = centre;
+		positionY = defaultPositionY+(centreMargin*getOffsetY());
 		return (float) positionY;
 	}
 	
 	private void resizeBlock() {
-		double[] size = getBlockSize(3-heightIndex, widthIndex);
+		double[] size = getBlockSize(1/(heightIndex + 1), widthIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
-		blockSprite.setOrigin(newWidth/3, newHeight/2);
+		blockSprite.setOrigin(newWidth, 0);
 		blockSprite.setSize(newWidth, newHeight);
 		
 	}

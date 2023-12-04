@@ -32,7 +32,7 @@ public class Block {
 		double[] size = getBlockSize(heightIndex, widthIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
-		blockSprite.setOrigin(newWidth/3, newHeight/2);
+		blockSprite.setOrigin(0, 0);
 		blockSprite.setSize(newWidth, newHeight);
 		
 	}
@@ -44,7 +44,7 @@ public class Block {
 		double minBlockHeight = 9;
 		
 		double widthScaleFactor = (hIndex + 1) / 8.0;
-		double heightScaleFactor = (hIndex + 1) / 17.5;
+		double heightScaleFactor = (hIndex + 1) / 20.1;
 		
 		double blockWidth = minBlockHeight + (minBlockWidth * widthScaleFactor);
 		double blockHeight = minBlockHeight + (minBlockHeight * heightScaleFactor);
@@ -86,35 +86,34 @@ public class Block {
 		}
 		
 		Sprite sprite = new Sprite(blockImg);
-		sprite.flip(false, true);
 		return sprite;
 	}
 	
 	private double getOffsetX() {
-		double offset = Math.sin(Math.toRadians(widthIndex * 6));
+		double offset = Math.sin(Math.toRadians(widthIndex * 6.0));
 		return offset;
 	}
 	
 	private double getOffsetY() {
-		double offset = Math.cos(Math.toRadians(widthIndex* 6));
+		double offset = Math.cos(Math.toRadians(widthIndex * 6.0));
 		return offset;
 	}
 	
 	public float getPositionX() {
-		double centre = (Gdx.graphics.getWidth() / 2);
+		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 115 + additionalOffset;
 		double positionX;
-		double defaultPositionX = centre - rotatedWidth/5;
-		positionX = defaultPositionX+(centreMargin*getOffsetX());
+		double defaultPositionX = centre;
+		positionX = defaultPositionX-(centreMargin*getOffsetX());
 		return (float) positionX;
 	}
 	
 	public float getPositionY() {
-		double centre = (Gdx.graphics.getHeight() / 2);
+		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 115  + additionalOffset;
 		double positionY;
-		double defaultPositionY = centre - rotatedHeight/5;
-		positionY = defaultPositionY-(centreMargin*getOffsetY());
+		double defaultPositionY = centre;
+		positionY = defaultPositionY+(centreMargin*getOffsetY());
 		return (float) positionY;
 	}
 	

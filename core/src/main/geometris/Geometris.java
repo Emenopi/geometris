@@ -87,7 +87,7 @@ public class Geometris extends Game {
 		
 		innerCircle.setColor(Color.FIREBRICK);
 		innerCircle.begin(ShapeType.Filled);
-		innerCircle.circle((float) (screenCentre - 6), (float) (screenCentre - 3), innerCircleRadius);
+		innerCircle.circle(screenCentre, screenCentre, innerCircleRadius);
 		innerCircle.end();
 		
 		batch.begin();
@@ -95,20 +95,19 @@ public class Geometris extends Game {
 		if (assets.manager.update()) {
 			for (int i = 0; i < gameMatrix.matrixHeight; i++) {
 				for (int j = 0; j < gameMatrix.matrixWidth; j++) {
-					Sprite block = gameMatrix.getBlockSprite(i, j);
-					block.draw(batch);
+					gameMatrix.getBlockSprite(i, j).draw(batch);
 				}
 			}
 		}
 		
 		//activeBlockMatrix.matrix[0][0].getBlockSprite().draw(batch);
-		/*for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (activeBlockMatrix.matrix[i][j].getBlockString() != "NULL") {
 					activeBlockMatrix.matrix[i][j].getBlockSprite().draw(batch);
 				}
 			}
-		}*/
+		}
 		batch.end();		
 		
 	}
