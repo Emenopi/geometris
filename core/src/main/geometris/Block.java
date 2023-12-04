@@ -36,7 +36,7 @@ public class Block {
 		
 	}
 	
-	private double[] getBlockSize(int hIndex, int wIndex) {
+	protected double[] getBlockSize(int hIndex, int wIndex) {
 		double [] size = new double[2];
 		
 		double minBlockWidth = 12;
@@ -55,7 +55,7 @@ public class Block {
 		
 	}
 	
-	private static Sprite getBlockSprite(colour colour) {	
+	protected static Sprite getBlockSprite(colour colour) {	
 		Texture blockImg;
 		switch(colour) {
 		case CYAN:

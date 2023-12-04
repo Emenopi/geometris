@@ -15,7 +15,8 @@ public class Geometris extends Game {
 	Texture boundaryCircle;
 	ShapeRenderer innerCircle;
 	Matrix gameMatrix;
-	Matrix activeBlockMatrix;
+	ActiveBlockMatrix activeBlockMatrix;
+	String activeColour;
 	
 	@Override
 	public void create () {
@@ -25,6 +26,38 @@ public class Geometris extends Game {
 		innerCircle = new ShapeRenderer();
 		
 		gameMatrix = new Matrix(15, 60);
+		activeColour = getActiveColour();
+
+		activeBlockMatrix = new ActiveBlockMatrix(activeColour);
+	}
+	
+	private String getActiveColour() {
+		int randomInt = (int) Math.random() * 6 + 1;
+		String colour;
+		switch(randomInt) {
+		case 0:
+			colour = "CYAN";
+			break;
+		case 1:
+			colour = "PURPLE";
+			break;
+		case 2:
+			colour = "MAGENTA";
+			break;
+		case 3:
+			colour = "ORANGE";
+			break;
+		case 4:
+			colour = "YELLOW";
+			break;
+		case 5:
+			colour = "GREEN";
+			break;
+		default:
+			colour = "CYAN";
+			break;
+		}
+	return colour;
 	}
 
 	@Override
@@ -43,6 +76,12 @@ public class Geometris extends Game {
 		
 		
 		ScreenUtils.clear(0, 0, 0, 0);
+		
+		innerCircle.setColor(Color.FIREBRICK);
+		innerCircle.begin(ShapeType.Filled);
+		innerCircle.circle((float) (screenCentre - 6), (float) (screenCentre - 3), innerCircleRadius);
+		innerCircle.end();
+		
 		batch.begin();
 		batch.draw(boundaryCircle, boundaryCircleBorderX, boundaryCircleBorderY, boundaryCircleWidth, boundaryCircleHeight);
 		for (int i = 0; i < gameMatrix.matrixHeight; i++) {
@@ -50,13 +89,16 @@ public class Geometris extends Game {
 				gameMatrix.getBlockSprite(i, j).draw(batch);
 			}
 		}
-		batch.end();
 		
-		innerCircle.setColor(Color.FIREBRICK);
-		innerCircle.begin(ShapeType.Filled);
-		innerCircle.circle((float) (screenCentre - 6), (float) (screenCentre - 3), innerCircleRadius);
-		innerCircle.end();
-		
+		//activeBlockMatrix.matrix[0][0].getBlockSprite().draw(batch);
+		/*for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if (activeBlockMatrix.matrix[i][j].getBlockString() != "NULL") {
+					activeBlockMatrix.matrix[i][j].getBlockSprite().draw(batch);
+				}
+			}
+		}*/
+		batch.end();		
 		
 	}
 	
