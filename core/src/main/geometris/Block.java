@@ -134,4 +134,8 @@ public class Block {
 		return size[0];
 	}
 	
+	public String getColour() {
+		return colour.toString();
+	}
+	
 }

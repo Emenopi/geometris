@@ -18,4 +18,5 @@ public class GeometrisTest {
 	public void gameMatrixWidthTest() {
 		assertEquals(60, gameMatrix.getWidth());
 	}
+	
 }

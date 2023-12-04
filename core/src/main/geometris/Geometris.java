@@ -15,6 +15,7 @@ public class Geometris extends Game {
 	Texture boundaryCircle;
 	ShapeRenderer innerCircle;
 	Matrix gameMatrix;
+	Matrix activeBlockMatrix;
 	
 	@Override
 	public void create () {
