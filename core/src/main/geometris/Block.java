@@ -13,9 +13,6 @@ public class Block {
 	
 	float rotatedHeight;
 	float rotatedWidth;
-	float rotation;
-	float positionX;
-	float positionY;
 	int widthIndex;
 	int heightIndex;
 	float additionalOffset;
@@ -23,14 +20,11 @@ public class Block {
 	colour colour;
 	
 	
-	public Block(int hIndex, int wIndex, colour col, float offset) {		
-		// load, scale, rotate, offset based on rotated size
+	public Block(int hIndex, int wIndex, colour col, float offset) {
 		widthIndex = wIndex;
 		heightIndex = hIndex;
 		colour = col;
 		additionalOffset = offset;
-		//blockSprite = getBlockSprite(col);
-		rotation = widthIndex * 6;
 	}
 	
 	private void resizeBlock() {
@@ -127,8 +121,8 @@ public class Block {
 	public Sprite getBlockSprite() {
 		blockSprite = getBlockSprite(colour);
 		resizeBlock();
-		blockSprite.setRotation(rotation);
-		
+		float rotation = widthIndex * 6;
+		blockSprite.setRotation(rotation);		
 		rotatedHeight = blockSprite.getRegionHeight();
 		rotatedWidth = blockSprite.getRegionWidth();
 		blockSprite.setPosition(getPositionX(), getPositionY());
