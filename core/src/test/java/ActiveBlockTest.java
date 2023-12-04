@@ -2,13 +2,13 @@ import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import geometris.Matrix;
+import geometris.ActiveBlockMatrix;
 
 
 public class ActiveBlockTest {
 	@Test
 	public void activeBlockCyanTest() {
-		Matrix activeBlock = new Matrix("CYAN");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("CYAN");
 		String[][] cyanBlock = {
 				{"CYAN", "NULL", "NULL"},
 				{"NULL", "NULL", "NULL"},
@@ -19,7 +19,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockPurpleTest() {
-		Matrix activeBlock = new Matrix("PURPLE");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("PURPLE");
 		String[][] purpleBlock = {
 				{"PURPLE", "NULL", "NULL"},
 				{"PURPLE", "NULL", "NULL"},
@@ -30,7 +30,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMagentaTest() {
-		Matrix activeBlock = new Matrix("MAGENTA");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("MAGENTA");
 		String[][] magentaBlock = {
 				{"MAGENTA", "MAGENTA", "NULL"},
 				{"MAGENTA", "MAGENTA", "NULL"},
@@ -41,7 +41,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockOrangeTest() {
-		Matrix activeBlock = new Matrix("ORANGE");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("ORANGE");
 		String[][] orangeBlock = {
 				{"ORANGE", "NULL", "NULL"},
 				{"ORANGE", "ORANGE", "NULL"},
@@ -52,7 +52,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMatrixYellowTest() {
-		Matrix activeBlock = new Matrix("YELLOW");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("YELLOW");
 		String[][] yellowBlock = {
 				{"YELLOW", "YELLOW", "NULL"},
 				{"YELLOW", "NULL", "NULL"},
@@ -63,7 +63,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockGreenTest() {
-		Matrix activeBlock = new Matrix("GREEN");
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("GREEN");
 		String[][] greenBlock = {
 				{"GREEN", "NULL", "NULL"},
 				{"GREEN", "GREEN", "NULL"},
