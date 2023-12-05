@@ -6,7 +6,12 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 public class ActiveBlock extends Block {
 	
 	public ActiveBlock(int hIndex, int wIndex, geometris.Matrix.colour col, float offset, Geometris geo) {
-		super(hIndex, wIndex, col, offset, geo);
+		this.heightIndex = hIndex;
+		this.widthIndex = wIndex;
+		this.colour = col;
+		this.additionalOffset = offset;
+		this.geometris = geo;
+		this.assets = geo.assets;
 	}
 	
 	private double getOffsetX() {
@@ -45,21 +50,6 @@ public class ActiveBlock extends Block {
 		blockSprite.setOrigin(newWidth, 0);
 		blockSprite.setSize(newWidth, newHeight);
 		
-	}
-	
-	public Sprite getBlockSprite() {
-		blockSprite = getBlockSprite(colour);
-		resizeBlock();
-		float rotation = widthIndex * 6;
-		blockSprite.setRotation(rotation);		
-		rotatedHeight = blockSprite.getRegionHeight();
-		rotatedWidth = blockSprite.getRegionWidth();
-		blockSprite.setPosition(getPositionX(), getPositionY());
-		return blockSprite;
-	}
-	
-	public String getBlockString() {
-		return colour.toString();
 	}
 
 }

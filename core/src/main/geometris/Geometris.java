@@ -17,7 +17,7 @@ public class Geometris extends Game {
 	Assets assets;
 	AssetManager assetManager;
 	ShapeRenderer innerCircle;
-	Matrix gameMatrix;
+	GameMatrix gameMatrix;
 	ActiveBlockMatrix activeBlockMatrix;
 	String activeColour;
 	Texture boundaryCircle;

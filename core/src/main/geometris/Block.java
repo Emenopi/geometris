@@ -6,9 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import geometris.Matrix.colour;
 
-public class Block {
+abstract class Block {
 	Assets assets;
 	Sprite blockSprite;
+	Geometris geometris;
 	double[] blockSize = new double[2];
 	
 	float rotatedHeight;
@@ -18,15 +19,6 @@ public class Block {
 	float additionalOffset;
 	
 	colour colour;
-	
-	
-	public Block(int hIndex, int wIndex, colour col, float offset, Geometris geo) {
-		assets = geo.assets;
-		widthIndex = wIndex;
-		heightIndex = hIndex;
-		colour = col;
-		additionalOffset = offset;
-	}
 	
 	private void resizeBlock() {
 		double[] size = getBlockSize(heightIndex, widthIndex);
@@ -134,6 +126,10 @@ public class Block {
 	}
 	
 	public String getColour() {
+		return colour.toString();
+	}
+	
+	public String getBlockString() {
 		return colour.toString();
 	}
 	
