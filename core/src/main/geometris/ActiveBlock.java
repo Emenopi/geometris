@@ -21,7 +21,7 @@ public class ActiveBlock extends Block {
 	
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
-		double centreMargin = 75 - additionalOffset;
+		double centreMargin = 115 + additionalOffset;
 		double positionX;
 		double defaultPositionX = centre;
 		positionX = defaultPositionX-(centreMargin*getOffsetX());
@@ -30,10 +30,11 @@ public class ActiveBlock extends Block {
 	
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
-		double centreMargin = 75  - additionalOffset;
+		double centreMargin = 115  + additionalOffset;
 		double positionY;
 		double defaultPositionY = centre;
-		positionY = defaultPositionY+(centreMargin*getOffsetY());
+		double indexAdjustment = 50 * Math.sin(Math.toRadians(heightIndex)) + 65;
+		positionY = defaultPositionY+(centreMargin*getOffsetY()) - indexAdjustment;
 		return (float) positionY;
 	}
 	

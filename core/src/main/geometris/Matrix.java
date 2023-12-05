@@ -2,12 +2,13 @@ package geometris;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Matrix {
+abstract class Matrix {
+	
+	Block[][] matrix;
 	Geometris geometris;
 	int matrixHeight;
 	int matrixWidth;
-	Block[][] matrix;
-	
+
 	enum colour {
 		CYAN,
 		PURPLE,
@@ -18,30 +19,16 @@ public class Matrix {
 		BLACK,
 		NULL
 	}
-
-	// Constructor	
-	public Matrix(int h, int w, Geometris geo) {
-		this.geometris = geo;
-		matrixHeight = h;
-		matrixWidth = w;
-		
-		matrix = new Block[matrixHeight][matrixWidth];
-		float addBlockOffset = 0;
-		for (int i = 0; i < matrixHeight; i++) {
-			for (int j = 0; j < matrixWidth; j++) {
-				matrix[i][j] = new Block(i, j, colour.CYAN, addBlockOffset, geometris);
-			}
-			addBlockOffset += matrix[i][0].getHeight() + 4;
-		}
-	}	
 	
 	public Block[][] getMatrix() {
 		return matrix;
 	}
 	
+
 	public Sprite getBlockSprite(int hIndex, int wIndex) {
 		return matrix[hIndex][wIndex].getBlockSprite();
 	}
+	
 	
 	public int getHeight() {
 		return matrixHeight;
@@ -61,9 +48,6 @@ public class Matrix {
 		
 		return matrixString;
 	}
-
-
-	public void main(String[] args) {
-	}
+	
 
 }

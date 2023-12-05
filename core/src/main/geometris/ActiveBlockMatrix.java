@@ -5,7 +5,7 @@ public class ActiveBlockMatrix extends Matrix {
 	ActiveBlock[][] matrix;
 
 	public ActiveBlockMatrix(String col, Geometris geo) {
-		super(3, 3, geo);
+		this.geometris = geo;
 		matrixHeight = 3;
 		matrixWidth = 3;		
 		matrix = generateMatrix(col, geo);
@@ -13,8 +13,8 @@ public class ActiveBlockMatrix extends Matrix {
 	
 	private ActiveBlock[][] generateMatrix(String col, Geometris geo) {
 		ActiveBlock[][] activeBlockMatrix = new ActiveBlock[3][3];
-		float offsetOne = 14;
-		float offsetTwo = 28;
+		float offsetOne = (float) 13.45;
+		float offsetTwo = (float) 27.34;
 		switch(col) {
 		case "CYAN":
 			activeBlockMatrix[0][0] = new ActiveBlock(0, 0, colour.CYAN, 0, geo);
@@ -52,8 +52,8 @@ public class ActiveBlockMatrix extends Matrix {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (activeBlockMatrix[i][j] == null) {
-					activeBlockMatrix[i][j] = new ActiveBlock(i, j, colour.NULL, 14 * i, geo);
-				}
+					activeBlockMatrix[i][j] = new ActiveBlock(i, j, colour.NULL, 0, geo);
+				}				
 			}
 		}
 		

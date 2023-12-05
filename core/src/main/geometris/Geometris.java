@@ -33,14 +33,15 @@ public class Geometris extends Game {
 		
 		innerCircle = new ShapeRenderer();
 		
-		gameMatrix = new Matrix(15, 60, this);
+		gameMatrix = new GameMatrix(15, 60, this);
 		activeColour = getActiveColour();
 
 		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
 	}
 	
 	private String getActiveColour() {
-		int randomInt = (int) Math.random() * 6 + 1;
+		int randomInt = (int) Math.floor(Math.random() * 5);
+		System.out.println(randomInt);
 		String colour;
 		switch(randomInt) {
 		case 0:
