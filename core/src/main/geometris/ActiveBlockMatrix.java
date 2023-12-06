@@ -6,9 +6,9 @@ public class ActiveBlockMatrix extends Matrix {
 
 	public ActiveBlockMatrix(String col, Geometris geo) {
 		this.geometris = geo;
-		matrixHeight = 3;
-		matrixWidth = 3;		
-		matrix = generateMatrix(col, geo);
+		this.matrixHeight = 3;
+		this.matrixWidth = 3;
+		this.matrix = generateMatrix(col, geo);
 	}
 	
 	private ActiveBlock[][] generateMatrix(String col, Geometris geo) {
@@ -58,6 +58,17 @@ public class ActiveBlockMatrix extends Matrix {
 		}
 		
 		return activeBlockMatrix;
+	}
+	
+	public String[][] getMatrixString() {
+		String[][] matrixString = new String[matrixHeight][matrixWidth];
+		for (int i = 0; i < matrixHeight; i++) {
+			for (int j = 0; j < matrixWidth; j++) {
+				matrixString[i][j] = matrix[i][j].getColour().toString();
+			}
+		}
+		
+		return matrixString;
 	}
 
 }
