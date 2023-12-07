@@ -6,13 +6,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 public class Geometris extends Game {
+	double clock;
 	SpriteBatch batch;
 	Assets assets;
 	AssetManager assetManager;
@@ -40,8 +40,7 @@ public class Geometris extends Game {
 	}
 	
 	private String getActiveColour() {
-		int randomInt = (int) Math.floor(Math.random() * 5);
-		System.out.println(randomInt);
+		int randomInt = (int) Math.floor(Math.random() * 6);
 		String colour;
 		switch(randomInt) {
 		case 0:
@@ -71,6 +70,11 @@ public class Geometris extends Game {
 
 	@Override
 	public void render () {
+		clock += Gdx.graphics.getDeltaTime();
+		if (clock > 1) {
+			activeBlockMatrix.rotate();
+			clock = 0;
+		}
 		float boundaryCircleWidth = 819;
 		float boundaryCircleHeight = 819;
 		float screenWidth = Gdx.graphics.getWidth();
@@ -102,13 +106,14 @@ public class Geometris extends Game {
 		}
 		
 		//activeBlockMatrix.matrix[0][0].getBlockSprite().draw(batch);
-		for (int i = 0; i < 3; i++) {
+		/*for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (activeBlockMatrix.matrix[i][j].getBlockString() != "NULL") {
 					activeBlockMatrix.matrix[i][j].getBlockSprite().draw(batch);
 				}
 			}
-		}
+		}*/
+		activeBlockMatrix.getSprite().draw(batch);
 		batch.end();		
 		
 	}

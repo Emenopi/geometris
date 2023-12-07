@@ -1,5 +1,7 @@
 package geometris;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
 public class GameMatrix extends Matrix {
 
 	// Constructor	
@@ -17,6 +19,11 @@ public class GameMatrix extends Matrix {
 			addBlockOffset += matrix[i][0].getHeight() + 4;
 		}
 	}
+	
+	public Sprite getBlockSprite(int hIndex, int wIndex) {
+		return matrix[hIndex][wIndex].getBlockSprite();
+	}
+	
 
 
 	public void main(String[] args) {

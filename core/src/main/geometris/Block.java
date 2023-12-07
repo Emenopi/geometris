@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import geometris.Matrix.colour;
 
 abstract class Block {
+	boolean isActive;
 	Assets assets;
 	Sprite blockSprite;
 	Geometris geometris;
@@ -20,7 +21,7 @@ abstract class Block {
 	
 	colour colour;
 	
-	private void resizeBlock() {
+	protected void resizeBlock() {
 		double[] size = getBlockSize(heightIndex, widthIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
@@ -48,7 +49,7 @@ abstract class Block {
 		
 	}
 	
-	protected Sprite getBlockSprite(colour colour) {	
+	public Sprite getBlockSprite(colour colour) {	
 		Texture blockImg;
 		switch(colour) {
 		case CYAN:
@@ -76,36 +77,36 @@ abstract class Block {
 			blockImg = assets.manager.get(Assets.blackBlock);
 			break;
 		}
-		
-		Sprite sprite = new Sprite(blockImg);
-		return sprite;
+
+        return new Sprite(blockImg);
 	}
 	
 	private double getOffsetX() {
-		double offset = Math.sin(Math.toRadians(widthIndex * 6.0));
-		return offset;
+        return Math.sin(Math.toRadians(widthIndex * 6.0));
 	}
 	
 	private double getOffsetY() {
-		double offset = Math.cos(Math.toRadians(widthIndex * 6.0));
-		return offset;
+        return Math.cos(Math.toRadians(widthIndex * 6.0));
 	}
 	
+	public double getHeight() {
+		double[] size = getBlockSize(heightIndex, widthIndex);
+		return size[0];
+	}
+
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 115 + additionalOffset;
 		double positionX;
-		double defaultPositionX = centre;
-		positionX = defaultPositionX-(centreMargin*getOffsetX());
+		positionX = centre -(centreMargin*getOffsetX());
 		return (float) positionX;
 	}
-	
+
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 115  + additionalOffset;
 		double positionY;
-		double defaultPositionY = centre;
-		positionY = defaultPositionY+(centreMargin*getOffsetY());
+		positionY = centre +(centreMargin*getOffsetY());
 		return (float) positionY;
 	}
 	
@@ -120,17 +121,13 @@ abstract class Block {
 		return blockSprite;
 	}
 	
-	public double getHeight() {
-		double[] size = getBlockSize(heightIndex, widthIndex);
-		return size[0];
-	}
 	
-	public String getColour() {
+	public String getColourString() {
 		return colour.toString();
 	}
 	
-	public String getBlockString() {
-		return colour.toString();
+	public colour getColour() {
+		return colour;
 	}
 	
 }

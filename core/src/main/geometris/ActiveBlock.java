@@ -1,9 +1,10 @@
 package geometris;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class ActiveBlock extends Block {
+	int direction;
+	final boolean isActive = true;
 	
 	public ActiveBlock(int hIndex, int wIndex, geometris.Matrix.colour col, float offset, Geometris geo) {
 		this.heightIndex = hIndex;
@@ -15,21 +16,18 @@ public class ActiveBlock extends Block {
 	}
 	
 	private double getOffsetX() {
-		double offset = Math.sin(Math.toRadians(widthIndex * 6.0));
-		return offset;
+        return Math.sin(Math.toRadians((widthIndex + direction) * 6.0));
 	}
 	
 	private double getOffsetY() {
-		double offset = Math.cos(Math.toRadians(widthIndex* 6.0));
-		return offset;
+        return Math.cos(Math.toRadians((widthIndex + direction) * 6.0));
 	}
 	
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 135 - additionalOffset + (heightIndex * 30);
 		double positionX;
-		double defaultPositionX = centre;
-		positionX = defaultPositionX+(centreMargin*getOffsetX());
+        positionX = centre +(centreMargin*getOffsetX());
 		return (float) positionX;
 	}
 	
@@ -37,19 +35,22 @@ public class ActiveBlock extends Block {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 135  - additionalOffset;
 		double positionY;
-		double defaultPositionY = centre;
-		double indexAdjustment = 50 * Math.sin(Math.toRadians(heightIndex)) + 65;
-		positionY = defaultPositionY+(centreMargin*getOffsetY()) - indexAdjustment;
+        double indexAdjustment = 50 * Math.sin(Math.toRadians(heightIndex)) + 65;
+		positionY = centre +(centreMargin*getOffsetY()) - indexAdjustment;
 		return (float) positionY;
 	}
 	
-	private void resizeBlock() {
+	protected void resizeBlock() {
 		double[] size = getBlockSize(1/(heightIndex + 1), widthIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
 		blockSprite.setOrigin(newWidth, 0);
 		blockSprite.setSize(newWidth, newHeight);
 		
+	}
+	
+	public void setDirection(int dir) {
+		direction = dir;
 	}
 
 }

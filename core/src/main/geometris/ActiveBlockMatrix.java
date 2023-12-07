@@ -1,14 +1,24 @@
 package geometris;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+
+
 public class ActiveBlockMatrix extends Matrix {
 	
 	ActiveBlock[][] matrix;
+	int direction;
+	colour colour;
+
 
 	public ActiveBlockMatrix(String col, Geometris geo) {
 		this.geometris = geo;
+		this.assets = geo.assets;
 		this.matrixHeight = 3;
 		this.matrixWidth = 3;
 		this.matrix = generateMatrix(col, geo);
+		this.colour = this.matrix[0][0].getColour();
+		direction = 0;
 	}
 	
 	private ActiveBlock[][] generateMatrix(String col, Geometris geo) {
@@ -53,7 +63,8 @@ public class ActiveBlockMatrix extends Matrix {
 			for (int j = 0; j < 3; j++) {
 				if (activeBlockMatrix[i][j] == null) {
 					activeBlockMatrix[i][j] = new ActiveBlock(i, j, colour.NULL, 0, geo);
-				}				
+				}
+				activeBlockMatrix[i][j].setDirection(direction);
 			}
 		}
 		
@@ -64,11 +75,66 @@ public class ActiveBlockMatrix extends Matrix {
 		String[][] matrixString = new String[matrixHeight][matrixWidth];
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
-				matrixString[i][j] = matrix[i][j].getColour().toString();
+				matrixString[i][j] = matrix[i][j].getColourString();
 			}
 		}
 		
 		return matrixString;
+	}
+
+	private double getOffsetX() {
+		return Math.sin(Math.toRadians(direction * 6.0));
+	}
+
+	private double getOffsetY() {
+		return Math.cos(Math.toRadians(direction * 6));
+	}
+
+	public float getPositionX() {
+		double centre = (Gdx.graphics.getWidth() / 2.0) - 5;
+		double blockWidth = getSpriteWidth();
+		double offset = 60 * getOffsetX();
+		double positionX;
+		positionX = centre + offset;
+		return (float) positionX;
+	}
+
+	public float getPositionY() {
+		double centre = (Gdx.graphics.getHeight() / 2.0) - 5;
+		double blockHeight = getSpriteHeight();
+		double offset = 60 * getOffsetY();
+		double positionY;
+		positionY = centre + offset;
+		return (float) positionY;
+	}
+
+	private double getSpriteHeight() {
+		Sprite sprite = this.getBlockSprite(colour);
+		sprite.rotate(direction * 6);
+		sprite.setSize((float) (sprite.getRegionWidth() * 0.3), (float) (sprite.getRegionHeight() * 0.3));
+		return sprite.getRegionHeight();
+	}
+
+	private double getSpriteWidth() {
+		Sprite sprite = this.getBlockSprite(colour);
+		sprite.setSize((float) (sprite.getRegionWidth() * 0.2), (float) (sprite.getRegionHeight() * 0.2));
+		sprite.setRotation(direction * -6);
+		return sprite.getRegionWidth();
+	}
+
+	public Sprite getSprite() {
+		Sprite sprite = this.getBlockSprite(colour);
+		double height = sprite.getRegionHeight() * 0.2;
+		double width = sprite.getRegionWidth() * 0.2;
+		sprite.setSize((float) width, (float) height);
+		sprite.setOrigin((float) (width/2), (float) (height/2));
+		sprite.setRotation(direction * -6);
+		sprite.setPosition(getPositionX(), getPositionY());
+		return sprite;
+	}
+
+	public void rotate() {
+		direction = (direction + 1) % 60;
 	}
 
 }
