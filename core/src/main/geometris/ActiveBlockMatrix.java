@@ -92,8 +92,8 @@ public class ActiveBlockMatrix extends Matrix {
 
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0) - 5;
-		double blockWidth = getSpriteWidth();
-		double offset = 60 * getOffsetX();
+		double blockHeight = getSpriteHeight();
+		double offset = (-6 + blockHeight * 0.3) * getOffsetX();
 		double positionX;
 		positionX = centre + offset;
 		return (float) positionX;
@@ -102,7 +102,7 @@ public class ActiveBlockMatrix extends Matrix {
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2.0) - 5;
 		double blockHeight = getSpriteHeight();
-		double offset = 60 * getOffsetY();
+		double offset = (-20 + blockHeight * 0.3) * getOffsetY();
 		double positionY;
 		positionY = centre + offset;
 		return (float) positionY;
