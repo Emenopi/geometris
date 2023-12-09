@@ -49,7 +49,7 @@ abstract class Matrix {
 			blockImg = assets.manager.get(Assets.greenBlockActive);
 			break;
 		default:
-			blockImg = assets.manager.get(Assets.blackBlock);
+			blockImg = assets.manager.get(Assets.nullBlock);
 			break;
 		}
 
@@ -60,7 +60,6 @@ abstract class Matrix {
 	public Sprite getBlockSprite(int hIndex, int wIndex) {
 		return matrix[hIndex][wIndex].getBlockSprite();
 	}
-	
 	
 	public int getHeight() {
 		return matrixHeight;

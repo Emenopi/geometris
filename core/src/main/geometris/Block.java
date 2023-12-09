@@ -18,19 +18,19 @@ abstract class Block {
 	int widthIndex;
 	int heightIndex;
 	float additionalOffset;
+	int direction;
 	
 	colour colour;
 	
-	protected void resizeBlock() {
-		double[] size = getBlockSize(heightIndex, widthIndex);
+	public void resizeBlock() {
+		double[] size = getBlockSize(heightIndex);
 		float newHeight = (float) size[0];
 		float newWidth = (float) size[1];
 		blockSprite.setOrigin(0, 0);
 		blockSprite.setSize(newWidth, newHeight);
-		
 	}
 	
-	protected double[] getBlockSize(int hIndex, int wIndex) {
+	protected double[] getBlockSize(int hIndex) {
 		double [] size = new double[2];
 		
 		double minBlockWidth = 12;
@@ -70,11 +70,8 @@ abstract class Block {
 		case GREEN:
 			blockImg = assets.manager.get(Assets.greenBlock);
 			break;
-		case BLACK:
-			blockImg = assets.manager.get(Assets.blackBlock);
-			break;
 		default:
-			blockImg = assets.manager.get(Assets.blackBlock);
+			blockImg = assets.manager.get(Assets.nullBlock);
 			break;
 		}
 
@@ -90,12 +87,12 @@ abstract class Block {
 	}
 	
 	public double getHeight() {
-		double[] size = getBlockSize(heightIndex, widthIndex);
+		double[] size = getBlockSize(heightIndex);
 		return size[0];
 	}
 
 	public double getWidth() {
-		double[] size = getBlockSize(heightIndex, widthIndex);
+		double[] size = getBlockSize(heightIndex);
 		return size[1];
 	}
 
@@ -103,7 +100,7 @@ abstract class Block {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 115 + additionalOffset;
 		double widthOffset = (getWidth()/2 * Math.cos(Math.toRadians(widthIndex * 6)));
-		double positionX = centre - (centreMargin*getOffsetX()) - widthOffset;
+		double positionX = centre + (centreMargin*getOffsetX()) - widthOffset;
 		return (float) positionX;
 	}
 
@@ -111,21 +108,24 @@ abstract class Block {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 115  + additionalOffset;
 		double widthOffset = (getWidth()/2 * Math.sin(Math.toRadians(widthIndex * 6)));
-		double positionY = centre + (centreMargin*getOffsetY()) - widthOffset;
+		double positionY = centre + (centreMargin*getOffsetY()) + widthOffset;
 		return (float) positionY;
 	}
 	
 	public Sprite getBlockSprite() {
 		blockSprite = getBlockSprite(colour);
 		resizeBlock();
-		float rotation = widthIndex * 6;
+		float rotation = (widthIndex + direction) * -6;
 		blockSprite.setRotation(rotation);		
 		rotatedHeight = blockSprite.getRegionHeight();
 		rotatedWidth = blockSprite.getRegionWidth();
 		blockSprite.setPosition(getPositionX(), getPositionY());
 		return blockSprite;
 	}
-	
+
+	public String getBlockString() {
+		return colour.toString();
+	}
 	
 	public String getColourString() {
 		return colour.toString();
@@ -134,5 +134,13 @@ abstract class Block {
 	public colour getColour() {
 		return colour;
 	}
-	
+
+	public void rotate() {
+		direction += 1;
+	}
+
+	protected void setOffset(float os) {
+		additionalOffset = os;
+	}
+
 }

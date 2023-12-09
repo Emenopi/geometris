@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+import java.util.Objects;
+
 public class Geometris extends Game {
 	double clock;
 	SpriteBatch batch;
@@ -21,6 +23,10 @@ public class Geometris extends Game {
 	ActiveBlockMatrix activeBlockMatrix;
 	String activeColour;
 	Texture boundaryCircle;
+
+	ActiveBlockMatrix abm15;
+	ActiveBlockMatrix abm30;
+	ActiveBlockMatrix abm45;
 	
 	@Override
 	public void create () {
@@ -75,7 +81,7 @@ public class Geometris extends Game {
 			activeBlockMatrix.rotate();
 			clock = 0;
 		}
-		
+
 		float boundaryCircleWidth = 819;
 		float boundaryCircleHeight = 819;
 		float screenWidth = Gdx.graphics.getWidth();
@@ -83,7 +89,7 @@ public class Geometris extends Game {
 		float screenCentre = screenWidth / 2;
 		
 		double boundaryCircleInnerRadius = (boundaryCircleWidth/2) * 0.88;
-		float innerCircleRadius = (float) (boundaryCircleInnerRadius/4);
+		float innerCircleRadius = (float) (boundaryCircleInnerRadius/3.2);
 		
 		int boundaryCircleBorderX = (int) ((screenWidth - boundaryCircleWidth) /2);
 		int boundaryCircleBorderY = (int) ((screenHeight - boundaryCircleHeight) /2);
@@ -107,14 +113,12 @@ public class Geometris extends Game {
 		}
 		
 		//activeBlockMatrix.matrix[0][0].getBlockSprite().draw(batch);
-		/*for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (activeBlockMatrix.matrix[i][j].getBlockString() != "NULL") {
-					activeBlockMatrix.matrix[i][j].getBlockSprite().draw(batch);
-				}
+					activeBlockMatrix.getBlockSprite(i, j).draw(batch);
 			}
-		}*/
-		activeBlockMatrix.getSprite().draw(batch);
+		}
+
 		batch.end();		
 		
 	}

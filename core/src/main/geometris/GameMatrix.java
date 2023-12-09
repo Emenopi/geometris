@@ -19,13 +19,4 @@ public class GameMatrix extends Matrix {
 			addBlockOffset += (float) (matrix[i][0].getHeight() + 4);
 		}
 	}
-	
-	public Sprite getBlockSprite(int hIndex, int wIndex) {
-		return matrix[hIndex][wIndex].getBlockSprite();
-	}
-	
-
-
-	public void main(String[] args) {
-	}
 }
