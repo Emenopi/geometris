@@ -97,11 +97,6 @@ public class Geometris extends Game {
 		
 		ScreenUtils.clear(0, 0, 0, 0);
 
-		centreCircle.setColor(Color.FIREBRICK);
-		centreCircle.begin(ShapeType.Filled);
-		centreCircle.circle(screenCentre, screenCentre, centreCircleRadius);
-		centreCircle.end();
-		
 		batch.begin();
 		batch.draw(boundaryCircle, boundaryCircleBorderX, boundaryCircleBorderY, boundaryCircleWidth, boundaryCircleHeight);
 		if (assets.manager.update()) {
