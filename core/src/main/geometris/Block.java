@@ -94,19 +94,24 @@ abstract class Block {
 		return size[0];
 	}
 
+	public double getWidth() {
+		double[] size = getBlockSize(heightIndex, widthIndex);
+		return size[1];
+	}
+
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
 		double centreMargin = 115 + additionalOffset;
-		double positionX;
-		positionX = centre -(centreMargin*getOffsetX());
+		double widthOffset = (getWidth()/2 * Math.cos(Math.toRadians(widthIndex * 6)));
+		double positionX = centre - (centreMargin*getOffsetX()) - widthOffset;
 		return (float) positionX;
 	}
 
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
 		double centreMargin = 115  + additionalOffset;
-		double positionY;
-		positionY = centre +(centreMargin*getOffsetY());
+		double widthOffset = (getWidth()/2 * Math.sin(Math.toRadians(widthIndex * 6)));
+		double positionY = centre + (centreMargin*getOffsetY()) - widthOffset;
 		return (float) positionY;
 	}
 	

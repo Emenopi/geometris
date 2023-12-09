@@ -71,10 +71,11 @@ public class Geometris extends Game {
 	@Override
 	public void render () {
 		clock += Gdx.graphics.getDeltaTime();
-		/*if (clock > 1) {
+		if (clock > 1) {
 			activeBlockMatrix.rotate();
 			clock = 0;
-		}*/
+		}
+		
 		float boundaryCircleWidth = 819;
 		float boundaryCircleHeight = 819;
 		float screenWidth = Gdx.graphics.getWidth();
