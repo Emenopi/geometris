@@ -18,7 +18,7 @@ public class Geometris extends Game {
 	SpriteBatch batch;
 	Assets assets;
 	AssetManager assetManager;
-	ShapeRenderer innerCircle;
+	ShapeRenderer centreCircle;
 	GameMatrix gameMatrix;
 	ActiveBlockMatrix activeBlockMatrix;
 	String activeColour;
@@ -36,8 +36,8 @@ public class Geometris extends Game {
 		assets.load();
 		assets.manager.finishLoading();
 		boundaryCircle = assets.manager.get(Assets.boundaryCircle);
-		
-		innerCircle = new ShapeRenderer();
+
+		centreCircle = new ShapeRenderer();
 		
 		gameMatrix = new GameMatrix(15, 60, this);
 		activeColour = getActiveColour();
@@ -89,18 +89,18 @@ public class Geometris extends Game {
 		float screenCentre = screenWidth / 2;
 		
 		double boundaryCircleInnerRadius = (boundaryCircleWidth/2) * 0.88;
-		float innerCircleRadius = (float) (boundaryCircleInnerRadius/3.2);
+		float centreCircleRadius = (float) (boundaryCircleInnerRadius/3.2);
 		
 		int boundaryCircleBorderX = (int) ((screenWidth - boundaryCircleWidth) /2);
 		int boundaryCircleBorderY = (int) ((screenHeight - boundaryCircleHeight) /2);
 		
 		
 		ScreenUtils.clear(0, 0, 0, 0);
-		
-		innerCircle.setColor(Color.FIREBRICK);
-		innerCircle.begin(ShapeType.Filled);
-		innerCircle.circle(screenCentre, screenCentre, innerCircleRadius);
-		innerCircle.end();
+
+		centreCircle.setColor(Color.FIREBRICK);
+		centreCircle.begin(ShapeType.Filled);
+		centreCircle.circle(screenCentre, screenCentre, centreCircleRadius);
+		centreCircle.end();
 		
 		batch.begin();
 		batch.draw(boundaryCircle, boundaryCircleBorderX, boundaryCircleBorderY, boundaryCircleWidth, boundaryCircleHeight);

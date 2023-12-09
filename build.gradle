@@ -62,7 +62,7 @@ project(":core") {
 	
 		sourceSets.main.java.srcDirs = [ "src/main/" ]
 		sourceSets.test.java.srcDirs = [ "src/test/java" ]
-		
+
 		implementation "com.badlogicgames.gdx:gdx:$gdxVersion"                                    
 	    implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"                              
 	    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"                           

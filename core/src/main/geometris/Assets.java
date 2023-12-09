@@ -34,6 +34,8 @@ public class Assets {
 			new AssetDescriptor<Texture>("green.png", Texture.class);
 	public static final AssetDescriptor<Texture> greenBlockActive =
 			new AssetDescriptor<Texture>("green_full.png", Texture.class);
+	public static final AssetDescriptor<Texture> blackBlock =
+			new AssetDescriptor<Texture>("black.png", Texture.class);
 	public static final AssetDescriptor<Texture> nullBlock =
 			new AssetDescriptor<Texture>("null.png", Texture.class);
 	
@@ -51,6 +53,7 @@ public class Assets {
 		manager.load(yellowBlockActive);
 		manager.load(greenBlock);
 		manager.load(greenBlockActive);
+		manager.load(blackBlock);
 		manager.load(nullBlock);
 	}
 	

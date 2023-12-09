@@ -70,6 +70,9 @@ abstract class Block {
 		case GREEN:
 			blockImg = assets.manager.get(Assets.greenBlock);
 			break;
+		case BLACK:
+			blockImg = assets.manager.get(Assets.blackBlock);
+			break;
 		default:
 			blockImg = assets.manager.get(Assets.nullBlock);
 			break;
