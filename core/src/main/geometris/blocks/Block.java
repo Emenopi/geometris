@@ -8,7 +8,7 @@ import geometris.Assets;
 import geometris.Geometris;
 import geometris.blocks.Matrix.colour;
 
-abstract class Block {
+public abstract class Block {
 	Assets assets;
 	Sprite blockSprite;
 	Geometris geometris;
@@ -140,12 +140,16 @@ abstract class Block {
 		return colour;
 	}
 
-	public void rotate() {
-		direction += 1;
+	public void rotate(int dir) {
+		direction  = dir;
 	}
 
 	protected void setOffset(float os) {
 		additionalOffset = os;
+	}
+
+	public float getOffset() {
+		return additionalOffset;
 	}
 
 }

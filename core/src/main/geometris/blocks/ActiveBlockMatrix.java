@@ -83,13 +83,17 @@ public class ActiveBlockMatrix extends Matrix {
 		return Math.cos(Math.toRadians(direction * 6));
 	}
 
-	public void rotate() {
-		direction = (direction + 1) % 60;
+	public void rotate(int dir) {
+		direction = dir;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
-				matrix[i][j].rotate();
+				matrix[i][j].rotate(direction);
 			}
 		}
+	}
+
+	public int getDirection() {
+		return direction;
 	}
 
 	public void moveOut(int heightIndex, float addBlockOffset) {

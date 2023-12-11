@@ -17,9 +17,16 @@ public class GameMatrix extends Matrix {
 		float addBlockOffset = 0;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
-				matrix[i][j] = new GameBlock(i, j, colour.NULL, addBlockOffset, geometris);
+				matrix[i][j] = new GameBlock(i, j, colour.NULL, geometris);
+				matrix[i][j].setOffset(addBlockOffset);
 			}
 			addBlockOffset += (float) (matrix[i][0].getHeight() + 4);
 		}
+	}
+
+	public void addToMatrix(int hIndex, int wIndex, colour col) {
+		float addBlockOffset = matrix[hIndex][wIndex].getOffset();
+		matrix[hIndex][wIndex] = new GameBlock(hIndex, wIndex, col, geometris);
+		matrix[hIndex][wIndex].setOffset(addBlockOffset);
 	}
 }

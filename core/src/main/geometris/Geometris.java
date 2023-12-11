@@ -46,7 +46,12 @@ public class Geometris extends Game {
 		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
 		controller = new InputController();
 
-		engine = new Engine(controller, gameMatrix, activeBlockMatrix);
+		engine = new Engine(controller, gameMatrix, activeBlockMatrix, this);
+	}
+
+	public void setActiveBlockMatrix(ActiveBlockMatrix am) {
+		activeBlockMatrix = am;
+		activeColour = activeBlockMatrix.getMatrixString()[0][0];
 	}
 	
 	private String getActiveColour() {
