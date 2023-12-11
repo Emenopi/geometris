@@ -4,19 +4,17 @@ package geometris;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-
-import java.util.Objects;
+import geometris.blocks.ActiveBlockMatrix;
+import geometris.blocks.GameMatrix;
 
 public class Geometris extends Game {
 	double clock;
 	SpriteBatch batch;
-	Assets assets;
+	public Assets assets;
 	AssetManager assetManager;
 	ShapeRenderer centreCircle;
 	GameMatrix gameMatrix;

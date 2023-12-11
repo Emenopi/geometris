@@ -1,15 +1,18 @@
-package geometris;
+package geometris.blocks;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import geometris.Assets;
+import geometris.Geometris;
+import geometris.blocks.Block;
 
-abstract class Matrix {
+public abstract class Matrix {
 	
 	Block[][] matrix;
 	Geometris geometris;
 	Assets assets;
-	int matrixHeight;
-	int matrixWidth;
+	public int matrixHeight;
+	public int matrixWidth;
 
 	enum colour {
 		CYAN,

@@ -1,6 +1,8 @@
 package geometris;
 
 import com.badlogic.gdx.Gdx;
+import geometris.blocks.ActiveBlockMatrix;
+import geometris.blocks.GameMatrix;
 import geometris.controllers.InputController;
 
 public class Engine {

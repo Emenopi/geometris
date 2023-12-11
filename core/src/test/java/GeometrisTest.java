@@ -2,9 +2,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import geometris.GameMatrix;
+import geometris.blocks.GameMatrix;
 import geometris.Geometris;
-import geometris.GameMatrix;
 
 
 public class GeometrisTest {

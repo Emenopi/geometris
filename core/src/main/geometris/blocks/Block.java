@@ -1,10 +1,12 @@
-package geometris;
+package geometris.blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-import geometris.Matrix.colour;
+import geometris.Assets;
+import geometris.Geometris;
+import geometris.blocks.Matrix.colour;
 
 abstract class Block {
 	boolean isActive;

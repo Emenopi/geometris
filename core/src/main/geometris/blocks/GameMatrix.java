@@ -1,6 +1,9 @@
-package geometris;
+package geometris.blocks;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import geometris.Geometris;
+import geometris.blocks.Block;
+import geometris.blocks.GameBlock;
+import geometris.blocks.Matrix;
 
 public class GameMatrix extends Matrix {
 

@@ -2,7 +2,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import geometris.ActiveBlockMatrix;
+import geometris.blocks.ActiveBlockMatrix;
 import geometris.Geometris;
 
 

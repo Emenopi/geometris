@@ -1,7 +1,8 @@
-package geometris;
+package geometris.blocks;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import geometris.Geometris;
+import geometris.blocks.Matrix;
+import geometris.blocks.ActiveBlock;
 
 
 public class ActiveBlockMatrix extends Matrix {
