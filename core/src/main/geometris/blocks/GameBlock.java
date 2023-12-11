@@ -13,5 +13,7 @@ public class GameBlock extends Block {
 		heightIndex = hIndex;
 		colour = col;
 		additionalOffset = offset;
+		this.radius = 115;
+		this.direction = 0;
 	}
 }

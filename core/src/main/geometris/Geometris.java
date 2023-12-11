@@ -10,9 +10,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.blocks.GameMatrix;
+import geometris.controllers.InputController;
 
 public class Geometris extends Game {
-	double clock;
+
+	Engine engine;
+	private InputController controller;
 	SpriteBatch batch;
 	public Assets assets;
 	AssetManager assetManager;
@@ -41,6 +44,9 @@ public class Geometris extends Game {
 		activeColour = getActiveColour();
 
 		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
+		controller = new InputController();
+
+		engine = new Engine(controller, gameMatrix, activeBlockMatrix);
 	}
 	
 	private String getActiveColour() {
@@ -74,11 +80,7 @@ public class Geometris extends Game {
 
 	@Override
 	public void render () {
-		clock += Gdx.graphics.getDeltaTime();
-		if (clock > 1) {
-			activeBlockMatrix.rotate();
-			clock = 0;
-		}
+		engine.run();
 
 		float boundaryCircleWidth = 819;
 		float boundaryCircleHeight = 819;
@@ -104,8 +106,7 @@ public class Geometris extends Game {
 				}
 			}
 		}
-		
-		//activeBlockMatrix.matrix[0][0].getBlockSprite().draw(batch);
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 					activeBlockMatrix.getBlockSprite(i, j).draw(batch);

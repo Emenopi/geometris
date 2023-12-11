@@ -9,7 +9,6 @@ import geometris.Geometris;
 import geometris.blocks.Matrix.colour;
 
 abstract class Block {
-	boolean isActive;
 	Assets assets;
 	Sprite blockSprite;
 	Geometris geometris;
@@ -23,6 +22,7 @@ abstract class Block {
 	int direction;
 	
 	colour colour;
+	int radius;
 	
 	public void resizeBlock() {
 		double[] size = getBlockSize(heightIndex);
@@ -84,11 +84,11 @@ abstract class Block {
 	}
 	
 	private double getOffsetX() {
-        return Math.sin(Math.toRadians(widthIndex * 6.0));
+        return Math.sin(Math.toRadians((widthIndex + direction) * 6.0));
 	}
 	
 	private double getOffsetY() {
-        return Math.cos(Math.toRadians(widthIndex * 6.0));
+        return Math.cos(Math.toRadians((widthIndex + direction) * 6.0));
 	}
 	
 	public double getHeight() {
@@ -103,16 +103,16 @@ abstract class Block {
 
 	public float getPositionX() {
 		double centre = (Gdx.graphics.getWidth() / 2.0);
-		double centreMargin = 115 + additionalOffset;
-		double widthOffset = (getWidth()/2 * Math.cos(Math.toRadians(widthIndex * 6)));
+		double centreMargin = radius + additionalOffset;
+		double widthOffset = (getWidth()/2 * Math.cos(Math.toRadians((widthIndex + direction) * 6)));
 		double positionX = centre + (centreMargin*getOffsetX()) - widthOffset;
 		return (float) positionX;
 	}
 
 	public float getPositionY() {
 		double centre = (Gdx.graphics.getHeight() / 2.0);
-		double centreMargin = 115  + additionalOffset;
-		double widthOffset = (getWidth()/2 * Math.sin(Math.toRadians(widthIndex * 6)));
+		double centreMargin = radius + additionalOffset;
+		double widthOffset = (getWidth()/2 * Math.sin(Math.toRadians((widthIndex + direction) * 6)));
 		double positionY = centre + (centreMargin*getOffsetY()) + widthOffset;
 		return (float) positionY;
 	}

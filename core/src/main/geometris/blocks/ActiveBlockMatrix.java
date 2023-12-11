@@ -1,14 +1,11 @@
 package geometris.blocks;
 
 import geometris.Geometris;
-import geometris.blocks.Matrix;
-import geometris.blocks.ActiveBlock;
 
 
 public class ActiveBlockMatrix extends Matrix {
 	int direction;
 	colour colour;
-
 
 	public ActiveBlockMatrix(String col, Geometris geo) {
 		this.geometris = geo;
@@ -22,8 +19,6 @@ public class ActiveBlockMatrix extends Matrix {
 	}
 	
 	private void generateMatrix(String col, Geometris geo) {
-		float offsetOne = (float) 13.45;
-		float offsetTwo = (float) 27.34;
 		switch(col) {
 		case "CYAN":
 			matrix[0][0] = new ActiveBlock(0, 0, colour.CYAN, geo);
@@ -65,7 +60,7 @@ public class ActiveBlockMatrix extends Matrix {
 				}
 				matrix[i][j].setOffset(addOffset);
 			}
-			addOffset += (float) (matrix[i][0].getHeight());
+			addOffset -= (float) (matrix[i][0].getHeight());
 		}
 
 	}
@@ -94,6 +89,18 @@ public class ActiveBlockMatrix extends Matrix {
 			for (int j = 0; j < matrixWidth; j++) {
 				matrix[i][j].rotate();
 			}
+		}
+	}
+
+	public void moveOut(int heightIndex, float addBlockOffset) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				((ActiveBlock) matrix[i][j]).setRadius(115);
+				((ActiveBlock) matrix[i][j]).setSizeScale(1);
+				((ActiveBlock) matrix[i][j]).setHeightIndex(heightIndex - i);
+				matrix[i][j].setOffset(addBlockOffset);
+			}
+			addBlockOffset -= (float) (matrix[i][0].getHeight() + 4);
 		}
 	}
 
