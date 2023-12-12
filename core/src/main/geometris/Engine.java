@@ -36,11 +36,13 @@ public class Engine {
     public void run() {
         Gdx.input.setInputProcessor(controller);
         rotationClock += Gdx.graphics.getDeltaTime();
+        if (movingBlockHeightIndex < 14) {
+            canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
+        } else {canMove = false;}
 
         if (!brickMoving) {
             rotateActiveBlock();
-        } else if (movingBlockHeightIndex < 14 && canMove){
-            canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
+        } else if (canMove){
             moveBrick();
         } else {
             transferToGameMatrix();
@@ -53,8 +55,10 @@ public class Engine {
             activeMatrix.rotate(direction);
         }
         if (controller.space) {
-            brickMoving = true;
-            addBlockOffset = 0;
+            if (canMove) {
+                brickMoving = true;
+                addBlockOffset = 0;
+            }
 
         }
     }
@@ -129,8 +133,6 @@ public class Engine {
         boolean line = false;
         for (int i = 0; i < gameMatrix.matrixHeight; i++) {
             for (int j = 0; j < gameMatrix.getWidth(); j++) {
-                // if theres a null block, increase i unless i at max, in which case return
-                //if j loop completes with no null blocks, remove line @ index i
                 if (gameMatrix.getMatrix()[i][j].getColour() == colour.NULL) {
                     break;
                 } else if (gameMatrix.getMatrix()[i][j].getColour() != colour.NULL && j == 59) {
