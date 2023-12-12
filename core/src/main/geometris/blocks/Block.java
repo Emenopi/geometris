@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import geometris.Assets;
+import geometris.GameScreen;
 import geometris.Geometris;
 import geometris.blocks.Matrix.colour;
 
 public abstract class Block {
 	Assets assets;
 	Sprite blockSprite;
-	Geometris geometris;
+	GameScreen game;
 	double[] blockSize = new double[2];
 	
 	float rotatedHeight;

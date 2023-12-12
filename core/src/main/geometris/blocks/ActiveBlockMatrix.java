@@ -1,5 +1,6 @@
 package geometris.blocks;
 
+import geometris.GameScreen;
 import geometris.Geometris;
 
 
@@ -7,56 +8,56 @@ public class ActiveBlockMatrix extends Matrix {
 	int direction;
 	colour colour;
 
-	public ActiveBlockMatrix(String col, Geometris geo) {
-		this.geometris = geo;
-		this.assets = geo.assets;
+	public ActiveBlockMatrix(String col, GameScreen game) {
+		this.game = game;
+		this.assets = game.assets;
 		this.matrixHeight = 3;
 		this.matrixWidth = 3;
 		matrix = new ActiveBlock[matrixHeight][matrixWidth];
-		generateMatrix(col, geo);
+		generateMatrix(col, game);
 		this.colour = this.matrix[0][0].getColour();
 		direction = 0;
 	}
 	
-	private void generateMatrix(String col, Geometris geo) {
+	private void generateMatrix(String col, GameScreen game) {
 		switch(col) {
 		case "CYAN":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.CYAN, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.CYAN, game);
 			break;
 		case "PURPLE":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.PURPLE, geo);
-			matrix[1][0] = new ActiveBlock(1, 0, colour.PURPLE, geo);
-			matrix[2][0] = new ActiveBlock(2, 0, colour.PURPLE, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.PURPLE, game);
+			matrix[1][0] = new ActiveBlock(1, 0, colour.PURPLE, game);
+			matrix[2][0] = new ActiveBlock(2, 0, colour.PURPLE, game);
 			break;
 		case "MAGENTA":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.MAGENTA, geo);
-			matrix[0][1] = new ActiveBlock(0, 1, colour.MAGENTA, geo);
-			matrix[1][0] = new ActiveBlock(1, 0, colour.MAGENTA, geo);
-			matrix[1][1] = new ActiveBlock(1, 1, colour.MAGENTA, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.MAGENTA, game);
+			matrix[0][1] = new ActiveBlock(0, 1, colour.MAGENTA, game);
+			matrix[1][0] = new ActiveBlock(1, 0, colour.MAGENTA, game);
+			matrix[1][1] = new ActiveBlock(1, 1, colour.MAGENTA, game);
 			break;
 		case "ORANGE":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.ORANGE, geo);
-			matrix[1][0] = new ActiveBlock(1, 0, colour.ORANGE,geo);
-			matrix[1][1] = new ActiveBlock(1, 1, colour.ORANGE, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.ORANGE, game);
+			matrix[1][0] = new ActiveBlock(1, 0, colour.ORANGE,game);
+			matrix[1][1] = new ActiveBlock(1, 1, colour.ORANGE, game);
 			break;
 		case "YELLOW":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.YELLOW, geo);
-			matrix[0][1] = new ActiveBlock(0, 1, colour.YELLOW, geo);
-			matrix[1][0] = new ActiveBlock(1, 0, colour.YELLOW, geo);
-			matrix[2][0] = new ActiveBlock(2, 0, colour.YELLOW, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.YELLOW, game);
+			matrix[0][1] = new ActiveBlock(0, 1, colour.YELLOW, game);
+			matrix[1][0] = new ActiveBlock(1, 0, colour.YELLOW, game);
+			matrix[2][0] = new ActiveBlock(2, 0, colour.YELLOW, game);
 			break;
 		case "GREEN":
-			matrix[0][0] = new ActiveBlock(0, 0, colour.GREEN, geo);
-			matrix[1][0] = new ActiveBlock(1, 0, colour.GREEN, geo);
-			matrix[1][1] = new ActiveBlock(1, 1, colour.GREEN, geo);
-			matrix[2][0] = new ActiveBlock(2, 0, colour.GREEN, geo);
+			matrix[0][0] = new ActiveBlock(0, 0, colour.GREEN, game);
+			matrix[1][0] = new ActiveBlock(1, 0, colour.GREEN, game);
+			matrix[1][1] = new ActiveBlock(1, 1, colour.GREEN, game);
+			matrix[2][0] = new ActiveBlock(2, 0, colour.GREEN, game);
 			break;
 		}
 		float addOffset = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if (matrix[i][j] == null) {
-					matrix[i][j] = new ActiveBlock(i, j, colour.NULL, geo);
+					matrix[i][j] = new ActiveBlock(i, j, colour.NULL, game);
 				}
 				matrix[i][j].setOffset(addOffset);
 			}

@@ -1,5 +1,6 @@
 package geometris;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import geometris.blocks.ActiveBlock;
 import geometris.blocks.ActiveBlockMatrix;
@@ -18,15 +19,15 @@ public class Engine {
     float addBlockOffset;
     int direction;
     String activeColour;
-    Geometris geometris;
+    GameScreen game;
     boolean canMove;
     int heightToCheck = 1;
     int movingBlockHeightIndex;
-    Engine(InputController ctrl, GameMatrix gm, ActiveBlockMatrix am, Geometris geo) {
+    Engine(InputController ctrl, GameMatrix gm, ActiveBlockMatrix am, GameScreen g) {
         controller = ctrl;
         gameMatrix = gm;
         activeMatrix = am;
-        geometris = geo;
+        game = g;
         activeColour = activeMatrix.getMatrix()[0][0].getBlockString();
         movingBlockHeightIndex = 0;
         direction = 0;
@@ -125,8 +126,8 @@ public class Engine {
 
     public void regenerateActiveMatrix() {
         activeColour = getActiveColour();
-        activeMatrix = new ActiveBlockMatrix(activeColour, geometris);
-        geometris.setActiveBlockMatrix(activeMatrix);
+        activeMatrix = new ActiveBlockMatrix(activeColour, game);
+        game.setActiveBlockMatrix(activeMatrix);
     }
 
     public void checkLines() {

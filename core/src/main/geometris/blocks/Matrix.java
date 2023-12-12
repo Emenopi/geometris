@@ -3,13 +3,14 @@ package geometris.blocks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import geometris.Assets;
+import geometris.GameScreen;
 import geometris.Geometris;
 import geometris.blocks.Block;
 
 public abstract class Matrix {
 	
 	Block[][] matrix;
-	Geometris geometris;
+	GameScreen game;
 	Assets assets;
 	public int matrixHeight;
 	public int matrixWidth;

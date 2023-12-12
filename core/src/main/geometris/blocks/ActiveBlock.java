@@ -2,6 +2,7 @@ package geometris.blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import geometris.GameScreen;
 import geometris.blocks.Matrix.colour;
 import geometris.Geometris;
 
@@ -9,12 +10,12 @@ public class ActiveBlock extends Block {
 	int gameMatrixHeightIndex;
 	double sizeScale;
 	
-	public ActiveBlock(int hIndex, int wIndex, colour col, Geometris geo) {
+	public ActiveBlock(int hIndex, int wIndex, colour col, GameScreen game) {
 		this.heightIndex = hIndex;
 		this.widthIndex = wIndex;
 		this.colour = col;
-		this.geometris = geo;
-		this.assets = geo.assets;
+		this.game = game;
+		this.assets = game.assets;
 		this.radius = 100;
 		gameMatrixHeightIndex = 0;
 		sizeScale = 0.8;
