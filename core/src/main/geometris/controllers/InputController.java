@@ -21,12 +21,13 @@ public class InputController implements InputProcessor {
                     engine.setAddBlockOffset(0);
                 }
                 break;
-            case Input.Keys.LEFT:
-                break;
-            case Input.Keys.RIGHT:
+            case Input.Keys.SHIFT_RIGHT:
                 if (engine.getBrickMoving()) {
                     engine.rotateBrick();
                 }
+            case Input.Keys.LEFT:
+                break;
+            case Input.Keys.RIGHT:
                 break;
         }
         return true;
