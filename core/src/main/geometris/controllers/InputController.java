@@ -2,50 +2,47 @@ package geometris.controllers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import geometris.Engine;
+import geometris.Geometris;
 
 public class InputController implements InputProcessor {
-    public boolean space;
-    boolean left;
-    boolean right;
+    Engine engine;
+
+    public InputController(Engine e) {
+        engine = e;
+    }
 
     @Override
     public boolean keyDown(int keycode) {
-        boolean keyProcessed = false;
         switch(keycode) {
             case Input.Keys.SPACE:
-                space = !space;
-                keyProcessed = true;
+                if (!engine.getBrickMoving() && engine.getCanMove()){
+                    engine.setBrickMoving(true);
+                    engine.setAddBlockOffset(0);
+                }
                 break;
             case Input.Keys.LEFT:
-                left = true;
-                keyProcessed = true;
                 break;
             case Input.Keys.RIGHT:
-                right = true;
-                keyProcessed = true;
+                if (engine.getBrickMoving()) {
+                    engine.rotateBrick();
+                }
                 break;
         }
-        return keyProcessed;
+        return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        boolean keyProcessed = false;
         switch(keycode) {
             case Input.Keys.SPACE:
-                space = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.LEFT:
-                left = false;
-                keyProcessed = true;
                 break;
             case Input.Keys.RIGHT:
-                right = false;
-                keyProcessed = true;
                 break;
         }
-        return keyProcessed;
+        return true;
     }
 
     @Override

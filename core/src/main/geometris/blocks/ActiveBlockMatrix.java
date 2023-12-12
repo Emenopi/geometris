@@ -1,7 +1,6 @@
 package geometris.blocks;
 
 import geometris.GameScreen;
-import geometris.Geometris;
 
 
 public class ActiveBlockMatrix extends Matrix {
@@ -106,6 +105,20 @@ public class ActiveBlockMatrix extends Matrix {
 				matrix[i][j].setOffset(addBlockOffset);
 			}
 			addBlockOffset -= (float) (matrix[i][0].getHeight() + 4);
+		}
+	}
+
+	public void rotateClockwise() {
+		colour[][] newMatrix = new colour[3][3];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				newMatrix[i][j] = matrix[j][i].getColour();
+			}
+		}
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				matrix[i][j].setColour(newMatrix[i][j]);
+			}
 		}
 	}
 

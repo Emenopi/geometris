@@ -25,8 +25,8 @@ public class Engine {
     int movingBlockHeightIndex;
 
     boolean canPlay;
-    Engine(InputController ctrl, GameMatrix gm, ActiveBlockMatrix am, GameScreen g) {
-        controller = ctrl;
+    public Engine(GameMatrix gm, ActiveBlockMatrix am, GameScreen g) {
+        controller = new InputController(this);
         gameMatrix = gm;
         activeMatrix = am;
         game = g;
@@ -59,13 +59,6 @@ public class Engine {
             canMove = canPlay;
             regenerateActiveMatrix();
             activeMatrix.rotate(direction);
-        }
-        if (controller.space) {
-            if (canMove) {
-                brickMoving = true;
-                addBlockOffset = 0;
-            }
-
         }
     }
 
@@ -155,5 +148,25 @@ public class Engine {
             }
         }
         return false;
+    }
+
+    public boolean getCanMove() {
+        return canMove;
+    }
+
+    public boolean getBrickMoving() {
+        return brickMoving;
+    }
+
+    public void setBrickMoving(boolean isMoving) {
+        brickMoving = isMoving;
+    }
+
+    public void setAddBlockOffset(float offset) {
+        addBlockOffset = offset;
+    }
+
+    public void rotateBrick() {
+        activeMatrix.rotateClockwise();
     }
 }

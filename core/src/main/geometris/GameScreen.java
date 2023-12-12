@@ -45,9 +45,8 @@ public class GameScreen implements Screen {
 		activeColour = getActiveColour();
 
 		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
-		controller = new InputController();
 
-		engine = new Engine(controller, gameMatrix, activeBlockMatrix, this);
+		engine = new Engine(gameMatrix, activeBlockMatrix, this);
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
