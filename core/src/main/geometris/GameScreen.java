@@ -158,6 +158,10 @@ public class GameScreen implements Screen {
         activeColour = activeBlockMatrix.getMatrixString()[0][0];
     }
 
+    public void endGame() {
+        geometris.changeScreen(Geometris.GAMEOVER);
+    }
+
     @Override
     public void dispose() {
         batch.dispose();

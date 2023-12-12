@@ -23,21 +23,25 @@ public class Engine {
     boolean canMove;
     int heightToCheck = 1;
     int movingBlockHeightIndex;
+
+    boolean canPlay;
     Engine(InputController ctrl, GameMatrix gm, ActiveBlockMatrix am, GameScreen g) {
         controller = ctrl;
         gameMatrix = gm;
         activeMatrix = am;
         game = g;
         activeColour = activeMatrix.getMatrix()[0][0].getBlockString();
-        movingBlockHeightIndex = 0;
+        movingBlockHeightIndex = -1;
         direction = 0;
         canMove = true;
+        canPlay = checkCanPlay();
     }
 
     public void run() {
         Gdx.input.setInputProcessor(controller);
         rotationClock += Gdx.graphics.getDeltaTime();
-        if (movingBlockHeightIndex < 14) {
+        if (!canPlay) {game.endGame();}
+        if (movingBlockHeightIndex < 13) {
             canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
         } else {canMove = false;}
 
@@ -49,9 +53,10 @@ public class Engine {
             transferToGameMatrix();
             checkLines();
             brickMoving = false;
-            movingBlockHeightIndex = 0;
+            movingBlockHeightIndex = -1;
             heightToCheck = 1;
-            canMove = true;
+            canPlay = checkCanPlay();
+            canMove = canPlay;
             regenerateActiveMatrix();
             activeMatrix.rotate(direction);
         }
@@ -76,7 +81,7 @@ public class Engine {
         movementClock += Gdx.graphics.getDeltaTime();
         if (movementClock > 0.3) {
             movingBlockHeightIndex += 1;
-            activeMatrix.moveOut(movingBlockHeightIndex, addBlockOffset);
+            activeMatrix.moveOut(movingBlockHeightIndex + 1, addBlockOffset);
             addBlockOffset += (float) (((ActiveBlock) activeMatrix.getMatrix()[0][0]).getHeight() + 4);
             movementClock = 0;
             if (heightToCheck < 3) {
@@ -89,7 +94,7 @@ public class Engine {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (!activeMatrix.getMatrix()[i][j].getColourString().equals("NULL")) {
-                    gameMatrix.addToMatrix(movingBlockHeightIndex - i, activeMatrix.getDirection() + j, activeMatrix.getMatrix()[0][0].getColour());
+                    gameMatrix.addToMatrix(movingBlockHeightIndex + 1 - i, activeMatrix.getDirection() + j, activeMatrix.getMatrix()[0][0].getColour());
                 }
             }
         }
@@ -141,5 +146,14 @@ public class Engine {
                 }
             }
         }
+    }
+
+    public boolean checkCanPlay() {
+        for (int w = 0; w < gameMatrix.matrixWidth; w++) {
+            if (gameMatrix.check(activeMatrix.getMatrix(), 2, 3, w)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
