@@ -18,7 +18,8 @@ public class Engine {
     int direction;
     String activeColour;
     Geometris geometris;
-
+    boolean canMove;
+    int heightToCheck = 1;
     int movingBlockHeightIndex;
     Engine(InputController ctrl, GameMatrix gm, ActiveBlockMatrix am, Geometris geo) {
         controller = ctrl;
@@ -26,8 +27,9 @@ public class Engine {
         activeMatrix = am;
         geometris = geo;
         activeColour = activeMatrix.getMatrix()[0][0].getBlockString();
-        movingBlockHeightIndex = -1;
+        movingBlockHeightIndex = 0;
         direction = 0;
+        canMove = true;
     }
 
     public void run() {
@@ -36,12 +38,15 @@ public class Engine {
 
         if (!brickMoving) {
             rotateActiveBlock();
-        } else if (movingBlockHeightIndex < 14){
+        } else if (movingBlockHeightIndex < 14 && canMove){
+            canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
             moveBrick();
         } else {
             transferToGameMatrix();
             brickMoving = false;
             movingBlockHeightIndex = 0;
+            heightToCheck = 1;
+            canMove = true;
             regenerateActiveMatrix();
             activeMatrix.rotate(direction);
         }
@@ -67,6 +72,9 @@ public class Engine {
             activeMatrix.moveOut(movingBlockHeightIndex, addBlockOffset);
             addBlockOffset += (float) (((ActiveBlock) activeMatrix.getMatrix()[0][0]).getHeight() + 4);
             movementClock = 0;
+            if (heightToCheck < 3) {
+                heightToCheck += 1;
+            }
         }
     }
 
@@ -74,7 +82,6 @@ public class Engine {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (!activeMatrix.getMatrix()[i][j].getColourString().equals("NULL")) {
-                    System.out.println(movingBlockHeightIndex - i);
                     gameMatrix.addToMatrix(movingBlockHeightIndex - i, activeMatrix.getDirection() + j, activeMatrix.getMatrix()[0][0].getColour());
                 }
             }

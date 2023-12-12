@@ -29,4 +29,15 @@ public class GameMatrix extends Matrix {
 		matrix[hIndex][wIndex] = new GameBlock(hIndex, wIndex, col, geometris);
 		matrix[hIndex][wIndex].setOffset(addBlockOffset);
 	}
+
+	public boolean check(Block[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
+		for (int i = 0; i < heightToCheck; i++) {
+			for (int j = 0; j < 3; j++) {
+				if(activeMatrix[i][j].getColour() != colour.NULL && matrix[hIndex - i][direction + j].getColour() != colour.NULL) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
