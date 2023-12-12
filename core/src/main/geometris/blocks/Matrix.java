@@ -14,7 +14,7 @@ public abstract class Matrix {
 	public int matrixHeight;
 	public int matrixWidth;
 
-	enum colour {
+	public enum colour {
 		CYAN,
 		PURPLE,
 		MAGENTA,

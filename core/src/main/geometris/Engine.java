@@ -2,9 +2,10 @@ package geometris;
 
 import com.badlogic.gdx.Gdx;
 import geometris.blocks.ActiveBlock;
-import geometris.blocks.Block;
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.blocks.GameMatrix;
+import geometris.blocks.Matrix;
+import geometris.blocks.Matrix.colour;
 import geometris.controllers.InputController;
 
 public class Engine {
@@ -43,6 +44,7 @@ public class Engine {
             moveBrick();
         } else {
             transferToGameMatrix();
+            checkLines();
             brickMoving = false;
             movingBlockHeightIndex = 0;
             heightToCheck = 1;
@@ -121,5 +123,20 @@ public class Engine {
         activeColour = getActiveColour();
         activeMatrix = new ActiveBlockMatrix(activeColour, geometris);
         geometris.setActiveBlockMatrix(activeMatrix);
+    }
+
+    public void checkLines() {
+        boolean line = false;
+        for (int i = 0; i < gameMatrix.matrixHeight; i++) {
+            for (int j = 0; j < gameMatrix.getWidth(); j++) {
+                // if theres a null block, increase i unless i at max, in which case return
+                //if j loop completes with no null blocks, remove line @ index i
+                if (gameMatrix.getMatrix()[i][j].getColour() == colour.NULL) {
+                    break;
+                } else if (gameMatrix.getMatrix()[i][j].getColour() != colour.NULL && j == 59) {
+                    gameMatrix.removeLine(i);
+                }
+            }
+        }
     }
 }

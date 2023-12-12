@@ -40,4 +40,16 @@ public class GameMatrix extends Matrix {
 		}
 		return true;
 	}
+
+	public void removeLine(int hIndex) {
+		for (int h = hIndex; h >= 0; h--) {
+			for (int w = 0; w < matrixWidth; w++) {
+				if (h != 0) {
+					matrix[h][w].setColour(matrix[h - 1][w].getColour());
+				} else {
+					matrix[h][w].setColour(colour.NULL);
+				}
+			}
+		}
+	}
 }

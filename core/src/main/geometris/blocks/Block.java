@@ -152,4 +152,8 @@ public abstract class Block {
 		return additionalOffset;
 	}
 
+	public void setColour(colour col) {
+		colour = col;
+	}
+
 }
