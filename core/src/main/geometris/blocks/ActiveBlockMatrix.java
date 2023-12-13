@@ -111,10 +111,18 @@ public class ActiveBlockMatrix extends Matrix {
 	public void rotateClockwise() {
 		colour[][] newMatrix = new colour[3][3];
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+			for (int j = i; j < 3; j++) {
+				colour temp = matrix[i][j].getColour();
 				newMatrix[i][j] = matrix[j][i].getColour();
+				newMatrix[j][i] = temp;
 			}
 		}
+		for (int i = 0; i < 3; i++) {
+				colour temp = newMatrix[i][0];
+				newMatrix[i][0] = newMatrix[i][2];
+				newMatrix[i][2] = temp;
+		}
+		newMatrix = adjustNullBlocks(newMatrix);
 		transferMatrix(newMatrix);
 	}
 
@@ -127,13 +135,47 @@ public class ActiveBlockMatrix extends Matrix {
 		transferMatrix(newMatrix);
 	}
 
-	public colour[] adjustNullBlocks(colour[] newMatrix) {
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				System.out.println("testing");
+	public colour[][] adjustNullBlocks(colour[][] newMatrix) {
+        for (int i = 0; i < 2; i++) {
+			if (
+					newMatrix[0][0] == Matrix.colour.NULL &&
+					newMatrix[0][1] == Matrix.colour.NULL &&
+					newMatrix[0][2] == Matrix.colour.NULL
+			) {
+				newMatrix = adjustBlocksUp(newMatrix);
 			}
 		}
+		for (int i = 0; i < 2; i++) {
+			if (
+					newMatrix[0][0] == Matrix.colour.NULL &&
+					newMatrix[1][0] == Matrix.colour.NULL &&
+					newMatrix[2][0] == Matrix.colour.NULL
+			) {
+				newMatrix = adjustBlocksLeft(newMatrix);
+			}
+		}
+
 		return newMatrix;
+	}
+
+	public colour[][] adjustBlocksUp(colour[][] newMatrix) {
+		colour[][] adjustedMatrix = new colour[3][3];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				adjustedMatrix[i][j] = newMatrix[(i + 1) % 3][j];
+			}
+		}
+		return adjustedMatrix;
+	}
+
+	public colour[][] adjustBlocksLeft(colour[][] newMatrix) {
+		colour[][] adjustedMatrix = new colour[3][3];
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				adjustedMatrix[i][j] = newMatrix[i][(j + 1) % 3];
+			}
+		}
+		return adjustedMatrix;
 	}
 
 	private void transferMatrix(colour[][] newMatrix) {
@@ -142,6 +184,10 @@ public class ActiveBlockMatrix extends Matrix {
 				matrix[i][j].setColour(newMatrix[i][j]);
 			}
 		}
+	}
+
+	public colour getColour() {
+		return colour;
 	}
 
 }

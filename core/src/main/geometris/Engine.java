@@ -31,7 +31,7 @@ public class Engine {
         activeMatrix = am;
         game = g;
         activeColour = activeMatrix.getMatrix()[0][0].getBlockString();
-        movingBlockHeightIndex = 0;
+        movingBlockHeightIndex = -1;
         direction = 0;
         canMove = true;
         canPlay = checkCanPlay();
@@ -53,7 +53,7 @@ public class Engine {
             transferToGameMatrix();
             checkLines();
             brickMoving = false;
-            movingBlockHeightIndex = 0;
+            movingBlockHeightIndex = -1;
             heightToCheck = 1;
             canPlay = checkCanPlay();
             canMove = canPlay;
@@ -87,7 +87,7 @@ public class Engine {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (!activeMatrix.getMatrix()[i][j].getColourString().equals("NULL")) {
-                    gameMatrix.addToMatrix(movingBlockHeightIndex - i, activeMatrix.getDirection() + j, activeMatrix.getMatrix()[0][0].getColour());
+                    gameMatrix.addToMatrix(movingBlockHeightIndex - i, activeMatrix.getDirection() + j, activeMatrix.getColour());
                 }
             }
         }
@@ -129,7 +129,6 @@ public class Engine {
     }
 
     public void checkLines() {
-        boolean line = false;
         for (int i = 0; i < gameMatrix.matrixHeight; i++) {
             for (int j = 0; j < gameMatrix.getWidth(); j++) {
                 if (gameMatrix.getMatrix()[i][j].getColour() == colour.NULL) {
@@ -166,7 +165,18 @@ public class Engine {
         addBlockOffset = offset;
     }
 
-    public void rotateBrick() {
+    public void rotateClockwise() {
         activeMatrix.rotateClockwise();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(activeMatrix.getMatrix()[i][j].getColourString());
+            }
+            System.out.print("\n");
+        }
+        System.out.println("\n");
+    }
+
+    public void rotateAnticlockwise() {
+        activeMatrix.rotateAntiClockwise();
     }
 }
