@@ -41,11 +41,9 @@ public class GameScreen implements Screen {
 		centreCircle = new ShapeRenderer();
 
 		gameMatrix = new GameMatrix(15, 60, this);
-		activeColour = getActiveColour();
-
-		activeBlockMatrix = new ActiveBlockMatrix(activeColour, this);
-
-		engine = new Engine(gameMatrix, activeBlockMatrix, this);
+		engine = new Engine(gameMatrix,  this);
+        activeColour = engine.getActiveColour();
+        activeBlockMatrix = engine.getActiveMatrix();
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
@@ -121,35 +119,6 @@ public class GameScreen implements Screen {
         return assetManager;
     }
 
-
-    private String getActiveColour() {
-        int randomInt = (int) Math.floor(Math.random() * 6);
-        String colour;
-        switch(randomInt) {
-            case 0:
-                colour = "CYAN";
-                break;
-            case 1:
-                colour = "PURPLE";
-                break;
-            case 2:
-                colour = "MAGENTA";
-                break;
-            case 3:
-                colour = "ORANGE";
-                break;
-            case 4:
-                colour = "YELLOW";
-                break;
-            case 5:
-                colour = "GREEN";
-                break;
-            default:
-                colour = "CYAN";
-                break;
-        }
-        return colour;
-    }
 
     public void setActiveBlockMatrix(ActiveBlockMatrix am) {
         activeBlockMatrix = am;

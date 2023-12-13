@@ -1,11 +1,9 @@
 package geometris;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import geometris.blocks.ActiveBlock;
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.blocks.GameMatrix;
-import geometris.blocks.Matrix;
 import geometris.blocks.Matrix.colour;
 import geometris.controllers.InputController;
 
@@ -25,12 +23,11 @@ public class Engine {
     int movingBlockHeightIndex;
 
     boolean canPlay;
-    public Engine(GameMatrix gm, ActiveBlockMatrix am, GameScreen g) {
+    public Engine(GameMatrix gm, GameScreen g) {
         controller = new InputController(this);
         gameMatrix = gm;
-        activeMatrix = am;
         game = g;
-        activeColour = activeMatrix.getMatrix()[0][0].getBlockString();
+        generateActiveMatrix();
         movingBlockHeightIndex = -1;
         direction = 0;
         canMove = true;
@@ -57,7 +54,7 @@ public class Engine {
             heightToCheck = 1;
             canPlay = checkCanPlay();
             canMove = canPlay;
-            regenerateActiveMatrix();
+            generateActiveMatrix();
             activeMatrix.rotate(direction);
         }
     }
@@ -93,7 +90,7 @@ public class Engine {
         }
     }
 
-    private String getActiveColour() {
+    public String getActiveColour() {
         int randomInt = (int) Math.floor(Math.random() * 6);
         String colour;
         switch(randomInt) {
@@ -122,7 +119,7 @@ public class Engine {
         return colour;
     }
 
-    public void regenerateActiveMatrix() {
+    public void generateActiveMatrix() {
         activeColour = getActiveColour();
         activeMatrix = new ActiveBlockMatrix(activeColour, game);
         game.setActiveBlockMatrix(activeMatrix);
@@ -171,5 +168,9 @@ public class Engine {
 
     public void rotateAnticlockwise() {
         activeMatrix.rotateAntiClockwise();
+    }
+
+    public ActiveBlockMatrix getActiveMatrix() {
+        return activeMatrix;
     }
 }
