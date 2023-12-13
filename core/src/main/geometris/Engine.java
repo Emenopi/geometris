@@ -94,9 +94,6 @@ public class Engine {
         int randomInt = (int) Math.floor(Math.random() * 6);
         String colour;
         switch(randomInt) {
-            case 0:
-                colour = "CYAN";
-                break;
             case 1:
                 colour = "PURPLE";
                 break;
