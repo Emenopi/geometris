@@ -5,10 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -25,14 +22,16 @@ public class GameOverScreen implements Screen {
     }
     @Override
     public void show() {
-        Table table = new Table();
-        table.setFillParent(true);
-        stage.addActor(table);
 
         Skin skin = new Skin(Gdx.files.internal("skin/comic-ui.json"));
-        TextArea gameOver = new TextArea("GAME OVER", skin);
+        Table table = new Table(skin);
+        table.setFillParent(true);
+        stage.addActor(table);
+        Label gameOver = new Label("GAME OVER", skin, "title");
         TextButton quit = new TextButton("Quit", skin);
 
+        table.add(gameOver).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
         table.add(quit).fillX().uniformX();
 
         quit.addListener(new ChangeListener() {
