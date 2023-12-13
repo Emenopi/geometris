@@ -115,6 +115,28 @@ public class ActiveBlockMatrix extends Matrix {
 				newMatrix[i][j] = matrix[j][i].getColour();
 			}
 		}
+		transferMatrix(newMatrix);
+	}
+
+	public void rotateAntiClockwise() {
+		colour[][] newMatrix = new colour[3][3];
+		for (int i = 2; i >= 0; i--) {
+			for (int j = 0; j < 3; j++)
+				newMatrix[i][j] = matrix[j][i].getColour();
+		}
+		transferMatrix(newMatrix);
+	}
+
+	public colour[] adjustNullBlocks(colour[] newMatrix) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				System.out.println("testing");
+			}
+		}
+		return newMatrix;
+	}
+
+	private void transferMatrix(colour[][] newMatrix) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				matrix[i][j].setColour(newMatrix[i][j]);

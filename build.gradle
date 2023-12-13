@@ -58,7 +58,6 @@ project(":core") {
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        apply plugin: 'java'
 	
 		sourceSets.main.java.srcDirs = [ "src/main/" ]
 		sourceSets.test.java.srcDirs = [ "src/test/java" ]
@@ -67,8 +66,8 @@ project(":core") {
 	    implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"                              
 	    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"                           
 	    implementation fileTree(dir: 'libs', include: '*.jar')
-		//testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.0'                  
-	    testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"               
+		testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.1'
+        testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
 	    testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"                                
 	    testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"       
 	    testImplementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"                          
@@ -80,4 +79,9 @@ project(":core") {
     // Enable JUnit 5 (Gradle 4.6+).
     useJUnitPlatform()
 }
+}
+dependencies {
+
+//    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.1'
+
 }

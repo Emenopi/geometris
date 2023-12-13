@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextArea;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import jdk.javadoc.internal.doclets.formats.html.markup.Text;
 
 public class GameOverScreen implements Screen {
     private Geometris geometris;

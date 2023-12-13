@@ -1,16 +1,19 @@
-import static org.junit.Assert.assertArrayEquals;
 
-import org.junit.Test;
+import geometris.GameScreen;
 
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.Geometris;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 public class ActiveBlockTest {
 	Geometris geo = new Geometris();
+	GameScreen game = new GameScreen(geo);
 	@Test
 	public void activeBlockCyanTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("CYAN", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("CYAN", game);
 		String[][] cyanBlock = {
 				{"CYAN", "NULL", "NULL"},
 				{"NULL", "NULL", "NULL"},
@@ -21,7 +24,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockPurpleTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("PURPLE", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("PURPLE", game);
 		String[][] purpleBlock = {
 				{"PURPLE", "NULL", "NULL"},
 				{"PURPLE", "NULL", "NULL"},
@@ -32,7 +35,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMagentaTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("MAGENTA", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("MAGENTA", game);
 		String[][] magentaBlock = {
 				{"MAGENTA", "MAGENTA", "NULL"},
 				{"MAGENTA", "MAGENTA", "NULL"},
@@ -43,7 +46,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockOrangeTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("ORANGE", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("ORANGE", game);
 		String[][] orangeBlock = {
 				{"ORANGE", "NULL", "NULL"},
 				{"ORANGE", "ORANGE", "NULL"},
@@ -54,7 +57,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockMatrixYellowTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("YELLOW", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("YELLOW", game);
 		String[][] yellowBlock = {
 				{"YELLOW", "YELLOW", "NULL"},
 				{"YELLOW", "NULL", "NULL"},
@@ -65,7 +68,7 @@ public class ActiveBlockTest {
 	
 	@Test
 	public void activeBlockGreenTest() {
-		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("GREEN", geo);
+		ActiveBlockMatrix activeBlock = new ActiveBlockMatrix("GREEN", game);
 		String[][] greenBlock = {
 				{"GREEN", "NULL", "NULL"},
 				{"GREEN", "GREEN", "NULL"},

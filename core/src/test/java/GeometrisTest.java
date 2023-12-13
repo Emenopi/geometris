@@ -1,16 +1,18 @@
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import geometris.GameScreen;
-import org.junit.Test;
 
 import geometris.blocks.GameMatrix;
 import geometris.Geometris;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class GeometrisTest {
 	Geometris geometris = new Geometris();
 	GameScreen game = new GameScreen(geometris);
 	GameMatrix gameMatrix = new GameMatrix(15, 60, game);
+
 
 	@Test
 	public void gameMatrixHeightTest() {
