@@ -167,13 +167,6 @@ public class Engine {
 
     public void rotateClockwise() {
         activeMatrix.rotateClockwise();
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(activeMatrix.getMatrix()[i][j].getColourString());
-            }
-            System.out.print("\n");
-        }
-        System.out.println("\n");
     }
 
     public void rotateAnticlockwise() {

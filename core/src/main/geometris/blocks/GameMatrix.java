@@ -35,7 +35,6 @@ public class GameMatrix extends Matrix {
 		for (int i = 0; i < heightToCheck; i++) {
 			for (int j = 0; j < 3; j++) {
 				if(activeMatrix[i][j].getColour() != colour.NULL && matrix[hIndex - i][direction + j].getColour() != colour.NULL) {
-					System.out.println("i: " + 1 + "matrixcol: " + matrix[hIndex - i][direction + j].getColour());
 					return false;
 				}
 			}
