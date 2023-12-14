@@ -24,6 +24,8 @@ public class Engine {
     int score;
     Geometris geometris;
 
+    double rateOfMovement;
+
     boolean canPlay;
     public Engine(GameMatrix gm, GameScreen g, Geometris geo) {
         this.geometris = geo;
@@ -36,6 +38,7 @@ public class Engine {
         canMove = true;
         canPlay = checkCanPlay();
         score = 0;
+        rateOfMovement = 1;
     }
 
     public void run() {
@@ -65,7 +68,7 @@ public class Engine {
     }
 
     private void rotateActiveBlock() {
-        if (rotationClock > 1) {
+        if (rotationClock > rateOfMovement) {
             direction = (direction + 1) % 60;
             activeMatrix.rotate(direction);
             rotationClock = 0;
@@ -74,7 +77,7 @@ public class Engine {
 
     public void moveBrick() {
         movementClock += Gdx.graphics.getDeltaTime();
-        if (movementClock > 0.3) {
+        if (movementClock > rateOfMovement) {
             movingBlockHeightIndex += 1;
             activeMatrix.moveOut(movingBlockHeightIndex, addBlockOffset);
             addBlockOffset += (float) (((ActiveBlock) activeMatrix.getMatrix()[0][0]).getHeight() + 4);
@@ -141,6 +144,10 @@ public class Engine {
                 } else if (gameMatrix.getMatrix()[i][j].getColour() != colour.NULL && j == 59) {
                     gameMatrix.removeLine(i);
                     increaseScore();
+                    if (rateOfMovement > 0.05) {
+                        rateOfMovement -= 0.05;
+                        System.out.println(rateOfMovement);
+                    }
                 }
             }
         }
