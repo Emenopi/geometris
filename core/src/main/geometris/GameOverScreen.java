@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameOverScreen implements Screen {
@@ -38,16 +39,19 @@ public class GameOverScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
         Label gameOver = new Label("GAME OVER", skin, "title");
+        gameOver.setBounds( gameOver.getX(), gameOver.getY(), gameOver.getWidth(), gameOver.getHeight() );
+
+        gameOver.setAlignment( Align.center );
 
         TextButton playAgain = new TextButton("Play Again", skin);
         TextButton quit = new TextButton("Quit", skin);
         scoreLabelText = "You Scored: " + geometris.getScore();
-        if (checkHighscore()) {
-            scoreLabelText = "!!!!HIGH SCORE!!!! : " + geometris.getScore();
+        if (geometris.getIsHighScore()) {
+            scoreLabelText = "!!!HIGH SCORE!!! : " + geometris.getScore();
         }
         Label scoreLabel = new Label(scoreLabelText, skin, "half-tone");
 
-        table.add(gameOver).fillX().uniformX().pad(0, 20, 0, 0);
+        table.add(gameOver).fillX().uniformX().pad(0, 0, 0, 0);
         table.row().pad(70, 0, 10, 0);
         table.add(scoreLabel).fillX().uniformX().pad(0, 0, 30, 0);
         table.row().pad(10, 0, 10, 0);
@@ -71,10 +75,6 @@ public class GameOverScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
-    }
-
-    public boolean checkHighscore() {
-        return geometris.getScore() > geometris.getHighScore();
     }
 
     @Override

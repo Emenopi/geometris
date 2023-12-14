@@ -29,6 +29,7 @@ public class Geometris extends Game {
 
 	int score;
 	Preferences highScore;
+	boolean isHighScore;
 	
 	@Override
 	public void create () {
@@ -39,6 +40,7 @@ public class Geometris extends Game {
 		pauseScreen = new PauseScreen(this);
 		setScreen(pauseScreen);
 		score = 0;
+		isHighScore = false;
 	}
 
 	public void setScore(int s) {
@@ -51,6 +53,19 @@ public class Geometris extends Game {
 
 	public int getHighScore() {
 		return highScore.getInteger("highScore");
+	}
+
+	public boolean getIsHighScore() {
+		return isHighScore;
+	}
+
+	public void saveHighScore() {
+		System.out.println(highScore.getInteger("highScore"));
+		if (score > highScore.getInteger("highScore")) {
+			highScore.putInteger("highScore", score);
+			highScore.flush();
+			isHighScore = true;
+		}
 	}
 	@Override
 	public void render () {

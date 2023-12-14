@@ -45,7 +45,10 @@ public class Engine {
         Gdx.input.setInputProcessor(controller);
         rotationClock += Gdx.graphics.getDeltaTime();
 
-        if (!canPlay) {game.endGame();}
+        if (!canPlay) {
+            geometris.setScore(score);
+            geometris.saveHighScore();
+            game.endGame();}
         if (movingBlockHeightIndex < 14) {
             canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
         } else {canMove = false;}
