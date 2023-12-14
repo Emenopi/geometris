@@ -38,7 +38,7 @@ public class Engine {
         canMove = true;
         canPlay = checkCanPlay();
         score = 0;
-        rateOfMovement = 1;
+        rateOfMovement = 0.5;
     }
 
     public void run() {
@@ -179,11 +179,21 @@ public class Engine {
     }
 
     public void rotateClockwise() {
-        activeMatrix.rotateClockwise();
+        colour[][] activeMatrixCopy = activeMatrix.rotateClockwise();
+        if (canRotate(activeMatrixCopy)) {
+            activeMatrix.transferMatrix(activeMatrixCopy);
+        }
     }
 
     public void rotateAnticlockwise() {
-        activeMatrix.rotateAntiClockwise();
+        colour[][] activeMatrixCopy = activeMatrix.rotateAntiClockwise();
+        if (canRotate(activeMatrixCopy)) {
+            activeMatrix.transferMatrix(activeMatrixCopy);
+        }
+    }
+
+    private boolean canRotate(colour[][] rotatedMatrix) {
+        return gameMatrix.check(rotatedMatrix, heightToCheck, movingBlockHeightIndex, direction);
     }
 
     public ActiveBlockMatrix getActiveMatrix() {

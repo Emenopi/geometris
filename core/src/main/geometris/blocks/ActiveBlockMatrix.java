@@ -123,7 +123,7 @@ public class ActiveBlockMatrix extends Matrix {
 		return newMatrix;
 	}
 
-	public void rotateClockwise() {
+	public colour[][] rotateClockwise() {
 		colour[][] newMatrix = invertMatrix(matrix);
 		for (int i = 0; i < 3; i++) {
 				colour temp = newMatrix[i][0];
@@ -131,10 +131,10 @@ public class ActiveBlockMatrix extends Matrix {
 				newMatrix[i][2] = temp;
 		}
 		newMatrix = adjustNullBlocks(newMatrix);
-		transferMatrix(newMatrix);
+		return newMatrix;
 	}
 
-	public void rotateAntiClockwise() {
+	public colour[][] rotateAntiClockwise() {
 		colour[][] newMatrix = invertMatrix(matrix);
 		for (int i = 0; i < 3; i++) {
 			colour temp = newMatrix[0][i];
@@ -142,7 +142,7 @@ public class ActiveBlockMatrix extends Matrix {
 			newMatrix[2][i] = temp;
 		}
 		newMatrix = adjustNullBlocks(newMatrix);
-		transferMatrix(newMatrix);
+		return newMatrix;
 	}
 
 	public colour[][] adjustNullBlocks(colour[][] newMatrix) {
@@ -188,7 +188,7 @@ public class ActiveBlockMatrix extends Matrix {
 		return adjustedMatrix;
 	}
 
-	private void transferMatrix(colour[][] newMatrix) {
+	public void transferMatrix(colour[][] newMatrix) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				matrix[i][j].setColour(newMatrix[i][j]);
