@@ -126,7 +126,7 @@ public class Engine {
 
     private void increaseScore() {
         score += 60;
-        game.setScore(Integer.toString(score));
+        geometris.setScore(score);
 
     }
 

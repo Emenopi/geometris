@@ -33,7 +33,6 @@ public class GameScreen implements Screen {
     Texture boundaryCircle;
     Engine engine;
     Stage stage;
-    Label scoreNumber;
     Skin skin;
     String score;
     BitmapFont font;
@@ -64,6 +63,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void show() {
+        score = String.valueOf(geometris.getScore());
 		engine.run();
 
 		float boundaryCircleWidth = 819;
@@ -138,10 +138,6 @@ public class GameScreen implements Screen {
 
     public void endGame() {
         geometris.changeScreen(Geometris.GAMEOVER);
-    }
-
-    public void setScore(String newScore) {
-        score = newScore;
     }
 
     @Override

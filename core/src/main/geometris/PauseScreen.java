@@ -55,14 +55,6 @@ public class PauseScreen implements Screen {
             }
         });
 
-
-        play.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                geometris.changeScreen(Geometris.GAME);
-            }
-        });
-
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

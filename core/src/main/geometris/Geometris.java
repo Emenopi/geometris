@@ -3,6 +3,7 @@ package geometris;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,17 +26,32 @@ public class Geometris extends Game {
 	public final static int GAME = 0;
 	public final static int PAUSE = 1;
 	public final static int GAMEOVER = 2;
+
+	int score;
+	Preferences highScore;
 	
 	@Override
 	public void create () {
-
+		highScore = Gdx.app.getPreferences("highScore");
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
 		pauseScreen = new PauseScreen(this);
 		setScreen(pauseScreen);
+		score = 0;
 	}
 
+	public void setScore(int s) {
+		score = s;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public int getHighScore() {
+		return highScore.getInteger("highScore");
+	}
 	@Override
 	public void render () {
 		super.render();
