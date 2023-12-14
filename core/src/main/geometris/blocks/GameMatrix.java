@@ -38,7 +38,7 @@ public class GameMatrix extends Matrix {
 	public boolean check(Block[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
 		for (int i = 0; i < heightToCheck; i++) {
 			for (int j = 0; j < 3; j++) {
-				if(activeMatrix[i][j].getColour() != colour.NULL && matrix[hIndex - i][direction + j].getColour() != colour.NULL) {
+				if(activeMatrix[i][j].getColour() != colour.NULL && matrix[hIndex - i][(direction + j) % 60].getColour() != colour.NULL) {
 					return false;
 				}
 			}
@@ -49,7 +49,7 @@ public class GameMatrix extends Matrix {
 	public boolean check(colour[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
 		for (int i = 0; i < heightToCheck; i++) {
 			for (int j = 0; j < 3; j++) {
-				if(activeMatrix[i][j] != colour.NULL && matrix[hIndex - i][direction + j].getColour() != colour.NULL) {
+				if(activeMatrix[i][j] != colour.NULL && matrix[hIndex - i][(direction + j) % 60].getColour() != colour.NULL) {
 					return false;
 				}
 			}

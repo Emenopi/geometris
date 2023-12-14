@@ -32,8 +32,14 @@ public class InputController implements InputProcessor {
                 }
                 break;
             case Input.Keys.LEFT:
+                if (engine.getBrickMoving()) {
+                    engine.decreaseDirection();
+                }
                 break;
             case Input.Keys.RIGHT:
+                if (engine.getBrickMoving()) {
+                    engine.increaseDirection();
+                }
                 break;
         }
         return true;

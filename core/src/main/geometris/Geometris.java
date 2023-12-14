@@ -60,7 +60,6 @@ public class Geometris extends Game {
 	}
 
 	public void saveHighScore() {
-		System.out.println(highScore.getInteger("highScore"));
 		if (score > highScore.getInteger("highScore")) {
 			highScore.putInteger("highScore", score);
 			highScore.flush();

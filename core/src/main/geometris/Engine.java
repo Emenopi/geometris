@@ -133,6 +133,20 @@ public class Engine {
 
     }
 
+    public void increaseDirection() {
+        if (gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex, (direction + 1) % 60)) {
+            direction = (direction + 1) % 60;
+            activeMatrix.rotate(direction);
+        }
+    }
+
+    public void decreaseDirection() {
+        if (gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex, ((60 + direction) - 1) % 60)) {
+            direction = ((60 + direction) - 1) % 60;
+            activeMatrix.rotate(direction);
+        }
+    }
+
     public void generateActiveMatrix() {
         activeColour = getActiveColour();
         activeMatrix = new ActiveBlockMatrix(activeColour, game);
@@ -149,7 +163,6 @@ public class Engine {
                     increaseScore();
                     if (rateOfMovement > 0.05) {
                         rateOfMovement -= 0.05;
-                        System.out.println(rateOfMovement);
                     }
                 }
             }
