@@ -1,15 +1,18 @@
-package geometris;
+package loader;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Assets {
 	public AssetManager manager = new AssetManager();
 	
 	public static final AssetDescriptor<Texture> boundaryCircle =
 			new AssetDescriptor<Texture>("circle.png", Texture.class);
-	
 	public static final AssetDescriptor<Texture> cyanBlock =
 			new AssetDescriptor<Texture>("cyan.png", Texture.class);
 	public static final AssetDescriptor<Texture> cyanBlockActive =
@@ -38,7 +41,13 @@ public class Assets {
 			new AssetDescriptor<Texture>("black.png", Texture.class);
 	public static final AssetDescriptor<Texture> nullBlock =
 			new AssetDescriptor<Texture>("null.png", Texture.class);
-	
+	public static final String skin = "skin/comic-ui.json";
+
+	public void queueAddSkin(){
+		SkinLoader.SkinParameter params = new SkinLoader.SkinParameter("skin/comic-ui.atlas");
+		manager.load(skin, Skin.class, params);
+	}
+
 	public void load() {
 		manager.load(boundaryCircle);
 		manager.load(cyanBlock);

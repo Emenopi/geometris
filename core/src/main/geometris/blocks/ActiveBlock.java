@@ -11,14 +11,16 @@ public class ActiveBlock extends Block {
 	double sizeScale;
 	
 	public ActiveBlock(int hIndex, int wIndex, colour col, GameScreen game) {
+		this.geometris = game.geometris;
 		this.heightIndex = hIndex;
 		this.widthIndex = wIndex;
 		this.colour = col;
 		this.game = game;
-		this.assets = game.assets;
 		this.radius = 100;
 		gameMatrixHeightIndex = 0;
 		sizeScale = 0.8;
+		geometris.assets.load();
+		geometris.assets.manager.finishLoading();
 	}
 
 	public void setRadius(int rad) {

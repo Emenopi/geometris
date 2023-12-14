@@ -11,8 +11,12 @@ public class GameMatrix extends Matrix {
 	// Constructor	
 	public GameMatrix(int h, int w, GameScreen game) {
 		this.game = game;
+		this.geometris = game.geometris;
 		matrixHeight = h;
 		matrixWidth = w;
+		geometris.assets.load();
+		geometris.assets.manager.finishLoading();
+
 		
 		matrix = new Block[matrixHeight][matrixWidth];
 		float addBlockOffset = 0;

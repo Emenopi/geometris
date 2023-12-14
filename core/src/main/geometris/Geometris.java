@@ -11,8 +11,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.blocks.GameMatrix;
 import geometris.controllers.InputController;
+import loader.Assets;
 
 public class Geometris extends Game {
+
+	public Assets assets;
+	public Assets assetManager = new Assets();
 
 	private GameScreen gameScreen;
 	private PauseScreen pauseScreen;
@@ -24,6 +28,10 @@ public class Geometris extends Game {
 	
 	@Override
 	public void create () {
+
+		assets = new Assets();
+		assets.load();
+		assets.manager.finishLoading();
 		pauseScreen = new PauseScreen(this);
 		setScreen(pauseScreen);
 	}
@@ -56,6 +64,6 @@ public class Geometris extends Game {
 	
 	@Override
 	public void dispose () {
-
+		assetManager.manager.dispose();
 	}
 }

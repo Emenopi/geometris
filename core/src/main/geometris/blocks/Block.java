@@ -4,15 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-import geometris.Assets;
+import loader.Assets;
 import geometris.GameScreen;
 import geometris.Geometris;
 import geometris.blocks.Matrix.colour;
 
 public abstract class Block {
-	Assets assets;
 	Sprite blockSprite;
 	GameScreen game;
+	Geometris geometris;
 	double[] blockSize = new double[2];
 	
 	float rotatedHeight;
@@ -56,28 +56,28 @@ public abstract class Block {
 		Texture blockImg;
 		switch(colour) {
 		case CYAN:
-			blockImg = assets.manager.get(Assets.cyanBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.cyanBlock);
 			break;
 		case PURPLE:
-			blockImg = assets.manager.get(Assets.purpleBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.purpleBlock);
 			break;
 		case MAGENTA:
-			blockImg = assets.manager.get(Assets.magentaBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.magentaBlock);
 			break;
 		case ORANGE:
-			blockImg = assets.manager.get(Assets.orangeBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.orangeBlock);
 			break;
 		case YELLOW:
-			blockImg = assets.manager.get(Assets.yellowBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.yellowBlock);
 			break;
 		case GREEN:
-			blockImg = assets.manager.get(Assets.greenBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.greenBlock);
 			break;
 		case BLACK:
-			blockImg = assets.manager.get(Assets.blackBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.blackBlock);
 			break;
 		default:
-			blockImg = assets.manager.get(Assets.nullBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.nullBlock);
 			break;
 		}
 

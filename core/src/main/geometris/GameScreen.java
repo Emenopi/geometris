@@ -3,55 +3,67 @@ package geometris;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import geometris.blocks.ActiveBlockMatrix;
 import geometris.blocks.GameMatrix;
 import geometris.controllers.InputController;
+import loader.Assets;
 
 public class GameScreen implements Screen {
-    Geometris geometris;
+    String scoreLabel;
+    public Geometris geometris;
     SpriteBatch batch;
-    public Assets assets;
-    AssetManager assetManager;
     ShapeRenderer centreCircle;
     GameMatrix gameMatrix;
     ActiveBlockMatrix activeBlockMatrix;
     String activeColour;
     Texture boundaryCircle;
-
     Engine engine;
     Stage stage;
+    Label scoreNumber;
+    Skin skin;
+    String score;
+    BitmapFont font;
 
     private InputController controller;
 
     public GameScreen(Geometris geo) {
-        geometris = geo;
+        this.geometris = geo;
         batch = new SpriteBatch();
-		assets = new Assets();
-		assetManager = new AssetManager();
-		assets.load();
-		assets.manager.finishLoading();
-		boundaryCircle = assets.manager.get(Assets.boundaryCircle);
+        geometris.assetManager.load();
+        geometris.assetManager.queueAddSkin();
+        geometris.assetManager.manager.finishLoading();
+		boundaryCircle = geo.assets.manager.get(Assets.boundaryCircle);
 
 		centreCircle = new ShapeRenderer();
 
 		gameMatrix = new GameMatrix(15, 60, this);
-		engine = new Engine(gameMatrix,  this);
+		engine = new Engine(gameMatrix,  this, geometris);
         activeColour = engine.getActiveColour();
         activeBlockMatrix = engine.getActiveMatrix();
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+        skin = geometris.assetManager.manager.get(Assets.skin);
+        font = skin.getFont("title");
+        score = "0";
     }
     @Override
     public void show() {
-
 		engine.run();
 
 		float boundaryCircleWidth = 819;
@@ -66,12 +78,16 @@ public class GameScreen implements Screen {
 		int boundaryCircleBorderX = (int) ((screenWidth - boundaryCircleWidth) /2);
 		int boundaryCircleBorderY = (int) ((screenHeight - boundaryCircleHeight) /2);
 
+        scoreLabel = "Score: " + score;
 
 		ScreenUtils.clear(0, 0, 0, 0);
 
 		batch.begin();
+        font.setColor(Color.WHITE);
+        font.getData().setScale(0.5F, 0.5F);
+        font.draw(batch, scoreLabel, 10, 890);
 		batch.draw(boundaryCircle, boundaryCircleBorderX, boundaryCircleBorderY, boundaryCircleWidth, boundaryCircleHeight);
-		if (assets.manager.update()) {
+		if (geometris.assetManager.manager.update()) {
 			for (int i = 0; i < gameMatrix.matrixHeight; i++) {
 				for (int j = 0; j < gameMatrix.matrixWidth; j++) {
 					gameMatrix.getBlockSprite(i, j).draw(batch);
@@ -115,11 +131,6 @@ public class GameScreen implements Screen {
 
     }
 
-    public AssetManager getAssetManager() {
-        return assetManager;
-    }
-
-
     public void setActiveBlockMatrix(ActiveBlockMatrix am) {
         activeBlockMatrix = am;
         activeColour = activeBlockMatrix.getMatrixString()[0][0];
@@ -129,11 +140,14 @@ public class GameScreen implements Screen {
         geometris.changeScreen(Geometris.GAMEOVER);
     }
 
+    public void setScore(String newScore) {
+        score = newScore;
+    }
+
     @Override
     public void dispose() {
         batch.dispose();
         boundaryCircle.dispose();
-        assetManager.dispose();
         stage.dispose();
     }
 }

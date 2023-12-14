@@ -2,6 +2,7 @@ package geometris;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import loader.Assets;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -16,13 +17,19 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class PauseScreen implements Screen {
     private Geometris geometris;
     Stage stage;
+    Assets assets;
+    Skin skin;
 
     public PauseScreen(Geometris geo) {
         geometris = geo;
         stage = new Stage(new ScreenViewport());
+        assets = geometris.assets;
         Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
+        geometris.assetManager.queueAddSkin();
+        geometris.assetManager.manager.finishLoading();
+        skin = geometris.assetManager.manager.get(Assets.skin);
     }
     @Override
     public void show() {
@@ -30,16 +37,23 @@ public class PauseScreen implements Screen {
         table.setFillParent(true);
         stage.addActor(table);
 
-        Skin skin = new Skin(Gdx.files.internal("skin/comic-ui.json"));
         Label geometrisLabel = new Label("GEOMETRIS", skin, "title");
         TextButton play = new TextButton("Play", skin);
         TextButton quit = new TextButton("Quit", skin);
 
-        table.add(geometrisLabel).uniformX().pad(0, 0, 70, 0);
+        table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 70, 0);
         table.row().pad(10, 0, 10, 0);
         table.add(play).fillX().uniformX();
         table.row();
         table.add(quit).fillX().uniformX();
+
+
+        play.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                geometris.changeScreen(Geometris.GAME);
+            }
+        });
 
 
         play.addListener(new ChangeListener() {

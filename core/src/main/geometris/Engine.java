@@ -21,9 +21,12 @@ public class Engine {
     boolean canMove;
     int heightToCheck = 1;
     int movingBlockHeightIndex;
+    int score;
+    Geometris geometris;
 
     boolean canPlay;
-    public Engine(GameMatrix gm, GameScreen g) {
+    public Engine(GameMatrix gm, GameScreen g, Geometris geo) {
+        this.geometris = geo;
         controller = new InputController(this);
         gameMatrix = gm;
         game = g;
@@ -32,11 +35,13 @@ public class Engine {
         direction = 0;
         canMove = true;
         canPlay = checkCanPlay();
+        score = 0;
     }
 
     public void run() {
         Gdx.input.setInputProcessor(controller);
         rotationClock += Gdx.graphics.getDeltaTime();
+
         if (!canPlay) {game.endGame();}
         if (movingBlockHeightIndex < 14) {
             canMove = gameMatrix.check(activeMatrix.getMatrix(), heightToCheck, movingBlockHeightIndex + 1, direction);
@@ -116,6 +121,12 @@ public class Engine {
         return colour;
     }
 
+    private void increaseScore() {
+        score += 60;
+        game.setScore(Integer.toString(score));
+
+    }
+
     public void generateActiveMatrix() {
         activeColour = getActiveColour();
         activeMatrix = new ActiveBlockMatrix(activeColour, game);
@@ -129,6 +140,7 @@ public class Engine {
                     break;
                 } else if (gameMatrix.getMatrix()[i][j].getColour() != colour.NULL && j == 59) {
                     gameMatrix.removeLine(i);
+                    increaseScore();
                 }
             }
         }

@@ -1,6 +1,7 @@
 package geometris.blocks;
 
 import geometris.GameScreen;
+import geometris.Geometris;
 
 
 public class ActiveBlockMatrix extends Matrix {
@@ -9,9 +10,11 @@ public class ActiveBlockMatrix extends Matrix {
 
 	public ActiveBlockMatrix(String col, GameScreen game) {
 		this.game = game;
-		this.assets = game.assets;
+		this.geometris = game.geometris;
 		this.matrixHeight = 3;
 		this.matrixWidth = 3;
+		geometris.assets.load();
+		geometris.assets.manager.finishLoading();
 		matrix = new ActiveBlock[matrixHeight][matrixWidth];
 		generateMatrix(col, game);
 		this.colour = this.matrix[0][0].getColour();
