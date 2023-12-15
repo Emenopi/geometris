@@ -9,7 +9,6 @@ buildscript {
         google()
     }
     dependencies {
-        classpath group: 'org.mini2Dx', name: 'parcl', version: '1.8.0'
     }
 }
 
@@ -39,6 +38,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java-library"
+    jar.archiveFileName = "Geometris"
 
 
     dependencies {
@@ -48,6 +48,7 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         
     }
+
 }
 
 project(":core") {
@@ -79,6 +80,7 @@ project(":core") {
     useJUnitPlatform()
 }
 }
+
 dependencies {
 
 }
