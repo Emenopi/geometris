@@ -5,6 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -33,14 +34,7 @@ public class Geometris extends Game {
 	
 	@Override
 	public void create () {
-		highScore = Gdx.app.getPreferences("highScore");
-		assets = new Assets();
-		assets.load();
-		assets.manager.finishLoading();
-		pauseScreen = new PauseScreen(this);
-		setScreen(pauseScreen);
-		score = 0;
-		isHighScore = false;
+		init();
 	}
 
 	public void setScore(int s) {
@@ -68,6 +62,8 @@ public class Geometris extends Game {
 	}
 	@Override
 	public void render () {
+		Gdx.gl.glClearColor(0f, 0f, 0f, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		super.render();
 	}
 	@Override
@@ -91,7 +87,31 @@ public class Geometris extends Game {
 				break;
 		}
 	}
-	
+
+	public void init() {
+		highScore = Gdx.app.getPreferences("highScore");
+		assets = new Assets();
+		assets.load();
+		assets.manager.finishLoading();
+		pauseScreen = new PauseScreen(this);
+		setScreen(pauseScreen);
+		score = 0;
+		isHighScore = false;
+	}
+
+	public void restart() {
+		init();
+		resetScreens();
+		changeScreen(GAME);
+		//gameOverScreen.dispose();
+	}
+
+	public void resetScreens() {
+		gameScreen.dispose();
+		gameScreen = new GameScreen(this);
+		pauseScreen.dispose();
+		pauseScreen = new PauseScreen(this);
+	}
 	@Override
 	public void dispose () {
 		assetManager.manager.dispose();

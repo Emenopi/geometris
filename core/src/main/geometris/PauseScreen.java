@@ -24,7 +24,6 @@ public class PauseScreen implements Screen {
         geometris = geo;
         stage = new Stage(new ScreenViewport());
         assets = geometris.assets;
-        Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         geometris.assetManager.queueAddSkin();
@@ -33,6 +32,7 @@ public class PauseScreen implements Screen {
     }
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);

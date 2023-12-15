@@ -54,7 +54,6 @@ public class GameScreen implements Screen {
         activeColour = engine.getActiveColour();
         activeBlockMatrix = engine.getActiveMatrix();
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         skin = geometris.assetManager.manager.get(Assets.skin);
@@ -63,6 +62,7 @@ public class GameScreen implements Screen {
     }
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
         score = String.valueOf(geometris.getScore());
 		engine.run();
 

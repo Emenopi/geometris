@@ -55,6 +55,9 @@ public class Engine {
 
         if (!brickMoving) {
             rotateActiveBlock();
+            if (direction > 3) {
+                geometris.changeScreen(Geometris.GAMEOVER);
+            }
         } else if (canMove){
             moveBrick();
         } else {
@@ -209,7 +212,7 @@ public class Engine {
     }
 
     private boolean canRotate(colour[][] rotatedMatrix) {
-        return gameMatrix.check(rotatedMatrix, heightToCheck, movingBlockHeightIndex, direction);
+        return gameMatrix.check(rotatedMatrix, heightToCheck-1, movingBlockHeightIndex, direction);
     }
 
     public ActiveBlockMatrix getActiveMatrix() {

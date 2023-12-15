@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -26,7 +28,6 @@ public class GameOverScreen implements Screen {
         geometris = geo;
         score = geometris.getScore();
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
         skin = new Skin(Gdx.files.internal("skin/comic-ui.json"));
@@ -34,7 +35,7 @@ public class GameOverScreen implements Screen {
     }
     @Override
     public void show() {
-
+        Gdx.input.setInputProcessor(stage);
         table = new Table(skin);
         table.setFillParent(true);
         stage.addActor(table);
@@ -59,6 +60,12 @@ public class GameOverScreen implements Screen {
         table.row().pad(10, 0, 10, 0);
         table.add(quit).fillX().uniformX();
 
+        playAgain.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                geometris.restart();
+            }
+        });
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
