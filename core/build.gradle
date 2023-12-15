@@ -1,4 +1,2 @@
 sourceCompatibility = 1.9
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-eclipse.project.name = appName + "-core"

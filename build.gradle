@@ -9,12 +9,11 @@ buildscript {
         google()
     }
     dependencies {
-
+        classpath group: 'org.mini2Dx', name: 'parcl', version: '1.8.0'
     }
 }
 
 allprojects {
-    apply plugin: "eclipse"
 
     version = '1.0'
     ext {
@@ -81,7 +80,5 @@ project(":core") {
 }
 }
 dependencies {
-
-//    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.1'
 
 }
