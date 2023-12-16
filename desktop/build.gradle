@@ -1,36 +1,13 @@
-plugins { id 'org.beryx.runtime' version '1.8.4' }
-sourceCompatibility = 1.9
+sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../assets"]
 
-mainClassName = "com.mygdx.geometris.DesktopLauncher"
-def osName = System.getProperty('os.name').toLowerCase(Locale.ROOT)
+project.ext.mainClassName = "com.geometris.DesktopLauncher"
 project.ext.assetsDir = new File("../assets")
 
 import org.gradle.internal.os.OperatingSystem
 
-task createRuntime(type: Exec) {
-    doFirst() {
-        project.delete("${buildDir}/runtime")
-    }
-    String runtimePath = "${buildDir}/runtime"
-
-    workingDir project.projectDir
-    commandLine = [
-            "${project.projectDir}/jpackage/bin/jlink",
-            '-p', "${project.projectDir}/jpackage/jmods",
-            '--add-modules', 'java.base,java.desktop,jdk.unsupported',
-            '--strip-debug',
-            '--no-header-files',
-            '--no-man-pages',
-            '--strip-native-commands',
-            "--vm=server",
-            "--compress=2",
-            '--output', runtimePath
-    ]
-}
-
-tasks.named('run', JavaExec) {
+tasks.register('run', JavaExec) {
     dependsOn classes
     mainClass = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
@@ -55,7 +32,6 @@ tasks.register('debug', JavaExec) {
 }
 
 tasks.register('dist', Jar) {
-    destinationDirectory = file(project.layout.buildDirectory.dir("lib").get().asFile.path)
     duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     manifest {
         attributes 'Main-Class': project.mainClassName
@@ -67,35 +43,7 @@ tasks.register('dist', Jar) {
     with jar
 }
 
-jpackageImage.dependsOn dist
-
-runtime {
-    options = ['--strip-debug',
-               '--compress', '2',
-               '--no-header-files',
-               '--no-man-pages',
-               '--strip-native-commands',
-               '--vm', 'server']
-    modules = ['java.base' ,
-               'java.desktop',
-               'jdk.unsupported']
-    distDir = file(project.layout.buildDirectory.asFile.get())
-
-    jpackage {
-        //jpackageHome = '/usr/lib/jvm/open-jdk'
-        mainJar = dist.archiveFileName.get()
-        outputDir = 'Geometris'
-        imageName = 'Geometris'
-        installerName = 'Geometris'
-        if (osName.contains('windows')) {
-            imageOptions = ["--icon", file("../icons/geometrisIcon.ico")]
-        } else if (osName.contains('linux')) {
-            imageOptions = ["--icon", file("../icons/geometrisIcon.png")]
-        } else if (osName.contains('mac')) {
-            imageOptions = ["--icon", file("../icons/geometrisIcon.icns")]
-        }
-    }
-}
-
 
 dist.dependsOn classes
+
+eclipse.project.name = appName + "-desktop"

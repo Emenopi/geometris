@@ -9,10 +9,15 @@ buildscript {
         google()
     }
     dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.20'
+        
+
     }
 }
 
 allprojects {
+    apply plugin: "eclipse"
 
     version = '1.0'
     ext {
@@ -38,17 +43,45 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java-library"
-    jar.archiveFileName = "Geometris"
 
 
     dependencies {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         
     }
+}
 
+project(":android") {
+    apply plugin: "com.android.application"
+
+    configurations { natives }
+
+    dependencies {
+        implementation project(":core")
+        api "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+        
+    }
+}
+
+project(":ios") {
+    apply plugin: "java-library"
+    apply plugin: "robovm"
+
+
+    dependencies {
+        implementation project(":core")
+        api "com.mobidevelop.robovm:robovm-rt:$roboVMVersion"
+        api "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
+        api "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+        
+    }
 }
 
 project(":core") {
@@ -57,30 +90,6 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-	
-		sourceSets.main.java.srcDirs = [ "src/main/" ]
-		sourceSets.test.java.srcDirs = [ "src/test/java" ]
-
-		implementation "com.badlogicgames.gdx:gdx:$gdxVersion"                                    
-	    implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"                              
-	    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"                           
-	    implementation fileTree(dir: 'libs', include: '*.jar')
-		testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.1'
-        testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-	    testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"                                
-	    testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"       
-	    testImplementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"                          
-	    testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop" 
         
     }
-    
-    test {
-    // Enable JUnit 5 (Gradle 4.6+).
-    useJUnitPlatform()
-}
-}
-
-dependencies {
-
 }

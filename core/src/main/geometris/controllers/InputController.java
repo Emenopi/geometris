@@ -3,7 +3,6 @@ package geometris.controllers;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import geometris.Engine;
-import geometris.Geometris;
 
 public class InputController implements InputProcessor {
     Engine engine;

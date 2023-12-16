@@ -53,7 +53,7 @@ public abstract class Matrix {
 			blockImg = geometris.assetManager.manager.get(Assets.greenBlockActive);
 			break;
 		default:
-			blockImg = geometris.assetManager.manager. get(Assets.nullBlock);
+			blockImg = geometris.assetManager.manager.get(Assets.nullBlock);
 			break;
 		}
 

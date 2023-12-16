@@ -4,15 +4,7 @@ package geometris;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import geometris.blocks.ActiveBlockMatrix;
-import geometris.blocks.GameMatrix;
-import geometris.controllers.InputController;
 import loader.Assets;
 
 public class Geometris extends Game {
