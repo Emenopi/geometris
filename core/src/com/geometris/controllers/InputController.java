@@ -1,5 +1,6 @@
 package com.geometris.controllers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.geometris.Engine;
@@ -41,20 +42,12 @@ public class InputController implements InputProcessor {
                 }
                 break;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        switch(keycode) {
-            case Input.Keys.SPACE:
-                break;
-            case Input.Keys.LEFT:
-                break;
-            case Input.Keys.RIGHT:
-                break;
-        }
-        return true;
+        return false;
     }
 
     @Override

@@ -1,12 +1,18 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import geometris.GameScreen;
-import geometris.blocks.Matrix.colour;
-import geometris.Geometris;
+import main.geometris.GameScreen;
+import main.geometris.blocks.Matrix.colour;
+import main.geometris.Geometris;
 
 public class ActiveBlock extends Block {
+	private final Geometris geometris;
+	private int heightIndex;
+	private final int widthIndex;
+	private final colour colour;
+	private final GameScreen game;
+	private int radius;
 	int gameMatrixHeightIndex;
 	double sizeScale;
 	

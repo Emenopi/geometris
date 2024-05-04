@@ -1,16 +1,19 @@
 package com.geometris;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.input.GestureDetector;
 import com.geometris.blocks.ActiveBlock;
 import com.geometris.blocks.ActiveBlockMatrix;
 import com.geometris.blocks.GameMatrix;
 import com.geometris.blocks.Matrix.colour;
 import com.geometris.controllers.InputController;
+import com.geometris.controllers.TouchController;
 
 public class Engine {
     double rotationClock;
     double movementClock;
     private InputController controller;
+    private TouchController touchCtrl;
     GameMatrix gameMatrix;
     ActiveBlockMatrix activeMatrix;
     boolean brickMoving = false;
@@ -30,6 +33,7 @@ public class Engine {
     public Engine(GameMatrix gm, GameScreen g, Geometris geo) {
         this.geometris = geo;
         controller = new InputController(this);
+        touchCtrl = new TouchController(this);
         gameMatrix = gm;
         game = g;
         generateActiveMatrix();
@@ -41,8 +45,16 @@ public class Engine {
         rateOfMovement = 0.5;
     }
 
+    private void setInputController() {
+        if (geometris.getDeviceType() == "desktop") {
+            Gdx.input.setInputProcessor(controller);
+        } else {
+            Gdx.input.setInputProcessor(new GestureDetector(touchCtrl));
+        }
+    }
+
     public void run() {
-        Gdx.input.setInputProcessor(controller);
+        setInputController();
         rotationClock += Gdx.graphics.getDeltaTime();
 
         if (!canPlay) {

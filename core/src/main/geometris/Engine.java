@@ -1,11 +1,11 @@
-package geometris;
+package main.geometris;
 
 import com.badlogic.gdx.Gdx;
-import geometris.blocks.ActiveBlock;
-import geometris.blocks.ActiveBlockMatrix;
-import geometris.blocks.GameMatrix;
-import geometris.blocks.Matrix.colour;
-import geometris.controllers.InputController;
+import main.geometris.blocks.ActiveBlock;
+import main.geometris.blocks.ActiveBlockMatrix;
+import main.geometris.blocks.GameMatrix;
+import main.geometris.blocks.Matrix.colour;
+import main.geometris.controllers.InputController;
 
 public class Engine {
     double rotationClock;

@@ -9,6 +9,8 @@ import com.geometris.loader.Assets;
 
 public class Geometris extends Game {
 
+	String deviceType;
+
 	public Assets assets;
 	public Assets assetManager = new Assets();
 
@@ -23,6 +25,10 @@ public class Geometris extends Game {
 	int score;
 	Preferences highScore;
 	boolean isHighScore;
+
+	public Geometris(String device) {
+		deviceType = device;
+	}
 
 	@Override
 	public void create () {
@@ -63,6 +69,10 @@ public class Geometris extends Game {
 
 	}
 
+	public String getDeviceType() {
+		return deviceType;
+	}
+
 	public void changeScreen(int screen){
 		switch(screen){
 			case PAUSE:
@@ -81,7 +91,9 @@ public class Geometris extends Game {
 	}
 
 	public void init() {
-		highScore = Gdx.app.getPreferences("highScore");
+		if (deviceType == "desktop") {
+			highScore = Gdx.app.getPreferences("highScore");
+		}
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();

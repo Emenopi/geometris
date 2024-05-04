@@ -1,4 +1,4 @@
-package geometris;
+package main.geometris;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;

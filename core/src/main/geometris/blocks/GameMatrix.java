@@ -1,10 +1,10 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
-import geometris.GameScreen;
-import geometris.Geometris;
-import geometris.blocks.Block;
-import geometris.blocks.GameBlock;
-import geometris.blocks.Matrix;
+import main.geometris.GameScreen;
+import main.geometris.Geometris;
+import main.geometris.blocks.Block;
+import main.geometris.blocks.GameBlock;
+import main.geometris.blocks.Matrix;
 
 public class GameMatrix extends Matrix {
 
@@ -17,8 +17,8 @@ public class GameMatrix extends Matrix {
 		geometris.assets.load();
 		geometris.assets.manager.finishLoading();
 
-		
-		matrix = new Block[matrixHeight][matrixWidth];
+
+		this.matrix = new Block[matrixHeight][matrixWidth];
 		float addBlockOffset = 0;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {

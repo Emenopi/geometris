@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Geometris");
 		config.setWindowedMode(900, 900);
-		new Lwjgl3Application(new Geometris(), config);
+		new Lwjgl3Application(new Geometris("desktop"), config);
 
 	}
 }
