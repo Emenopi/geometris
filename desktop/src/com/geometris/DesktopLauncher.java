@@ -2,7 +2,7 @@ package com.geometris;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.geometris.Geometris;
+import main.geometris.Geometris;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.setForegroundFPS(60);
 		config.setTitle("Geometris");
 		config.setWindowedMode(900, 900);
-		new Lwjgl3Application(new Geometris("desktop"), config);
+		new Lwjgl3Application(new Geometris(), config);
 
 	}
 }

@@ -5,7 +5,7 @@ public class Player {
     private String lastName;
     private String emailAddress;
     private String password;
-    private Integer score;
+    private String score;
     final public static String dataSourceName = "customer";
 
     public Player(String emailAddress, String firstName, String lastName, String password, String score){
@@ -13,7 +13,7 @@ public class Player {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.score = Integer.valueOf(score);
+        this.score = score;
     }
 
     public String getFirstName(){
@@ -32,7 +32,7 @@ public class Player {
         return this.password;
     }
 
-    public Integer getScore(){
+    public String getScore(){
         return this.score;
     }
 
