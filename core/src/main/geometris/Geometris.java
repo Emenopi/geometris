@@ -18,6 +18,7 @@ public class Geometris extends Game {
 	private LeaderboardScreen leaderboardScreen;
 	private LoginScreen loginScreen;
 	private RegisterScreen registerScreen;
+	private StartScreen startScreen;
 
 	public final static int GAME = 0;
 	public final static int PAUSE = 1;
@@ -98,6 +99,10 @@ public class Geometris extends Game {
 				if(loginScreen == null) loginScreen = new LoginScreen(this);
 				this.setScreen(loginScreen);
 				break;
+			case START:
+				if(startScreen == null) startScreen = new StartScreen(this);
+				this.setScreen(startScreen);
+				break;
 			case REGISTER:
 				if (registerScreen == null) registerScreen = new RegisterScreen(this);
 				this.setScreen(registerScreen);
@@ -111,8 +116,8 @@ public class Geometris extends Game {
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
-		pauseScreen = new PauseScreen(this);
-		setScreen(pauseScreen);
+		startScreen = new StartScreen(this);
+		setScreen(startScreen);
 		score = 0;
 		isHighScore = false;
 	}
@@ -136,6 +141,8 @@ public class Geometris extends Game {
 		loginScreen = new LoginScreen(this);
 		registerScreen.dispose();
 		registerScreen = new RegisterScreen(this);
+		startScreen.dispose();
+		startScreen = new StartScreen(this);
 	}
 	@Override
 	public void dispose () {

@@ -36,8 +36,8 @@ public class PauseScreen implements Screen {
         stage.addActor(table);
 
         Label geometrisLabel = new Label("GEOMETRIS", skin, "title");
-        table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 70, 0);
-        if (loggedIn) {
+        table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 10, 0);
+            table.row().pad(10, 0, 70, 0);
             Label playerLabel = new Label(geometris.getPlayer().getName(), skin, "narration");
             table.add(playerLabel).fillX().uniformX().pad(0, 0, 10, 0);
             table.row().pad(10, 0, 10, 0);
@@ -45,7 +45,7 @@ public class PauseScreen implements Screen {
             TextButton play = new TextButton("Play", skin);
             TextButton quit = new TextButton("Quit", skin);
 
-            table.row().pad(10, 0, 10, 0);
+            table.row().pad(70, 0, 10, 0);
             table.add(play).fillX().uniformX();
 
 
@@ -56,32 +56,10 @@ public class PauseScreen implements Screen {
                 }
             });
 
-        } else {
-            TextButton loginButton = new TextButton("Log In", skin);
-            TextButton registerButton = new TextButton("Register", skin);
 
-            table.row().pad(10, 0, 10, 0);
-            table.add(loginButton).fillX().uniformX();
-            table.row();
-            table.add(registerButton).fillX().uniformX();
-
-            loginButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    geometris.changeScreen(Geometris.LOGIN);
-                }
-            });
-
-            registerButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    geometris.changeScreen(Geometris.REGISTER);
-                }
-            });
-            }
         TextButton quitButton = new TextButton("Quit", skin);
 
-        table.row().pad(70, 0, 10, 0);
+        table.row().pad(30, 0, 10, 0);
         table.add(quitButton).fillX().uniformX();
 
         quitButton.addListener(new ChangeListener() {
