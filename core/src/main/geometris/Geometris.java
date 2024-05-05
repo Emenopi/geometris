@@ -15,14 +15,24 @@ public class Geometris extends Game {
 	private GameScreen gameScreen;
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
+	private LeaderboardScreen leaderboardScreen;
+	private LoginScreen loginScreen;
+	private RegisterScreen registerScreen;
+	private StartScreen startScreen;
 
 	public final static int GAME = 0;
 	public final static int PAUSE = 1;
 	public final static int GAMEOVER = 2;
+	public final static int LEADERBOARD = 3;
+
+	public final static int LOGIN = 4;
+	public final static int REGISTER = 5;
+	public final static int START = 6;
 
 	int score;
 	Preferences highScore;
 	boolean isHighScore;
+	Player player;
 	
 	@Override
 	public void create () {
@@ -79,12 +89,18 @@ public class Geometris extends Game {
 				break;
 		}
 	}
+	public Player getPlayer() { return this.player; }
+
+	public void setPlayer(Player player) { this.player = player; }
 
 	public void init() {
 		highScore = Gdx.app.getPreferences("highScore");
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
+//		startScreen = new StartScreen(this);
+//		setScreen(startScreen);
+		player = new Player("ee", "ee", "ee", "ee", "0");
 		pauseScreen = new PauseScreen(this);
 		setScreen(pauseScreen);
 		score = 0;
