@@ -55,9 +55,6 @@ public class Engine {
 
         if (!brickMoving) {
             rotateActiveBlock();
-            if (direction > 3) {
-                geometris.changeScreen(Geometris.GAMEOVER);
-            }
         } else if (canMove){
             moveBrick();
         } else {
