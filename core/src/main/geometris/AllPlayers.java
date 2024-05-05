@@ -26,6 +26,7 @@ public class AllPlayers {
         return listOfPlayers;
     }
 
+<<<<<<< HEAD
     public Dictionary<String, String> getScoreList() {
         System.out.println("hiiiii");
         Dictionary<String, String> scoreList = new Hashtable<>();
@@ -40,3 +41,17 @@ public class AllPlayers {
     }
 
 }
+=======
+    public Map<String, Integer> getScoreList() {
+        Map<String, Integer> scoreList = new HashMap<>();
+        if (! playersLoaded) {
+            loadAsPlayers();
+        }
+        for (Player player : listOfPlayers) {
+            scoreList.put(player.getName(), Integer.valueOf(player.getScore()));
+        }
+        return scoreList;
+    }
+
+}
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72

@@ -3,9 +3,13 @@ package main.geometris;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 >>>>>>> main
+=======
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 import main.loader.Assets;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -40,6 +44,7 @@ public class PauseScreen implements Screen {
 
         Label geometrisLabel = new Label("GEOMETRIS", skin, "title");
         table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 10, 0);
+<<<<<<< HEAD
             table.row().pad(10, 0, 70, 0);
             Label playerLabel = new Label(geometris.getPlayer().getName(), skin, "narration");
             table.add(playerLabel).fillX().uniformX().pad(0, 0, 10, 0);
@@ -50,6 +55,18 @@ public class PauseScreen implements Screen {
 
             table.row().pad(70, 0, 10, 0);
             table.add(play).fillX().uniformX();
+=======
+        table.row().pad(10, 0, 70, 0);
+        Label playerLabel = new Label(geometris.getPlayer().getName(), skin, "narration");
+        table.add(playerLabel).fillX().uniformX().pad(0, 0, 10, 0);
+        table.row().pad(10, 0, 10, 0);
+
+        TextButton play = new TextButton("Play", skin);
+        TextButton quit = new TextButton("Quit", skin);
+
+        table.row().pad(70, 0, 10, 0);
+        table.add(play).fillX().uniformX();
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 
 
             play.addListener(new ChangeListener() {

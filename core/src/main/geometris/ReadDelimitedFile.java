@@ -9,6 +9,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.nio.file.Paths;
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +38,10 @@ public class ReadDelimitedFile {
             }
             propertyReader.close();
         } catch (IOException e) {
+<<<<<<< HEAD
+=======
+            System.out.println(System.getProperty("user.dir"));
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
@@ -76,4 +84,8 @@ public class ReadDelimitedFile {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72

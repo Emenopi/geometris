@@ -110,17 +110,25 @@ public class Geometris extends Game {
 
 		}
 	}
+	public Player getPlayer() { return this.player; }
+
+	public void setPlayer(Player player) { this.player = player; }
 
 	public void init() {
 		highScore = Gdx.app.getPreferences("highScore");
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
+<<<<<<< HEAD
 //		startScreen = new StartScreen(this);
 //		setScreen(startScreen);
 		player = new Player("ee", "ee", "ee", "ee", "0");
 		gameScreen = new GameScreen(this);
 		setScreen(gameScreen);
+=======
+		startScreen = new StartScreen(this);
+		setScreen(startScreen);
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 		score = 0;
 		isHighScore = false;
 	}
