@@ -14,12 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-<<<<<<< HEAD
 import java.util.Dictionary;
 import java.util.Enumeration;
-=======
-import java.util.*;
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 
 public class LeaderboardScreen implements Screen {
     private final Geometris geometris;
@@ -30,11 +26,7 @@ public class LeaderboardScreen implements Screen {
     BitmapFont font;
     String scoreLabelText;
     AllPlayers allPlayers;
-<<<<<<< HEAD
     Dictionary<String, String> scoreList;
-=======
-    Map<String, Integer> scoreList;
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 
     public LeaderboardScreen(Geometris geo) {
         geometris = geo;
@@ -61,7 +53,6 @@ public class LeaderboardScreen implements Screen {
 
         TextButton playAgain = new TextButton("Play Again", skin);
         TextButton quit = new TextButton("Quit", skin);
-<<<<<<< HEAD
         Label scoreLabel = new Label(scoreLabelText, skin, "half-tone");
 
         table.add(leaderboard).fillX().uniformX().pad(0, 0, 0, 0);
@@ -70,21 +61,11 @@ public class LeaderboardScreen implements Screen {
         int scoreCount = 0;
         while (keys.hasMoreElements() && scoreCount < 5) {
             String key = keys.nextElement();
-=======
-
-        table.add(leaderboard).fillX().uniformX().pad(0, 0, 0, 0);
-        table.row().pad(70, 0, 10, 0);
-
-        for (String key : scoreList.keySet()) {
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
             scoreLabelText = key + ": " + scoreList.get(key);
             Label score = new Label(scoreLabelText, skin, "half-tone");
             table.add(score).fillX().uniformX().pad(0, 0, 0, 0);
             table.row().pad(10, 0, 10, 0);
-<<<<<<< HEAD
             scoreCount++;
-=======
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
         }
         table.row().pad(50, 0, 10, 0);
         table.add(playAgain).fillX().uniformX();
@@ -151,8 +132,4 @@ public class LeaderboardScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
