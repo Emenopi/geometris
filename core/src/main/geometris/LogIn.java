@@ -1,14 +1,24 @@
 package main.geometris;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class LogIn {
+
+    public enum Status {
+        LOGGED_IN,
+        REGISTER,
+        RETRY_PASSWORD,
+        LOGGED_OUT
+    }
+
+    Status loginStatus = Status.LOGGED_OUT;
+    AllPlayers allPlayers = new AllPlayers();
+    List<Player> listOfPlayers = allPlayers.getListOfPlayers();
     private String getPassword(String emailAddress){
-        AllPlayers allPlayers = new AllPlayers();
         String password = "";
-        List<Player> listOfPlayers = allPlayers.getListOfPlayers();
+
         for (Player player :listOfPlayers){
+            System.out.println(player.getEmailAddress());
             if (player.getEmailAddress().equals(emailAddress)){
                 password = player.getPassword();
             }
@@ -16,16 +26,33 @@ public class LogIn {
         return password;
     }
 
-    public String logIn(String email, String passwordInput) {
+    public void setLoginStatus(Status state) {
+        this.loginStatus = state;
+    }
+
+    public Status getLoginStatus() {
+        return this.loginStatus;
+    }
+
+    public Player getPlayer(String email) {
+        for (Player player :listOfPlayers){
+            if (player.getEmailAddress().equals(email)){
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public void logIn(String email, String passwordInput) {
         String password = getPassword(email);
         if (password == "") {
-            return "Please register";
+            this.loginStatus = Status.REGISTER;
         }
         else if (password.equals(passwordInput)){
-            return "Logged in!";
+            this.loginStatus = Status.LOGGED_IN;
         }
         else {
-            return "Wrong password";
+            this.loginStatus = Status.RETRY_PASSWORD;
         }
     }
 }

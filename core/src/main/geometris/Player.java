@@ -8,7 +8,7 @@ public class Player {
     private String score;
     final public static String dataSourceName = "customer";
 
-    public Player(String firstName, String lastName, String emailAddress, String password, String score){
+    public Player(String emailAddress, String firstName, String lastName, String password, String score){
         this.emailAddress = emailAddress;
         this.forename = firstName;
         this.surname = lastName;

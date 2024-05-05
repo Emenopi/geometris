@@ -15,10 +15,9 @@ public class LoginScreen implements Screen {
     FormStage stage;
     main.loader.Assets assets;
     Skin skin;
-    boolean loggedIn;
     String email = "";
     String password = "";
-
+    LogIn login;
     public LoginScreen(Geometris geo) {
         geometris = geo;
         assets = geometris.assets;
@@ -26,7 +25,12 @@ public class LoginScreen implements Screen {
         geometris.assetManager.manager.finishLoading();
         skin = geometris.assetManager.manager.get(main.loader.Assets.skin);
         stage = new FormStage(new ScreenViewport());
-        loggedIn = geometris.getPlayer() != null;
+        login = new LogIn();
+        if (geometris.getPlayer() != null) {
+            login.setLoginStatus(LogIn.Status.LOGGED_IN);
+        } else {
+            login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+        }
     }
     @Override
     public void show() {
@@ -66,12 +70,31 @@ public class LoginScreen implements Screen {
 
         table.row().pad(10,0, 10, 0);
         table.add(passwordField).width(400).expandX().pad(10, 0, 10, 0);
-        TextButton login = new TextButton("Log In", skin);
+        TextButton loginButton = new TextButton("Log In", skin);
+        loginButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                login.logIn(email, password);
+                switch(login.getLoginStatus()) {
+                    case REGISTER:
+                        loginButton = new TextButton("PLEASE REGISTER", skin);
+                        break;
+                    case RETRY_PASSWORD:
+                        loginButton.setText("WRONG PASSWORD");
+                        break;
+                    case LOGGED_IN:
+                        geometris.setPlayer(login.getPlayer(email));
+                        geometris.changeScreen(Geometris.PAUSE);
+                }
+            }
+        });
+        table.row().pad(70, 0, 10, 0);
+        table.add(loginButton).expandX().uniformX();
 
         TextButton quitButton = new TextButton("Quit", skin);
 
-        table.row().pad(70, 0, 10, 0);
-        table.add(quitButton).fillX().uniformX();
+        table.row().pad(30, 0, 10, 0);
+        table.add(quitButton).expandX().uniformX();
 
         quitButton.addListener(new ChangeListener() {
             @Override
