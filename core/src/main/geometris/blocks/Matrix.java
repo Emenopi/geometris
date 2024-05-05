@@ -1,11 +1,11 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import loader.Assets;
-import geometris.GameScreen;
-import geometris.Geometris;
-import geometris.blocks.Block;
+import main.loader.Assets;
+import main.geometris.GameScreen;
+import main.geometris.Geometris;
+import main.geometris.blocks.Block;
 
 public abstract class Matrix {
 	

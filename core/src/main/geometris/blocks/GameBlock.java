@@ -1,9 +1,9 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
-import geometris.GameScreen;
-import geometris.Geometris;
-import geometris.blocks.Block;
-import geometris.blocks.Matrix.colour;
+import main.geometris.GameScreen;
+import main.geometris.Geometris;
+import main.geometris.blocks.Block;
+import main.geometris.blocks.Matrix.colour;
 
 public class GameBlock extends Block {
 	final boolean isActive = false;

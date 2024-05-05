@@ -1,11 +1,11 @@
-package geometris;
+package main.geometris;
 
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
-import loader.Assets;
+import main.loader.Assets;
 
 public class Geometris extends Game {
 

@@ -1,8 +1,8 @@
-package geometris.controllers;
+package main.geometris.controllers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import geometris.Engine;
+import main.geometris.Engine;
 
 public class InputController implements InputProcessor {
     Engine engine;

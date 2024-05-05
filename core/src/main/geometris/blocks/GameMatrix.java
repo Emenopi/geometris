@@ -1,10 +1,10 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
-import geometris.GameScreen;
-import geometris.Geometris;
-import geometris.blocks.Block;
-import geometris.blocks.GameBlock;
-import geometris.blocks.Matrix;
+import main.geometris.GameScreen;
+import main.geometris.Geometris;
+import main.geometris.blocks.Block;
+import main.geometris.blocks.GameBlock;
+import main.geometris.blocks.Matrix;
 
 public class GameMatrix extends Matrix {
 

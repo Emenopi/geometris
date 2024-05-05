@@ -1,7 +1,7 @@
-package geometris.blocks;
+package main.geometris.blocks;
 
-import geometris.GameScreen;
-import geometris.Geometris;
+import main.geometris.GameScreen;
+import main.geometris.Geometris;
 
 
 public class ActiveBlockMatrix extends Matrix {

@@ -1,4 +1,4 @@
-package geometris;
+package main.geometris;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -11,10 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import geometris.blocks.ActiveBlockMatrix;
-import geometris.blocks.GameMatrix;
-import geometris.controllers.InputController;
-import loader.Assets;
+import main.geometris.blocks.ActiveBlockMatrix;
+import main.geometris.blocks.GameMatrix;
+import main.geometris.controllers.InputController;
+import main.loader.Assets;
 
 public class GameScreen implements Screen {
     String scoreLabel;
