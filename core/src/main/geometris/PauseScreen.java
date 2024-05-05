@@ -2,14 +2,11 @@ package main.geometris;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import loader.Assets;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import main.loader.Assets;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -18,6 +15,7 @@ public class PauseScreen implements Screen {
     Stage stage;
     Assets assets;
     Skin skin;
+    boolean loggedIn;
 
     public PauseScreen(Geometris geo) {
         geometris = geo;
@@ -28,6 +26,7 @@ public class PauseScreen implements Screen {
         geometris.assetManager.queueAddSkin();
         geometris.assetManager.manager.finishLoading();
         skin = geometris.assetManager.manager.get(Assets.skin);
+        loggedIn = geometris.getPlayer() != null;
     }
     @Override
     public void show() {
@@ -37,30 +36,65 @@ public class PauseScreen implements Screen {
         stage.addActor(table);
 
         Label geometrisLabel = new Label("GEOMETRIS", skin, "title");
-        TextButton play = new TextButton("Play", skin);
-        TextButton quit = new TextButton("Quit", skin);
-
         table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 70, 0);
-        table.row().pad(10, 0, 10, 0);
-        table.add(play).fillX().uniformX();
-        table.row();
-        table.add(quit).fillX().uniformX();
+        if (loggedIn) {
+            Label playerLabel = new Label(geometris.getPlayer().getName(), skin, "narration");
+            table.add(playerLabel).fillX().uniformX().pad(0, 0, 10, 0);
+            table.row().pad(10, 0, 10, 0);
+
+            TextButton play = new TextButton("Play", skin);
+            TextButton quit = new TextButton("Quit", skin);
+
+            table.row().pad(10, 0, 10, 0);
+            table.add(play).fillX().uniformX();
 
 
-        play.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                geometris.changeScreen(Geometris.GAME);
+            play.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    geometris.changeScreen(Geometris.GAME);
+                }
+            });
+
+        } else {
+            TextButton loginButton = new TextButton("Log In", skin);
+            TextButton registerButton = new TextButton("Register", skin);
+
+            table.row().pad(10, 0, 10, 0);
+            table.add(loginButton).fillX().uniformX();
+            table.row();
+            table.add(registerButton).fillX().uniformX();
+
+            loginButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    geometris.changeScreen(Geometris.LOGIN);
+                }
+            });
+
+            registerButton.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    geometris.changeScreen(Geometris.REGISTER);
+                }
+            });
             }
-        });
+        TextButton quitButton = new TextButton("Quit", skin);
 
-        quit.addListener(new ChangeListener() {
+        table.row().pad(70, 0, 10, 0);
+        table.add(quitButton).fillX().uniformX();
+
+        quitButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
             }
         });
+
+
+
     }
+
 
     @Override
     public void render(float delta) {

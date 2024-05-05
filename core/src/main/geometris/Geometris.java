@@ -5,7 +5,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
-import loader.Assets;
+import main.loader.Assets;
 
 public class Geometris extends Game {
 
@@ -16,20 +16,29 @@ public class Geometris extends Game {
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
 	private LeaderboardScreen leaderboardScreen;
+	private LoginScreen loginScreen;
 
 	public final static int GAME = 0;
 	public final static int PAUSE = 1;
 	public final static int GAMEOVER = 2;
 	public final static int LEADERBOARD = 3;
 
+	public final static int LOGIN = 4;
+	public final static int REGISTER = 5;
+
 	int score;
 	Preferences highScore;
 	boolean isHighScore;
+	Player player;
 	
 	@Override
 	public void create () {
 		init();
 	}
+
+	public Player getPlayer() { return this.player; }
+
+	public void setPlayer(Player player) { this.player = player; }
 
 	public void setScore(int s) {
 		score = s;
@@ -83,6 +92,10 @@ public class Geometris extends Game {
 				if(leaderboardScreen == null) leaderboardScreen = new LeaderboardScreen(this);
 				this.setScreen(leaderboardScreen);
 				break;
+			case LOGIN:
+				if(loginScreen == null) loginScreen = new LoginScreen(this);
+				this.setScreen(loginScreen);
+				break;
 
 		}
 	}
@@ -113,6 +126,8 @@ public class Geometris extends Game {
 		gameOverScreen = new GameOverScreen(this);
 		leaderboardScreen.dispose();
 		leaderboardScreen = new LeaderboardScreen(this);
+		loginScreen.dispose();
+		loginScreen = new LoginScreen(this);
 	}
 	@Override
 	public void dispose () {

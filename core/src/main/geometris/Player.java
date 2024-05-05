@@ -1,27 +1,27 @@
 package main.geometris;
 
 public class Player {
-    private String firstName;
-    private String lastName;
+    private String forename;
+    private String surname;
     private String emailAddress;
     private String password;
     private String score;
     final public static String dataSourceName = "customer";
 
-    public Player(String emailAddress, String firstName, String lastName, String password, String score){
+    public Player(String firstName, String lastName, String emailAddress, String password, String score){
         this.emailAddress = emailAddress;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.forename = firstName;
+        this.surname = lastName;
         this.password = password;
         this.score = score;
     }
 
     public String getFirstName(){
-        return this.firstName;
+        return this.forename;
     }
 
     public String getLastName(){
-        return this.lastName;
+        return this.surname;
     }
 
     public String getEmailAddress(){
@@ -37,7 +37,7 @@ public class Player {
     }
 
     public String getName(){
-        return this.firstName + " " + this.lastName;
+        return this.forename + " " + this.surname;
     }
 
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-import loader.Assets;
+import main.loader.Assets;
 import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.Matrix.colour;

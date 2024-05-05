@@ -15,7 +15,7 @@ import main.geometris.Engine;
 import main.geometris.Geometris;
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.controllers.InputController;
-import loader.Assets;
+import main.loader.Assets;
 import main.geometris.blocks.GameMatrix;
 
 public class GameScreen implements Screen {
