@@ -32,8 +32,10 @@ public class RegisterScreen implements Screen {
         skin = geometris.assetManager.manager.get(main.loader.Assets.skin);
         stage = new FormStage(new ScreenViewport());
         register = new Register();
+        // init login
+        login = new LogIn();
         if (geometris.getPlayer() != null) {
-            geometris.changeScreen(Geometris.PAUSE);
+            login.setLoginStatus(LogIn.Status.LOGGED_IN);
         } else {
             login.setLoginStatus(LogIn.Status.LOGGED_OUT);
         }

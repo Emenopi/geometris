@@ -23,7 +23,10 @@ public class Register {
         } else if (password.isEmpty()) {
             this.registerStatus = RegisterStatus.MISSING_EMAIL;
         } else {
+            this.registerStatus = RegisterStatus.REGISTERED;
             player = new Player(email, forename, surname, password, "0");
+            ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+            readDelimitedFile.addNewPlayer(player);
         }
     }
 

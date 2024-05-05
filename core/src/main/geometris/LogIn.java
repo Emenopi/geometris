@@ -25,8 +25,8 @@ public class LogIn {
         return password;
     }
 
-    public void setLoginStatus(Status state) {
-        this.loginStatus = state;
+    public void setLoginStatus(Status status) {
+        this.loginStatus = status;
     }
 
     public Status getLoginStatus() {
