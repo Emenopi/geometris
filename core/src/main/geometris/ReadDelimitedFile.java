@@ -1,12 +1,17 @@
 package main.geometris;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import com.opencsv.ICSVParser;
+import com.opencsv.exceptions.CsvException;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ReadDelimitedFile {
@@ -50,5 +55,25 @@ public class ReadDelimitedFile {
             e.printStackTrace();
         }
 
+    }
+
+    public void saveHighScore(Player player, int highscore) {
+        String filePathPrefix = "../core/src/main/resources/";
+        File file = new File(filePathPrefix + "players.csv");
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            List<String[]> csvBody = reader.readAll();
+            for (String[] strings : csvBody) {
+                if (Objects.equals(strings[0], player.getEmailAddress())) {
+                    strings[4] = String.valueOf(highscore);
+                }
+            }
+
+            CSVWriter writer = new CSVWriter(new FileWriter(file), ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+            writer.writeAll(csvBody);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

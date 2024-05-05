@@ -4,6 +4,8 @@ import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.Matrix.colour;
 
+import java.util.Arrays;
+
 
 public class ActiveBlockMatrix extends Matrix {
 	int direction;
@@ -26,7 +28,6 @@ public class ActiveBlockMatrix extends Matrix {
 	}
 	
 	private void generateMatrix(String col, GameScreen game) {
-		System.out.println(col);
 		switch(col) {
 		case "CYAN":
 			this.matrix[0][0] = new ActiveBlock(0, 0, Matrix.colour.CYAN, game);
@@ -71,12 +72,9 @@ public class ActiveBlockMatrix extends Matrix {
 			addOffset -= (float) (this.matrix[i][0].getHeight());
 		}
 
-		System.out.println("matrix " + this.matrix[0][0].getBlockString());
-
 	}
 	
 	public String[][] getMatrixString() {
-		System.out.println("ok");
 		String[][] matrixString = new String[matrixHeight][matrixWidth];
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {

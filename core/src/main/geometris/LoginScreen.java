@@ -86,7 +86,6 @@ public class LoginScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 login.logIn(email, password);
-                System.out.println(password);
             }
         });
 

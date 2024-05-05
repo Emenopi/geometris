@@ -116,8 +116,11 @@ public class Geometris extends Game {
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
-		startScreen = new StartScreen(this);
-		setScreen(startScreen);
+//		startScreen = new StartScreen(this);
+//		setScreen(startScreen);
+		player = new Player("ee", "ee", "ee", "ee", "0");
+		gameScreen = new GameScreen(this);
+		setScreen(gameScreen);
 		score = 0;
 		isHighScore = false;
 	}

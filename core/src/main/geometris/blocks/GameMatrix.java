@@ -29,7 +29,6 @@ public class GameMatrix extends Matrix {
 			}
 			addBlockOffset += (float) (matrix[i][0].getHeight() + 4);
 		}
-
 		super.matrix = this.matrix;
 	}
 

@@ -70,7 +70,6 @@ public class ActiveBlock extends Block {
 	}
 
 	public String getBlockString() {
-		System.out.println("hi");
 		return this.colour.toString();
 	}
 }
