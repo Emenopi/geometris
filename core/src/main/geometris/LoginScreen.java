@@ -49,10 +49,9 @@ public class LoginScreen implements Screen {
         emailField.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (stage.getChar() == Input.Keys.BACKSPACE) {
+                if (stage.getIsBackspace() && !email.isEmpty()) {
                     email = email.substring(0, email.length()-1);
                 } else {
-                    System.out.println(stage.getChar());
                     email += stage.getChar();
                 }
             }
@@ -68,7 +67,7 @@ public class LoginScreen implements Screen {
         passwordField.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (stage.getChar() == Input.Keys.BACKSPACE) {
+                if (stage.getIsBackspace() && !password.isEmpty()) {
                     password = password.substring(0, password.length()-1);
                 } else {
                     password += stage.getChar();
@@ -87,19 +86,23 @@ public class LoginScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 login.logIn(email, password);
-                switch(login.getLoginStatus()) {
-                    case REGISTER:
-                        geometris.changeScreen(Geometris.REGISTER);
-                        break;
-                    case RETRY_PASSWORD:
-                        passwordField.setText("WRONG PASSWORD");
-                        break;
-                    case LOGGED_IN:
-                        geometris.setPlayer(login.getPlayer(email));
-                        geometris.changeScreen(Geometris.PAUSE);
-                }
+                System.out.println(password);
             }
         });
+
+        switch(login.getLoginStatus()) {
+            case REGISTER:
+                geometris.changeScreen(Geometris.REGISTER);
+                break;
+            case RETRY_PASSWORD:
+                loginButton.setText("WRONG PASSWORD");
+                password = "";
+                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+                break;
+            case LOGGED_IN:
+                geometris.setPlayer(login.getPlayer(email));
+                geometris.changeScreen(Geometris.PAUSE);
+        }
 
         TextButton quitButton = new TextButton("Quit", skin);
 

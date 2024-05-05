@@ -18,7 +18,6 @@ public class LogIn {
         String password = "";
 
         for (Player player :listOfPlayers){
-            System.out.println(player.getEmailAddress());
             if (player.getEmailAddress().equals(emailAddress)){
                 password = player.getPassword();
             }
