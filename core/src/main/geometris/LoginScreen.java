@@ -1,6 +1,7 @@
 package main.geometris;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -48,7 +49,12 @@ public class LoginScreen implements Screen {
         emailField.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                email += stage.getChar();
+                if (stage.getChar() == Input.Keys.BACKSPACE) {
+                    email = email.substring(0, email.length()-1);
+                } else {
+                    System.out.println(stage.getChar());
+                    email += stage.getChar();
+                }
             }
         });
 
@@ -62,7 +68,11 @@ public class LoginScreen implements Screen {
         passwordField.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                password+= stage.getChar();
+                if (stage.getChar() == Input.Keys.BACKSPACE) {
+                    password = password.substring(0, password.length()-1);
+                } else {
+                    password += stage.getChar();
+                }
             }
         });
 
@@ -71,16 +81,18 @@ public class LoginScreen implements Screen {
         table.row().pad(10,0, 10, 0);
         table.add(passwordField).width(400).expandX().pad(10, 0, 10, 0);
         TextButton loginButton = new TextButton("Log In", skin);
+        table.row().pad(70, 0, 10, 0);
+        table.add(loginButton).expandX().uniformX();
         loginButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 login.logIn(email, password);
                 switch(login.getLoginStatus()) {
                     case REGISTER:
-                        loginButton = new TextButton("PLEASE REGISTER", skin);
+                        geometris.changeScreen(Geometris.REGISTER);
                         break;
                     case RETRY_PASSWORD:
-                        loginButton.setText("WRONG PASSWORD");
+                        passwordField.setText("WRONG PASSWORD");
                         break;
                     case LOGGED_IN:
                         geometris.setPlayer(login.getPlayer(email));
@@ -88,8 +100,6 @@ public class LoginScreen implements Screen {
                 }
             }
         });
-        table.row().pad(70, 0, 10, 0);
-        table.add(loginButton).expandX().uniformX();
 
         TextButton quitButton = new TextButton("Quit", skin);
 
