@@ -64,12 +64,12 @@ public class ActiveBlockMatrix extends Matrix {
 		float addOffset = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				if (this.matrix[i][j] == null) {
-					this.matrix[i][j] = new ActiveBlock(i, j, Matrix.colour.NULL, game);
+				if (matrix[i][j] == null) {
+					matrix[i][j] = new ActiveBlock(i, j, colour.NULL, game);
 				}
-				this.matrix[i][j].setOffset(addOffset);
+				matrix[i][j].setOffset(addOffset);
 			}
-			addOffset -= (float) (this.matrix[i][0].getHeight());
+			addOffset -= (float) (matrix[i][0].getHeight());
 		}
 
 	}
@@ -112,9 +112,9 @@ public class ActiveBlockMatrix extends Matrix {
 	public void moveOut(int heightIndex, float addBlockOffset) {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				matrix[i][j].setRadius(115);
-				matrix[i][j].setSizeScale(1);
-				matrix[i][j].setHeightIndex(heightIndex - i);
+				(matrix[i][j]).setRadius(115);
+				(matrix[i][j]).setSizeScale(1);
+				(matrix[i][j]).setHeightIndex(heightIndex - i);
 				matrix[i][j].setOffset(addBlockOffset);
 			}
 			addBlockOffset -= (float) (matrix[i][0].getHeight() + 4);
@@ -136,9 +136,9 @@ public class ActiveBlockMatrix extends Matrix {
 	public colour[][] rotateClockwise() {
 		colour[][] newMatrix = invertMatrix(matrix);
 		for (int i = 0; i < 3; i++) {
-				colour temp = newMatrix[i][0];
-				newMatrix[i][0] = newMatrix[i][2];
-				newMatrix[i][2] = temp;
+			colour temp = newMatrix[i][0];
+			newMatrix[i][0] = newMatrix[i][2];
+			newMatrix[i][2] = temp;
 		}
 		newMatrix = adjustNullBlocks(newMatrix);
 		return newMatrix;
@@ -156,11 +156,11 @@ public class ActiveBlockMatrix extends Matrix {
 	}
 
 	public colour[][] adjustNullBlocks(colour[][] newMatrix) {
-        for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 2; i++) {
 			if (
 					newMatrix[0][0] == Matrix.colour.NULL &&
-					newMatrix[0][1] == Matrix.colour.NULL &&
-					newMatrix[0][2] == Matrix.colour.NULL
+							newMatrix[0][1] == Matrix.colour.NULL &&
+							newMatrix[0][2] == Matrix.colour.NULL
 			) {
 				newMatrix = adjustBlocksUp(newMatrix);
 			}
@@ -168,8 +168,8 @@ public class ActiveBlockMatrix extends Matrix {
 		for (int i = 0; i < 2; i++) {
 			if (
 					newMatrix[0][0] == Matrix.colour.NULL &&
-					newMatrix[1][0] == Matrix.colour.NULL &&
-					newMatrix[2][0] == Matrix.colour.NULL
+							newMatrix[1][0] == Matrix.colour.NULL &&
+							newMatrix[2][0] == Matrix.colour.NULL
 			) {
 				newMatrix = adjustBlocksLeft(newMatrix);
 			}
@@ -181,7 +181,9 @@ public class ActiveBlockMatrix extends Matrix {
 	public colour[][] adjustBlocksUp(colour[][] newMatrix) {
 		colour[][] adjustedMatrix = new colour[3][3];
 		for (int i = 0; i < 3; i++) {
-            System.arraycopy(newMatrix[(i + 1) % 3], 0, adjustedMatrix[i], 0, 3);
+			for (int j = 0; j < 3; j++) {
+				adjustedMatrix[i][j] = newMatrix[(i + 1) % 3][j];
+			}
 		}
 		return adjustedMatrix;
 	}
