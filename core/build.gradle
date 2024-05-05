@@ -4,6 +4,10 @@ sourceCompatibility = 1.7
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 eclipse.project.name = appName + "-core"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 dependencies {
     implementation 'com.opencsv:opencsv:4.6'
 }

@@ -1,6 +1,10 @@
 package main.geometris;
 
 import com.badlogic.gdx.Gdx;
+<<<<<<< HEAD
+import com.badlogic.gdx.Input;
+=======
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -151,4 +155,8 @@ public class LoginScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72

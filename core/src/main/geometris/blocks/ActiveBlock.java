@@ -7,14 +7,22 @@ import main.geometris.blocks.Matrix.colour;
 import main.geometris.Geometris;
 
 public class ActiveBlock extends Block {
+	private final Geometris geometris;
+	private int heightIndex;
+	private final int widthIndex;
+	private final colour colour;
+	private final GameScreen game;
+	private int radius;
 	int gameMatrixHeightIndex;
 	double sizeScale;
 	
 	public ActiveBlock(int hIndex, int wIndex, colour col, GameScreen game) {
 		this.geometris = game.geometris;
+		super.geometris = this.geometris;
 		this.heightIndex = hIndex;
 		this.widthIndex = wIndex;
 		this.colour = col;
+		super.colour = col;
 		this.game = game;
 		this.radius = 100;
 		gameMatrixHeightIndex = 0;
@@ -33,6 +41,10 @@ public class ActiveBlock extends Block {
 
 	public void setHeightIndex(int index) {
 		this.heightIndex = index;
+	}
+
+	public colour getColour() {
+		return this.colour;
 	}
 
 	public void setGameMatrixHeight(int matrixBlockIndex) {
