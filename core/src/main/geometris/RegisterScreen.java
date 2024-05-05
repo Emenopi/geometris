@@ -202,8 +202,4 @@ public class RegisterScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72

@@ -37,8 +37,4 @@ public class Register {
     public Player getPlayer() {
         return this.player;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72

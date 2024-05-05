@@ -6,16 +6,12 @@ import main.loader.Assets;
 import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.Block;
-<<<<<<< HEAD
-=======
-import main.geometris.GameScreen;
->>>>>>> main
 
 public abstract class Matrix {
-	
-	protected Block[][] matrix;
-	protected GameScreen game;
-	protected Geometris geometris;
+
+	Block[][] matrix;
+	GameScreen game;
+	Geometris geometris;
 	public int matrixHeight;
 	public int matrixWidth;
 
@@ -29,54 +25,54 @@ public abstract class Matrix {
 		BLACK,
 		NULL
 	}
-	
+
 	public Block[][] getMatrix() {
 		return matrix;
 	}
-	
+
 
 	public Sprite getBlockSprite(colour colour) {
 		Texture blockImg;
 		switch(colour) {
-		case CYAN:
-			blockImg = geometris.assetManager.manager.get(Assets.cyanBlockActive);
-			break;
-		case PURPLE:
-			blockImg = geometris.assetManager.manager.get(Assets.purpleBlockActive);
-			break;
-		case MAGENTA:
-			blockImg = geometris.assetManager.manager.get(Assets.magentaBlockActive);
-			break;
-		case ORANGE:
-			blockImg = geometris.assetManager.manager.get(Assets.orangeBlockActive);
-			break;
-		case YELLOW:
-			blockImg = geometris.assetManager.manager.get(Assets.yellowBlockActive);
-			break;
-		case GREEN:
-			blockImg = geometris.assetManager.manager.get(Assets.greenBlockActive);
-			break;
-		default:
-			blockImg = geometris.assetManager.manager.get(Assets.nullBlock);
-			break;
+			case CYAN:
+				blockImg = geometris.assetManager.manager.get(Assets.cyanBlockActive);
+				break;
+			case PURPLE:
+				blockImg = geometris.assetManager.manager.get(Assets.purpleBlockActive);
+				break;
+			case MAGENTA:
+				blockImg = geometris.assetManager.manager.get(Assets.magentaBlockActive);
+				break;
+			case ORANGE:
+				blockImg = geometris.assetManager.manager.get(Assets.orangeBlockActive);
+				break;
+			case YELLOW:
+				blockImg = geometris.assetManager.manager.get(Assets.yellowBlockActive);
+				break;
+			case GREEN:
+				blockImg = geometris.assetManager.manager.get(Assets.greenBlockActive);
+				break;
+			default:
+				blockImg = geometris.assetManager.manager.get(Assets.nullBlock);
+				break;
 		}
 
-        return new Sprite(blockImg);
+		return new Sprite(blockImg);
 	}
-	
-	
+
+
 	public Sprite getBlockSprite(int hIndex, int wIndex) {
 		return matrix[hIndex][wIndex].getBlockSprite();
 	}
-	
+
 	public int getHeight() {
 		return matrixHeight;
 	}
-	
+
 	public int getWidth() {
 		return matrixWidth;
 	}
-	
+
 	public String[][] getMatrixString() {
 		String[][] matrixString = new String[matrixHeight][matrixWidth];
 		for (int i = 0; i < matrixHeight; i++) {
@@ -84,9 +80,9 @@ public abstract class Matrix {
 				matrixString[i][j] = matrix[i][j].getColourString();
 			}
 		}
-		
+
 		return matrixString;
 	}
-	
+
 
 }

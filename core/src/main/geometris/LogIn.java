@@ -54,8 +54,4 @@ public class LogIn {
             this.loginStatus = Status.RETRY_PASSWORD;
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 1e1a0167963a6ec382686651a43911ad834ffa72
