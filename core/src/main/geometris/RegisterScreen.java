@@ -19,6 +19,11 @@ public class RegisterScreen implements Screen {
     String forename = "";
     String surname = "";
     String password = "";
+
+    Register register;
+    LogIn login;
+
+    Register.RegisterStatus status = Register.RegisterStatus.LOGGED_OUT;
     public RegisterScreen(Geometris geo) {
         geometris = geo;
         assets = geometris.assets;
@@ -26,6 +31,12 @@ public class RegisterScreen implements Screen {
         geometris.assetManager.manager.finishLoading();
         skin = geometris.assetManager.manager.get(main.loader.Assets.skin);
         stage = new FormStage(new ScreenViewport());
+        register = new Register();
+        if (geometris.getPlayer() != null) {
+            geometris.changeScreen(Geometris.PAUSE);
+        } else {
+            login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+        }
     }
     @Override
     public void show() {
@@ -114,9 +125,31 @@ public class RegisterScreen implements Screen {
         registerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println("register");
+                register.register(email, forename, surname, password);
             }
         });
+
+        switch(register.getRegisterStatus()) {
+            case MISSING_EMAIL:
+                registerButton.setText("MISSING EMAIL");
+                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+                break;
+            case MISSING_FORENAME:
+                registerButton.setText("MISSING FORENAME");
+                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+                break;
+            case MISSING_SURNAME:
+                registerButton.setText("MISSING SURNAME");
+                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+                break;
+            case MISSING_PASSWORD:
+                registerButton.setText("MISSING PASSWORD");
+                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
+                break;
+            case REGISTERED:
+                geometris.setPlayer(register.getPlayer());
+                geometris.changeScreen(Geometris.PAUSE);
+        }
 
         TextButton quitButton = new TextButton("Quit", skin);
 
