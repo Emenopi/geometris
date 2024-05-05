@@ -11,10 +11,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+<<<<<<< HEAD
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.blocks.GameMatrix;
 import main.geometris.controllers.InputController;
 import main.loader.Assets;
+=======
+import main.geometris.Engine;
+import main.geometris.Geometris;
+import main.geometris.blocks.ActiveBlockMatrix;
+import main.geometris.controllers.InputController;
+import main.loader.Assets;
+import main.geometris.blocks.GameMatrix;
+>>>>>>> main
 
 public class GameScreen implements Screen {
     String scoreLabel;
@@ -131,6 +140,10 @@ public class GameScreen implements Screen {
     }
 
     public void endGame() {
+        if (geometris.getIsHighScore()) {
+            ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+            readDelimitedFile.saveHighScore(this.geometris.player, Integer.parseInt(score));
+        }
         geometris.changeScreen(Geometris.GAMEOVER);
     }
 

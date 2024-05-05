@@ -15,19 +15,33 @@ public class Geometris extends Game {
 	private GameScreen gameScreen;
 	private PauseScreen pauseScreen;
 	private GameOverScreen gameOverScreen;
+	private LeaderboardScreen leaderboardScreen;
+	private LoginScreen loginScreen;
+	private RegisterScreen registerScreen;
+	private StartScreen startScreen;
 
 	public final static int GAME = 0;
 	public final static int PAUSE = 1;
 	public final static int GAMEOVER = 2;
+	public final static int LEADERBOARD = 3;
+
+	public final static int LOGIN = 4;
+	public final static int REGISTER = 5;
+	public final static int START = 6;
 
 	int score;
 	Preferences highScore;
 	boolean isHighScore;
+	Player player;
 	
 	@Override
 	public void create () {
 		init();
 	}
+
+	public Player getPlayer() { return this.player; }
+
+	public void setPlayer(Player player) { this.player = player; }
 
 	public void setScore(int s) {
 		score = s;
@@ -77,6 +91,23 @@ public class Geometris extends Game {
 				if(gameOverScreen == null) gameOverScreen = new GameOverScreen(this);
 				this.setScreen(gameOverScreen);
 				break;
+			case LEADERBOARD:
+				if(leaderboardScreen == null) leaderboardScreen = new LeaderboardScreen(this);
+				this.setScreen(leaderboardScreen);
+				break;
+			case LOGIN:
+				if(loginScreen == null) loginScreen = new LoginScreen(this);
+				this.setScreen(loginScreen);
+				break;
+			case START:
+				if(startScreen == null) startScreen = new StartScreen(this);
+				this.setScreen(startScreen);
+				break;
+			case REGISTER:
+				if (registerScreen == null) registerScreen = new RegisterScreen(this);
+				this.setScreen(registerScreen);
+				break;
+
 		}
 	}
 
@@ -85,8 +116,11 @@ public class Geometris extends Game {
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
-		pauseScreen = new PauseScreen(this);
-		setScreen(pauseScreen);
+//		startScreen = new StartScreen(this);
+//		setScreen(startScreen);
+		player = new Player("ee", "ee", "ee", "ee", "0");
+		gameScreen = new GameScreen(this);
+		setScreen(gameScreen);
 		score = 0;
 		isHighScore = false;
 	}
@@ -95,7 +129,6 @@ public class Geometris extends Game {
 		init();
 		resetScreens();
 		changeScreen(GAME);
-		//gameOverScreen.dispose();
 	}
 
 	public void resetScreens() {
@@ -103,6 +136,16 @@ public class Geometris extends Game {
 		gameScreen = new GameScreen(this);
 		pauseScreen.dispose();
 		pauseScreen = new PauseScreen(this);
+		gameOverScreen.dispose();
+		gameOverScreen = new GameOverScreen(this);
+		leaderboardScreen.dispose();
+		leaderboardScreen = new LeaderboardScreen(this);
+		loginScreen.dispose();
+		loginScreen = new LoginScreen(this);
+		registerScreen.dispose();
+		registerScreen = new RegisterScreen(this);
+		startScreen.dispose();
+		startScreen = new StartScreen(this);
 	}
 	@Override
 	public void dispose () {

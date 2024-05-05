@@ -6,12 +6,16 @@ import main.loader.Assets;
 import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.Block;
+<<<<<<< HEAD
+=======
+import main.geometris.GameScreen;
+>>>>>>> main
 
 public abstract class Matrix {
 	
-	Block[][] matrix;
-	GameScreen game;
-	Geometris geometris;
+	protected Block[][] matrix;
+	protected GameScreen game;
+	protected Geometris geometris;
 	public int matrixHeight;
 	public int matrixWidth;
 

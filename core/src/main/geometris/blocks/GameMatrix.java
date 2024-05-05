@@ -8,6 +8,8 @@ import main.geometris.blocks.Matrix;
 
 public class GameMatrix extends Matrix {
 
+	GameBlock[][] matrix;
+
 	// Constructor	
 	public GameMatrix(int h, int w, GameScreen game) {
 		this.game = game;
@@ -17,8 +19,8 @@ public class GameMatrix extends Matrix {
 		geometris.assets.load();
 		geometris.assets.manager.finishLoading();
 
-		
-		matrix = new Block[matrixHeight][matrixWidth];
+
+		this.matrix = new GameBlock[matrixHeight][matrixWidth];
 		float addBlockOffset = 0;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
@@ -27,6 +29,7 @@ public class GameMatrix extends Matrix {
 			}
 			addBlockOffset += (float) (matrix[i][0].getHeight() + 4);
 		}
+		super.matrix = this.matrix;
 	}
 
 	public void addToMatrix(int hIndex, int wIndex, colour col) {
