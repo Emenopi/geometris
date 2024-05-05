@@ -8,6 +8,8 @@ import main.geometris.blocks.Matrix;
 
 public class GameMatrix extends Matrix {
 
+	GameBlock[][] matrix;
+
 	// Constructor	
 	public GameMatrix(int h, int w, GameScreen game) {
 		this.game = game;
@@ -18,7 +20,7 @@ public class GameMatrix extends Matrix {
 		geometris.assets.manager.finishLoading();
 
 
-		this.matrix = new Block[matrixHeight][matrixWidth];
+		this.matrix = new GameBlock[matrixHeight][matrixWidth];
 		float addBlockOffset = 0;
 		for (int i = 0; i < matrixHeight; i++) {
 			for (int j = 0; j < matrixWidth; j++) {
@@ -27,6 +29,8 @@ public class GameMatrix extends Matrix {
 			}
 			addBlockOffset += (float) (matrix[i][0].getHeight() + 4);
 		}
+
+		super.matrix = this.matrix;
 	}
 
 	public void addToMatrix(int hIndex, int wIndex, colour col) {
@@ -35,7 +39,7 @@ public class GameMatrix extends Matrix {
 		matrix[hIndex][wIndex].setOffset(addBlockOffset);
 	}
 
-	public boolean check(Block[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
+	public boolean check(ActiveBlock[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
 		for (int i = 0; i < heightToCheck; i++) {
 			for (int j = 0; j < 3; j++) {
 				if(activeMatrix[i][j].getColour() != colour.NULL && matrix[hIndex - i][(direction + j) % 60].getColour() != colour.NULL) {
@@ -46,6 +50,9 @@ public class GameMatrix extends Matrix {
 		return true;
 	}
 
+	public GameBlock[][] getMatrix() {
+		return matrix;
+	}
 	public boolean check(colour[][] activeMatrix, int heightToCheck, int hIndex, int direction) {
 		for (int i = 0; i < heightToCheck; i++) {
 			for (int j = 0; j < 3; j++) {

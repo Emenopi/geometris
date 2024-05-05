@@ -26,6 +26,7 @@ public class Geometris extends Game {
 
 	public final static int LOGIN = 4;
 	public final static int REGISTER = 5;
+	public final static int START = 6;
 
 	int score;
 	Preferences highScore;

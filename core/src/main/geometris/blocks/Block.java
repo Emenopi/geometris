@@ -128,17 +128,9 @@ public abstract class Block {
 		blockSprite.setPosition(getPositionX(), getPositionY());
 		return blockSprite;
 	}
-
-	public String getBlockString() {
-		return colour.toString();
-	}
 	
 	public String getColourString() {
 		return colour.toString();
-	}
-	
-	public colour getColour() {
-		return colour;
 	}
 
 	public void rotate(int dir) {
