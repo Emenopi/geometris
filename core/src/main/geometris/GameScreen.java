@@ -131,6 +131,10 @@ public class GameScreen implements Screen {
     }
 
     public void endGame() {
+        if (geometris.getIsHighScore()) {
+            ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+            readDelimitedFile.saveHighScore(this.geometris.player, Integer.parseInt(score));
+        }
         geometris.changeScreen(Geometris.GAMEOVER);
     }
 
