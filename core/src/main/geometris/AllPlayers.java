@@ -26,15 +26,14 @@ public class AllPlayers {
         return listOfPlayers;
     }
 
-    public Dictionary<String, String> getScoreList() {
-        Dictionary<String, String> scoreList = new Hashtable<>();
+    public Map<String, Integer> getScoreList() {
+        Map<String, Integer> scoreList = new HashMap<>();
         if (! playersLoaded) {
             loadAsPlayers();
         }
         for (Player player : listOfPlayers) {
-            scoreList.put(player.getName(), player.getScore());
+            scoreList.put(player.getName(), Integer.valueOf(player.getScore()));
         }
-
         return scoreList;
     }
 
