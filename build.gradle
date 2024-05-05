@@ -57,11 +57,6 @@ project(":desktop") {
         
     }
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
 project(":core") {
     apply plugin: "java-library"
 
