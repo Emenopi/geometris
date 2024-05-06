@@ -1,20 +1,14 @@
-package tests;
+package tests.blah;
 
 import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.blocks.Block;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
-
-@ExtendWith(MockitoExtension.class
-) class ActiveBlockMatrixTest {
+class ActiveBlockMatrixTest {
 
     private Geometris application;
     ActiveBlockMatrix activeBlockMatrix;
@@ -25,8 +19,8 @@ import static org.mockito.Mockito.*;
     @Test
     public void activeBlockPurpleTest() {
         Block[][] initMatrix = new Block[3][3];
-        activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", this.gameScreen, initMatrix));
-        Mockito.doNothing().when(activeBlockMatrix).setupAssets();
+        //activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", this.gameScreen, initMatrix));
+        //Mockito.doNothing().when(activeBlockMatrix).setupAssets();
         String[][] purpleBlock = new String[][]{{"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
 

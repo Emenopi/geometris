@@ -1,3 +1,5 @@
+package tests.blah;
+
 import main.geometris.LogIn;
 import main.geometris.ReadDelimitedFile;
 import main.geometris.Register;
