@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameOverScreen implements Screen {
-    private final Geometris geometris;
+    private Geometris geometris;
     Stage stage;
     int score;
     Skin skin;
@@ -41,7 +41,6 @@ public class GameOverScreen implements Screen {
         gameOver.setAlignment( Align.center );
 
         TextButton playAgain = new TextButton("Play Again", skin);
-        TextButton leaderboard = new TextButton("Leaderboard", skin);
         TextButton quit = new TextButton("Quit", skin);
         scoreLabelText = "You Scored: " + geometris.getScore();
         if (geometris.getIsHighScore()) {
@@ -55,17 +54,8 @@ public class GameOverScreen implements Screen {
         table.row().pad(10, 0, 10, 0);
         table.add(playAgain).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
-        table.add(leaderboard).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
         table.add(quit).fillX().uniformX();
 
-
-        playAgain.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                geometris.restart();
-            }
-        });
         playAgain.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -75,7 +65,7 @@ public class GameOverScreen implements Screen {
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                geometris.changeScreen(Geometris.LEADERBOARD);
+                Gdx.app.exit();
             }
         });
 

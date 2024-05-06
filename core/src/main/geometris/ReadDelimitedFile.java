@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -34,6 +35,7 @@ public class ReadDelimitedFile {
             }
             propertyReader.close();
         } catch (IOException e) {
+            System.out.println(System.getProperty("user.dir"));
             System.out.println("An error occurred.");
             e.printStackTrace();
         }

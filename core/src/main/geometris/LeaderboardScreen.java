@@ -14,8 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import java.util.Dictionary;
-import java.util.Enumeration;
+import java.util.*;
 
 public class LeaderboardScreen implements Screen {
     private final Geometris geometris;
@@ -26,7 +25,7 @@ public class LeaderboardScreen implements Screen {
     BitmapFont font;
     String scoreLabelText;
     AllPlayers allPlayers;
-    Dictionary<String, String> scoreList;
+    Map<String, Integer> scoreList;
 
     public LeaderboardScreen(Geometris geo) {
         geometris = geo;
@@ -53,19 +52,15 @@ public class LeaderboardScreen implements Screen {
 
         TextButton playAgain = new TextButton("Play Again", skin);
         TextButton quit = new TextButton("Quit", skin);
-        Label scoreLabel = new Label(scoreLabelText, skin, "half-tone");
 
         table.add(leaderboard).fillX().uniformX().pad(0, 0, 0, 0);
         table.row().pad(70, 0, 10, 0);
-        Enumeration<String> keys = scoreList.keys();
-        int scoreCount = 0;
-        while (keys.hasMoreElements() && scoreCount < 5) {
-            String key = keys.nextElement();
+
+        for (String key : scoreList.keySet()) {
             scoreLabelText = key + ": " + scoreList.get(key);
             Label score = new Label(scoreLabelText, skin, "half-tone");
             table.add(score).fillX().uniformX().pad(0, 0, 0, 0);
             table.row().pad(10, 0, 10, 0);
-            scoreCount++;
         }
         table.row().pad(50, 0, 10, 0);
         table.add(playAgain).fillX().uniformX();

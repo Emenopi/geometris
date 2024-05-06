@@ -12,18 +12,18 @@ import main.geometris.blocks.Matrix.colour;
 public abstract class Block {
 	Sprite blockSprite;
 	GameScreen game;
-	protected Geometris geometris;
+	Geometris geometris;
 	double[] blockSize = new double[2];
-	
+
 	float rotatedHeight;
 	float rotatedWidth;
 	int widthIndex;
-	protected int heightIndex;
+	int heightIndex;
 	float additionalOffset;
-	protected int direction;
-	
+	int direction;
+
 	colour colour;
-	protected int radius;
+	int radius;
 
 	public void resizeBlock() {
 		double[] size = getBlockSize(heightIndex);

@@ -38,27 +38,27 @@ public class StartScreen implements Screen {
         stage.addActor(table);
         Label geometrisLabel = new Label("GEOMETRIS", skin, "title");
         table.add(geometrisLabel).fillX().uniformX().pad(0, 0, 70, 0);
-            TextButton loginButton = new TextButton("Log In", skin);
-            TextButton registerButton = new TextButton("Register", skin);
+        TextButton loginButton = new TextButton("Log In", skin);
+        TextButton registerButton = new TextButton("Register", skin);
 
-            table.row().pad(10, 0, 10, 0);
-            table.add(loginButton).fillX().uniformX();
-            table.row();
-            table.add(registerButton).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
+        table.add(loginButton).fillX().uniformX();
+        table.row();
+        table.add(registerButton).fillX().uniformX();
 
-            loginButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    geometris.changeScreen(Geometris.LOGIN);
-                }
-            });
+        loginButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                geometris.changeScreen(Geometris.LOGIN);
+            }
+        });
 
-            registerButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    geometris.changeScreen(Geometris.REGISTER);
-                }
-            });
+        registerButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                geometris.changeScreen(Geometris.REGISTER);
+            }
+        });
 
         TextButton quitButton = new TextButton("Quit", skin);
 
