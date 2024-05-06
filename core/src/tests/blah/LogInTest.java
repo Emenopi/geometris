@@ -1,4 +1,3 @@
-package main.geometris.tests;
 import main.geometris.LogIn;
 import org.junit.jupiter.api.Test;
 

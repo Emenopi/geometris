@@ -1,11 +1,9 @@
-package main.geometris.tests;
-
 import main.geometris.LogIn;
 import main.geometris.ReadDelimitedFile;
 import main.geometris.Register;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RegisterTest {
 
