@@ -32,6 +32,7 @@ public class ReadDelimitedFile {
             while (propertyReader.hasNextLine()) {
                 String fileRow = propertyReader.nextLine();
                 fileData.add(fileRow.split(fileDelimiter));
+                String[] thing = fileRow.split(fileDelimiter);
             }
             propertyReader.close();
         } catch (IOException e) {
@@ -40,6 +41,27 @@ public class ReadDelimitedFile {
             e.printStackTrace();
         }
         return fileData;
+    }
+
+    public boolean getDoesUserExit(String email) {
+        try {
+            String filePathPrefix = "../core/src/main/resources/";
+            File propertyFile = new File(filePathPrefix + "players.csv");
+            Scanner propertyReader = new Scanner(propertyFile);
+            while (propertyReader.hasNextLine()) {
+                String fileRow = propertyReader.nextLine();
+                String[] playerData = fileRow.split(fileDelimiter);
+                if (Objects.equals(playerData[0], email)) {
+                    return true;
+                }
+            }
+            propertyReader.close();
+        } catch (IOException e) {
+            System.out.println(System.getProperty("user.dir"));
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void addNewPlayer(Player player) {

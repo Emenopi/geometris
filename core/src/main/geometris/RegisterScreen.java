@@ -148,6 +148,8 @@ public class RegisterScreen implements Screen {
                 registerButton.setText("MISSING PASSWORD");
                 login.setLoginStatus(LogIn.Status.LOGGED_OUT);
                 break;
+            case LOG_IN:
+                geometris.changeScreen(Geometris.LOGIN);
             case REGISTERED:
                 geometris.setPlayer(register.getPlayer());
                 geometris.changeScreen(Geometris.PAUSE);

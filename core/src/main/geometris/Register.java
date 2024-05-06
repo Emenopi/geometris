@@ -7,7 +7,8 @@ public class Register {
         MISSING_FORENAME,
         MISSING_SURNAME,
         MISSING_PASSWORD,
-        LOGGED_OUT
+        LOGGED_OUT,
+        LOG_IN
     }
     RegisterStatus registerStatus = RegisterStatus.LOGGED_OUT;
 
@@ -24,9 +25,14 @@ public class Register {
             this.registerStatus = RegisterStatus.MISSING_EMAIL;
         } else {
             this.registerStatus = RegisterStatus.REGISTERED;
-            player = new Player(email, forename, surname, password, "0");
             ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
-            readDelimitedFile.addNewPlayer(player);
+            if (!readDelimitedFile.getDoesUserExit(email)) {
+                player = new Player(email, forename, surname, password, "0");
+                readDelimitedFile.addNewPlayer(player);
+            } else {
+                this.registerStatus = RegisterStatus.LOG_IN;
+            }
+
         }
     }
 
