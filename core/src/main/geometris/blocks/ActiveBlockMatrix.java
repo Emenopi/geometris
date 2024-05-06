@@ -13,16 +13,10 @@ public class ActiveBlockMatrix extends Matrix {
 		this.geometris = game.geometris;
 		this.matrixHeight = 3;
 		this.matrixWidth = 3;
-		setupAssets();
 		matrix = initMatrix;
-		//matrix = new ActiveBlock[matrixHeight][matrixWidth];
 		generateMatrix(col, game);
 		this.colour = this.matrix[0][0].getColour();
 		direction = 0;
-	}
-	public void setupAssets() {
-		geometris.assets.load();
-		geometris.assets.manager.finishLoading();
 	}
 
 	private void generateMatrix(String col, GameScreen game) {

@@ -1,29 +1,45 @@
-package tests.blah;
+package tests;
 
+import com.badlogic.gdx.Game;
 import main.geometris.GameScreen;
 import main.geometris.Geometris;
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.blocks.Block;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.Mockito.*;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+@ExtendWith(MockitoExtension.class)
 class ActiveBlockMatrixTest {
 
     private Geometris application;
     ActiveBlockMatrix activeBlockMatrix;
+    @Mock
+    private Geometris geo;
+    @Mock
+    private GameScreen gameScreen;
 
-    Geometris geo = new Geometris();
-    GameScreen gameScreen = new GameScreen(geo);
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        Block[][] initMatrix = new Block[3][3];
+        activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", gameScreen, initMatrix));
+    }
 
     @Test
     public void activeBlockPurpleTest() {
         Block[][] initMatrix = new Block[3][3];
-        //activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", this.gameScreen, initMatrix));
-        //Mockito.doNothing().when(activeBlockMatrix).setupAssets();
         String[][] purpleBlock = new String[][]{{"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
-
     }
 
 //    @Test

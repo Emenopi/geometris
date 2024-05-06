@@ -1,4 +1,4 @@
-package tests.blah;
+package tests;
 
 import main.geometris.LogIn;
 import org.junit.jupiter.api.Test;
