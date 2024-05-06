@@ -100,4 +100,24 @@ public class ReadDelimitedFile {
             e.printStackTrace();
         }
     }
+
+    public void removePlayerData(String email) {
+        String filePathPrefix = "../core/src/main/resources/";
+        File file = new File(filePathPrefix + "players.csv");
+        try {
+            CSVReader reader = new CSVReader(new FileReader(file));
+            List<String[]> csvBody = reader.readAll();
+            for (String[] strings : csvBody) {
+                if (Objects.equals(strings[0], email)) {
+                    csvBody.remove(strings);
+                }
+            }
+
+            CSVWriter writer = new CSVWriter(new FileWriter(file), ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
+            writer.writeAll(csvBody);
+            writer.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

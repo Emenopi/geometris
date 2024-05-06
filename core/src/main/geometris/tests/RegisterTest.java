@@ -1,6 +1,7 @@
 package main.geometris.tests;
 
 import main.geometris.LogIn;
+import main.geometris.ReadDelimitedFile;
 import main.geometris.Register;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,9 @@ class RegisterTest {
         LogIn login = new LogIn();
         login.logIn(email, password);
         assertEquals(LogIn.Status.LOGGED_IN, login.getLoginStatus());
+
+        ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+        readDelimitedFile.removePlayerData(email);
     }
 
     @Test
