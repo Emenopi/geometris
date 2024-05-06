@@ -19,8 +19,6 @@ public class ActiveBlock extends Block {
 		this.radius = 100;
 		gameMatrixHeightIndex = 0;
 		sizeScale = 0.8;
-		geometris.assets.load();
-		geometris.assets.manager.finishLoading();
 	}
 
 	public void setRadius(int rad) {

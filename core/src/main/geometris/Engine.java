@@ -3,6 +3,7 @@ package main.geometris;
 import com.badlogic.gdx.Gdx;
 import main.geometris.blocks.ActiveBlock;
 import main.geometris.blocks.ActiveBlockMatrix;
+import main.geometris.blocks.Block;
 import main.geometris.blocks.GameMatrix;
 import main.geometris.blocks.Matrix.colour;
 import main.geometris.controllers.InputController;
@@ -149,7 +150,8 @@ public class Engine {
 
     public void generateActiveMatrix() {
         activeColour = getActiveColour();
-        activeMatrix = new ActiveBlockMatrix(activeColour, game);
+        Block[][] activeMatrixInit = new Block[3][3];
+        activeMatrix = new ActiveBlockMatrix(activeColour, game, activeMatrixInit);
         game.setActiveBlockMatrix(activeMatrix);
     }
 

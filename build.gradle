@@ -63,6 +63,15 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation 'com.opencsv:opencsv:4.6'
+        implementation 'org.mockito:mockito-testng:0.5.2'
+        implementation 'org.mockito:mockito-core:5.11.0'
+        implementation 'org.mockito:mockito-all:1.10.19'
+////    implementation 'org.mockito:mockito-junit-jupiter:5.8.0'
+//
+//
+        implementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+        implementation 'org.mockito:mockito-junit-jupiter:5.9.0'
         
     }
 }

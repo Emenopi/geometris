@@ -8,14 +8,12 @@ public class ActiveBlockMatrix extends Matrix {
 	int direction;
 	colour colour;
 
-	public ActiveBlockMatrix(String col, GameScreen game) {
+	public ActiveBlockMatrix(String col, GameScreen game, Block[][] initMatrix) {
 		this.game = game;
 		this.geometris = game.geometris;
 		this.matrixHeight = 3;
 		this.matrixWidth = 3;
-		geometris.assets.load();
-		geometris.assets.manager.finishLoading();
-		matrix = new ActiveBlock[matrixHeight][matrixWidth];
+		matrix = initMatrix;
 		generateMatrix(col, game);
 		this.colour = this.matrix[0][0].getColour();
 		direction = 0;
