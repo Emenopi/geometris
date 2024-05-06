@@ -10,7 +10,7 @@ class LogInTest {
     void getPlayerNameFromValidEmail() {
         LogIn login = new LogIn();
         String email = "matthew.barr@glasgow.ac.uk";
-        assertEquals(login.getPlayer(email).getName(), "Matt Barr");
+        assertEquals("Matt Barr", login.getPlayer(email).getName());
 
     }
     @Test
@@ -19,7 +19,7 @@ class LogInTest {
         String email = "derek.somerville@glasgow.ac.uk";
         String password = "1234";
         login.logIn(email, password);
-        assertEquals(login.getLoginStatus(), LogIn.Status.LOGGED_IN);
+        assertEquals(LogIn.Status.LOGGED_IN, login.getLoginStatus());
     }
 
     @Test
@@ -28,7 +28,7 @@ class LogInTest {
         String email = "test@test.com";
         String password = "1234";
         login.logIn(email, password);
-        assertEquals(login.getLoginStatus(), LogIn.Status.REGISTER);
+        assertEquals(LogIn.Status.REGISTER, login.getLoginStatus());
     }
 
     @Test
@@ -37,6 +37,6 @@ class LogInTest {
         String email = "derek.somerville@glasgow.ac.uk";
         String password = "1111";
         login.logIn(email, password);
-        assertEquals(login.getLoginStatus(), LogIn.Status.RETRY_PASSWORD);
+        assertEquals(LogIn.Status.RETRY_PASSWORD, login.getLoginStatus());
     }
 }

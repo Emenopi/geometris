@@ -10,7 +10,7 @@ class RegisterTest {
 
     @Test
     void validRegisterSavesNewPlayerInfo() {
-        String email = "test@test.com";
+        String email = "testRegister@test.com";
         String forename = "testName";
         String surname = "surnameTest";
         String password = "0123";
@@ -19,7 +19,7 @@ class RegisterTest {
 
         LogIn login = new LogIn();
         login.logIn(email, password);
-        assertEquals(login.getLoginStatus(), LogIn.Status.LOGGED_IN);
+        assertEquals(LogIn.Status.LOGGED_IN, login.getLoginStatus());
     }
 
     @Test
@@ -30,7 +30,7 @@ class RegisterTest {
         String password = "0123";
         Register register = new Register();
         register.register(email, forename, surname, password);
-        assertEquals(register.getRegisterStatus(), Register.RegisterStatus.MISSING_EMAIL);
+        assertEquals(Register.RegisterStatus.MISSING_EMAIL, register.getRegisterStatus());
 
     }
 
@@ -45,6 +45,6 @@ class RegisterTest {
 
         LogIn login = new LogIn();
         login.logIn(email, password);
-        assertEquals(login.getLoginStatus(), LogIn.Status.REGISTER);
+        assertEquals(LogIn.Status.REGISTER, login.getLoginStatus());
     }
 }
