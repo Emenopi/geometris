@@ -49,14 +49,14 @@ public class StartScreen implements Screen {
         loginButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                geometris.changeScreen(Geometris.LOGIN);
+                geometris.setStrategy(new LoginStrategy());
             }
         });
 
         registerButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                geometris.changeScreen(Geometris.REGISTER);
+                geometris.setStrategy(new RegisterStrategy());
             }
         });
 
@@ -79,7 +79,7 @@ public class StartScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        geometris.changeScreen(Geometris.START);
+        geometris.setStrategy(new StartStrategy());
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

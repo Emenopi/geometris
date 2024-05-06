@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import main.geometris.controllers.FormStage;
+import main.geometris.controllers.PauseStatus;
 
 public class RegisterScreen implements Screen {
 
@@ -149,10 +150,10 @@ public class RegisterScreen implements Screen {
                 login.setLoginStatus(LogIn.Status.LOGGED_OUT);
                 break;
             case LOG_IN:
-                geometris.changeScreen(Geometris.LOGIN);
+                geometris.setStrategy(new LoginStrategy());
             case REGISTERED:
                 geometris.setPlayer(register.getPlayer());
-                geometris.changeScreen(Geometris.PAUSE);
+                geometris.setStrategy(new PauseStatus());
         }
 
         TextButton quitButton = new TextButton("Quit", skin);
@@ -172,7 +173,7 @@ public class RegisterScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        geometris.changeScreen(Geometris.REGISTER);
+        geometris.setStrategy(new RegisterStrategy());
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

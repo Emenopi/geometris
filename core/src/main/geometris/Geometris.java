@@ -12,22 +12,15 @@ public class Geometris extends Game {
 	public Assets assets;
 	public Assets assetManager = new Assets();
 
-	private GameScreen gameScreen;
-	private PauseScreen pauseScreen;
-	private GameOverScreen gameOverScreen;
-	private LeaderboardScreen leaderboardScreen;
-	private LoginScreen loginScreen;
-	private RegisterScreen registerScreen;
-	private StartScreen startScreen;
+	GameScreen gameScreen;
+	public PauseScreen pauseScreen;
+	public GameOverScreen gameOverScreen;
+	public LeaderboardScreen leaderboardScreen;
+	public LoginScreen loginScreen;
+	public RegisterScreen registerScreen;
+	public StartScreen startScreen;
 
-	public final static int GAME = 0;
-	public final static int PAUSE = 1;
-	public final static int GAMEOVER = 2;
-	public final static int LEADERBOARD = 3;
-
-	public final static int LOGIN = 4;
-	public final static int REGISTER = 5;
-	public final static int START = 6;
+	public ScreenStrategy screenStrategy;
 
 	int score;
 	Preferences highScore;
@@ -73,38 +66,13 @@ public class Geometris extends Game {
 
 	}
 
-	public void changeScreen(int screen){
-		switch(screen){
-			case PAUSE:
-				if(pauseScreen == null) pauseScreen = new PauseScreen(this);
-				this.setScreen(pauseScreen);
-				break;
-			case GAME:
-				if(gameScreen == null) gameScreen = new GameScreen(this);
-				this.setScreen(gameScreen);
-				break;
-			case GAMEOVER:
-				if(gameOverScreen == null) gameOverScreen = new GameOverScreen(this);
-				this.setScreen(gameOverScreen);
-				break;
-			case LEADERBOARD:
-				if(leaderboardScreen == null) leaderboardScreen = new LeaderboardScreen(this);
-				this.setScreen(leaderboardScreen);
-				break;
-			case LOGIN:
-				if(loginScreen == null) loginScreen = new LoginScreen(this);
-				this.setScreen(loginScreen);
-				break;
-			case START:
-				if(startScreen == null) startScreen = new StartScreen(this);
-				this.setScreen(startScreen);
-				break;
-			case REGISTER:
-				if (registerScreen == null) registerScreen = new RegisterScreen(this);
-				this.setScreen(registerScreen);
-				break;
+	public void setStrategy(ScreenStrategy strategy) {
+		this.screenStrategy = strategy;
+		changeScreen();
+	}
 
-		}
+	public void changeScreen(){
+		this.screenStrategy.changeScreen(this);
 	}
 	public Player getPlayer() { return this.player; }
 
@@ -115,8 +83,8 @@ public class Geometris extends Game {
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
-		startScreen = new StartScreen(this);
-		setScreen(startScreen);
+		setStrategy(new StartStrategy());
+
 		score = 0;
 		isHighScore = false;
 	}
@@ -124,7 +92,7 @@ public class Geometris extends Game {
 	public void restart() {
 		init();
 		resetScreens();
-		changeScreen(GAME);
+		this.setStrategy(new GameStatus());
 	}
 
 	public void resetScreens() {
