@@ -1,8 +1,6 @@
 package main.geometris.game;
 
 import main.geometris.ScreenStrategy;
-import main.geometris.game.GameOverScreen;
-import main.geometris.game.Geometris;
 
 public class GameOverStatus implements ScreenStrategy {
     @Override

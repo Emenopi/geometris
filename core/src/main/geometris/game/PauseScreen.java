@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import main.geometris.controllers.PauseStatus;
-import main.geometris.game.GameStatus;
-import main.geometris.game.Geometris;
 import main.loader.Assets;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
