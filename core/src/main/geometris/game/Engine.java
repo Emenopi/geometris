@@ -60,6 +60,7 @@ public class Engine {
             moveBrick();
         } else {
             transferToGameMatrix();
+            increaseScore();
             checkLines();
             brickMoving = false;
             movingBlockHeightIndex = -1;
@@ -128,10 +129,15 @@ public class Engine {
         return colour;
     }
 
-    private void increaseScore() {
+    private void increaseScoreLine() {
         score += 60;
         geometris.setScore(score);
 
+    }
+
+    private void increaseScore() {
+        score += 2;
+        geometris.setScore(score);
     }
 
     public void increaseDirection() {
@@ -161,7 +167,7 @@ public class Engine {
                     break;
                 } else if (gameMatrix.getMatrix()[i][j].getColour() != colour.NULL && j == 59) {
                     gameMatrix.removeLine(i);
-                    increaseScore();
+                    increaseScoreLine();
                     if (rateOfMovement > 0.05) {
                         rateOfMovement -= 0.05;
                     }
