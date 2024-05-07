@@ -22,7 +22,7 @@ String email = "test@test.com";;
     }
 
     @Test
-    void correctCredentialsLoginSuccessful(){
+    void whenCredentialsCorrect_thenLoginSuccessful(){
         String password = "0000";
         when(login.getPassword(email)).thenReturn("0000");
         login.logIn(email, password);
@@ -30,7 +30,7 @@ String email = "test@test.com";;
     }
 
     @Test
-    void unknownUserLoginChangesStatusToRegister() {
+    void whenUnknownUser_thenLoginStatusIsRegister() {
         LogIn login = new LogIn();
         String email = "testUnknown@test.com";
         String password = "1234";
@@ -39,7 +39,7 @@ String email = "test@test.com";;
     }
 
     @Test
-    void incorrectPasswordLoginChangesStatusToRetryPassword() {
+    void whenIncorrectPassword_thenLoginStatusIsRetryPassword() {
         String email = "test@test.com";
         String password = "1111";
         when(login.getPassword(email)).thenReturn("0000");
