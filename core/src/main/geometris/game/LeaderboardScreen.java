@@ -75,16 +75,10 @@ public class LeaderboardScreen implements Screen {
                 geometris.restart();
             }
         });
-        playAgain.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                geometris.restart();
-            }
-        });
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                geometris.setStrategy(new LeaderboardStatus());
+                geometris.setStrategy(new LeaderboardStrategy());
             }
         });
 
@@ -97,7 +91,7 @@ public class LeaderboardScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        geometris.setStrategy(new LeaderboardStatus());
+        geometris.setStrategy(new LeaderboardStrategy());
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

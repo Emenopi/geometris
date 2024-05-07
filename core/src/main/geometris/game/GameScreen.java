@@ -101,7 +101,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        geometris.setStrategy(new GameStatus());
+        geometris.setStrategy(new GameStrategy());
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
@@ -136,7 +136,7 @@ public class GameScreen implements Screen {
             ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
             readDelimitedFile.saveHighScore(this.geometris.player, Integer.parseInt(score));
         }
-        geometris.setStrategy(new GameOverStatus());
+        geometris.setStrategy(new GameOverStrategy());
     }
 
     @Override

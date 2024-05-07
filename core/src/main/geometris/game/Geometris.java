@@ -96,7 +96,7 @@ public class Geometris extends Game {
 	public void restart() {
 		init();
 		resetScreens();
-		this.setStrategy(new GameStatus());
+		this.setStrategy(new GameStrategy());
 	}
 
 	public void resetScreens() {

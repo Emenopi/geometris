@@ -54,7 +54,7 @@ public class PauseScreen implements Screen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
 
-                geometris.setStrategy(new GameStatus());
+                geometris.setStrategy(new GameStrategy());
             }
         });
 
