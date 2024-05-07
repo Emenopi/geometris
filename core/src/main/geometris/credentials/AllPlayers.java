@@ -30,7 +30,6 @@ public class AllPlayers {
     }
 
     public SortedMap<Integer, String> getScoreList() {
-        //Map<String, Integer> scoreList = new HashMap<>();
         SortedMap<Integer, String> scoreList = new TreeMap<>(Collections.reverseOrder());
         if (! playersLoaded) {
             loadAsPlayers();
