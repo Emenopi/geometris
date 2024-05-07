@@ -20,4 +20,4 @@ Scoring:
 - Placing a block = 2 POINTS
 - Completing a row = 60 POINTS
 - GameOver screen will tell you if you have achieved a high score ; otherwise it will tell you if you have achieved a personal best ; if neither of these are the case, it will show your score
-- Leaderboard screen will show the leaderboard, as of yet this is unordered
+- Leaderboard screen will show the leaderboard ordered from highest to lowest
