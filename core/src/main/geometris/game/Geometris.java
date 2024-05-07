@@ -100,10 +100,10 @@ public class Geometris extends Game {
 	}
 
 	public void resetScreens() {
-		gameScreen.dispose();
-		gameScreen = new GameScreen(this);
-		pauseScreen.dispose();
-		pauseScreen = new PauseScreen(this);
+		if (gameScreen != null) {
+			gameScreen.dispose();
+			gameScreen = new GameScreen(this);
+		}
 	}
 	@Override
 	public void dispose () {
