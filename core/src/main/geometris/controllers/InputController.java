@@ -18,6 +18,8 @@ public class InputController implements InputProcessor {
                 if (!engine.getBrickMoving() && engine.getCanMove()){
                     engine.setBrickMoving(true);
                     engine.setAddBlockOffset(0);
+                } else if (engine.getCanMove()) {
+                    engine.speedUpBrick();
                 }
                 break;
             case Input.Keys.SHIFT_RIGHT:

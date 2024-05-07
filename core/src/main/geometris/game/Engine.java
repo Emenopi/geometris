@@ -80,7 +80,7 @@ public class Engine {
         }
     }
 
-    public void moveBrick() {
+    private void moveBrick() {
         movementClock += Gdx.graphics.getDeltaTime();
         if (movementClock > rateOfMovement) {
             movingBlockHeightIndex += 1;
@@ -90,6 +90,16 @@ public class Engine {
             if (heightToCheck < 3) {
                 heightToCheck += 1;
             }
+        }
+    }
+
+    public void speedUpBrick() {
+        movingBlockHeightIndex += 1;
+        activeMatrix.moveOut(movingBlockHeightIndex, addBlockOffset);
+        addBlockOffset += (float) (((ActiveBlock) activeMatrix.getMatrix()[0][0]).getHeight() + 4);
+        movementClock = 0;
+        if (heightToCheck < 3) {
+            heightToCheck += 1;
         }
     }
 
