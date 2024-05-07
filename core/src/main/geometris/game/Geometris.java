@@ -3,11 +3,11 @@ package main.geometris.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
 import main.geometris.*;
 import main.geometris.credentials.LoginScreen;
 import main.geometris.credentials.Player;
+import main.geometris.credentials.ReadDelimitedFile;
 import main.geometris.credentials.RegisterScreen;
 import main.loader.Assets;
 
@@ -27,8 +27,6 @@ public class Geometris extends Game {
 	public ScreenStrategy screenStrategy;
 
 	int score;
-	Preferences highScore;
-	boolean isHighScore;
 	Player player;
 
 	@Override
@@ -45,18 +43,21 @@ public class Geometris extends Game {
 	}
 
 	public int getHighScore() {
-		return highScore.getInteger("highScore");
+		ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+		return readDelimitedFile.getHighScore();
 	}
+	public boolean getisPersonalBest() {
+        return score > Integer.parseInt(player.getScore());
+    }
 
 	public boolean getIsHighScore() {
-		return isHighScore;
-	}
+        return score > getHighScore();
+    }
 
 	public void saveHighScore() {
-		if (score > highScore.getInteger("highScore")) {
-			highScore.putInteger("highScore", score);
-			highScore.flush();
-			isHighScore = true;
+		if (getisPersonalBest()) {
+			ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+			readDelimitedFile.saveHighScore(this.player, score);
 		}
 	}
 	@Override
@@ -83,14 +84,12 @@ public class Geometris extends Game {
 	public void setPlayer(Player player) { this.player = player; }
 
 	public void init() {
-		highScore = Gdx.app.getPreferences("highScore");
 		assets = new Assets();
 		assets.load();
 		assets.manager.finishLoading();
 		setStrategy(new StartStrategy());
 
 		score = 0;
-		isHighScore = false;
 	}
 
 	public void restart() {

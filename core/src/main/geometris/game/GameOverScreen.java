@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class GameOverScreen implements Screen {
-    private Geometris geometris;
+    private final Geometris geometris;
     Stage stage;
     int score;
     Skin skin;
@@ -44,7 +44,9 @@ public class GameOverScreen implements Screen {
         TextButton quit = new TextButton("Quit", skin);
         scoreLabelText = "You Scored: " + geometris.getScore();
         if (geometris.getIsHighScore()) {
-            scoreLabelText = "!!!HIGH SCORE!!! : " + geometris.getScore();
+            scoreLabelText = "!!!HIGH SCORE!!! : " + score;
+        } else if (geometris.getisPersonalBest()) {
+            scoreLabelText = "!!!PERSONAL BEST!!!" + score;
         }
         Label scoreLabel = new Label(scoreLabelText, skin, "half-tone");
 

@@ -16,12 +16,8 @@ public class ReadDelimitedFile {
 
     private String fileDelimiter = ",";
 
-    public void setFileDelimiter(String fileDelimiter){
-        this.fileDelimiter = fileDelimiter;
-    }
-
     public List<String[]> getFileData(String fileName){
-        List<String[]> fileData = new ArrayList<String[]>();
+        List<String[]> fileData = new ArrayList<>();
         try {
             String filePathPrefix = "../core/src/main/resources/";
             File propertyFile = new File(filePathPrefix + fileName);
@@ -29,7 +25,6 @@ public class ReadDelimitedFile {
             while (propertyReader.hasNextLine()) {
                 String fileRow = propertyReader.nextLine();
                 fileData.add(fileRow.split(fileDelimiter));
-                String[] thing = fileRow.split(fileDelimiter);
             }
             propertyReader.close();
         } catch (IOException e) {
@@ -98,17 +93,35 @@ public class ReadDelimitedFile {
         }
     }
 
+    public int getHighScore() {
+        int highScore = 0;
+        try {
+            String filePathPrefix = "../core/src/main/resources/";
+            File propertyFile = new File(filePathPrefix + "playsers.csv");
+            Scanner propertyReader = new Scanner(propertyFile);
+            while (propertyReader.hasNextLine()) {
+                String fileRow = propertyReader.nextLine();
+                String[] row = fileRow.split(fileDelimiter);
+                if (Integer.parseInt(row[4]) > highScore) {
+                    highScore = Integer.parseInt(row[4]);
+                }
+            }
+            propertyReader.close();
+        } catch (IOException e) {
+            System.out.println(System.getProperty("user.dir"));
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return highScore;
+    }
+
     public void removePlayerData(String email) {
         String filePathPrefix = "../core/src/main/resources/";
         File file = new File(filePathPrefix + "players.csv");
         try {
             CSVReader reader = new CSVReader(new FileReader(file));
             List<String[]> csvBody = reader.readAll();
-            for (String[] strings : csvBody) {
-                if (Objects.equals(strings[0], email)) {
-                    csvBody.remove(strings);
-                }
-            }
+            csvBody.removeIf(strings -> Objects.equals(strings[0], email));
 
             CSVWriter writer = new CSVWriter(new FileWriter(file), ',', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
             writer.writeAll(csvBody);
