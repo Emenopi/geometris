@@ -29,15 +29,17 @@ public class AllPlayers {
         return listOfPlayers;
     }
 
-    public Map<String, Integer> getScoreList() {
-        Map<String, Integer> scoreList = new HashMap<>();
+    public SortedMap<Integer, String> getScoreList() {
+        //Map<String, Integer> scoreList = new HashMap<>();
+        SortedMap<Integer, String> scoreList = new TreeMap<>(Collections.reverseOrder());
         if (! playersLoaded) {
             loadAsPlayers();
         }
         for (Player player : listOfPlayers) {
-            scoreList.put(player.getName(), Integer.valueOf(player.getScore()));
+            scoreList.put(Integer.valueOf(player.getScore()), player.getName());
         }
         return scoreList;
     }
+
 
 }

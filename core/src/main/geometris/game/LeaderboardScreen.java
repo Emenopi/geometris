@@ -26,7 +26,7 @@ public class LeaderboardScreen implements Screen {
     BitmapFont font;
     String scoreLabelText;
     AllPlayers allPlayers;
-    Map<String, Integer> scoreList;
+    SortedMap<Integer, String> scoreList;
 
     public LeaderboardScreen(Geometris geo) {
         geometris = geo;
@@ -57,7 +57,7 @@ public class LeaderboardScreen implements Screen {
         table.add(leaderboard).fillX().uniformX().pad(0, 0, 0, 0);
         table.row().pad(70, 0, 10, 0);
 
-        for (String key : scoreList.keySet()) {
+        for (Integer key : scoreList.keySet()) {
             scoreLabelText = key + ": " + scoreList.get(key);
             Label score = new Label(scoreLabelText, skin, "half-tone");
             table.add(score).fillX().uniformX().pad(0, 0, 0, 0);
