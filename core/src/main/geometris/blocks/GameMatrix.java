@@ -10,8 +10,6 @@ public class GameMatrix extends Matrix {
 		this.geometris = game.geometris;
 		matrixHeight = h;
 		matrixWidth = w;
-		geometris.assets.load();
-		geometris.assets.manager.finishLoading();
 
 
 		matrix = new Block[matrixHeight][matrixWidth];
@@ -51,6 +49,10 @@ public class GameMatrix extends Matrix {
 			}
 		}
 		return true;
+	}
+
+	public Block[][] getMatrix() {
+		return this.matrix;
 	}
 
 	public void removeLine(int hIndex) {

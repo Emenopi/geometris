@@ -150,8 +150,7 @@ public class Engine {
 
     public void generateActiveMatrix() {
         activeColour = getActiveColour();
-        Block[][] activeMatrixInit = new Block[3][3];
-        activeMatrix = new ActiveBlockMatrix(activeColour, game, activeMatrixInit);
+        activeMatrix = new ActiveBlockMatrix(activeColour, game);
         game.setActiveBlockMatrix(activeMatrix);
     }
 

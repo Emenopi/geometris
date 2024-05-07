@@ -15,7 +15,5 @@ public class GameBlock extends Block {
 		colour = col;
 		this.radius = 115;
 		this.direction = 0;
-		geometris.assets.load();
-		geometris.assets.manager.finishLoading();
 	}
 }

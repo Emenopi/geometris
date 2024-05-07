@@ -1,4 +1,4 @@
-package tests;
+package tests.blocks;
 
 import main.geometris.game.GameScreen;
 import main.geometris.game.Geometris;
@@ -16,10 +16,7 @@ import static org.mockito.Mockito.spy;
 @ExtendWith(MockitoExtension.class)
 class ActiveBlockMatrixTest {
 
-    private Geometris application;
     ActiveBlockMatrix activeBlockMatrix;
-    @Mock
-    private Geometris geo;
     @Mock
     private GameScreen gameScreen;
     Block[][] initMatrix;
@@ -31,14 +28,14 @@ class ActiveBlockMatrixTest {
     }
     @Test
     public void activeBlockCyanTest() {
-        activeBlockMatrix = spy(new ActiveBlockMatrix("CYAN", gameScreen, initMatrix));
+        activeBlockMatrix = spy(new ActiveBlockMatrix("CYAN", gameScreen));
         String[][] purpleBlock = new String[][]{{"CYAN", "NULL", "NULL"}, {"NULL", "NULL", "NULL"}, {"NULL", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
     public void activeBlockPurpleTest() {
-        activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", gameScreen, initMatrix));
+        activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", gameScreen));
         String[][] purpleBlock = new String[][]{{"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
     }
@@ -46,28 +43,28 @@ class ActiveBlockMatrixTest {
     @Test
     public void activeBlockMagentaTest() {
         Block[][] init = new Block[3][3];
-        activeBlockMatrix = new ActiveBlockMatrix("MAGENTA", gameScreen, initMatrix);
+        activeBlockMatrix = new ActiveBlockMatrix("MAGENTA", gameScreen);
         String[][] magentaBlock = new String[][]{{"MAGENTA", "MAGENTA", "NULL"}, {"MAGENTA", "MAGENTA", "NULL"}, {"NULL", "NULL", "NULL"}};
         assertArrayEquals(magentaBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
     public void activeBlockOrangeTest() {
-        activeBlockMatrix = new ActiveBlockMatrix("ORANGE", this.gameScreen, initMatrix);
+        activeBlockMatrix = new ActiveBlockMatrix("ORANGE", this.gameScreen);
         String[][] orangeBlock = new String[][]{{"ORANGE", "NULL", "NULL"}, {"ORANGE", "ORANGE", "NULL"}, {"NULL", "NULL", "NULL"}};
         assertArrayEquals(orangeBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
     public void activeBlockMatrixYellowTest() {
-        activeBlockMatrix = new ActiveBlockMatrix("YELLOW", gameScreen, initMatrix);
+        activeBlockMatrix = new ActiveBlockMatrix("YELLOW", gameScreen);
         String[][] yellowBlock = new String[][]{{"YELLOW", "YELLOW", "NULL"}, {"YELLOW", "NULL", "NULL"}, {"YELLOW", "NULL", "NULL"}};
         assertArrayEquals(yellowBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
     public void activeBlockGreenTest() {
-        activeBlockMatrix = new ActiveBlockMatrix("GREEN", gameScreen, initMatrix);
+        activeBlockMatrix = new ActiveBlockMatrix("GREEN", gameScreen);
         String[][] greenBlock = new String[][]{{"GREEN", "NULL", "NULL"}, {"GREEN", "GREEN", "NULL"}, {"GREEN", "NULL", "NULL"}};
         assertArrayEquals(greenBlock, activeBlockMatrix.getMatrixString());
     }
