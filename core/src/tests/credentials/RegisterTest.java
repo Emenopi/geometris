@@ -1,4 +1,4 @@
-package tests;
+package tests.credentials;
 
 import main.geometris.credentials.LogIn;
 import main.geometris.credentials.ReadDelimitedFile;

@@ -1,4 +1,4 @@
-package tests;
+package tests.credentials;
 
 import main.geometris.credentials.LogIn;
 import main.geometris.credentials.Player;
@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class LogInMockTest {
-List<Player> playerList = List.of(new Player("test@test.com", "Test", "User", "0000", "123"));
 LogIn login;
 
 String email = "test@test.com";;
