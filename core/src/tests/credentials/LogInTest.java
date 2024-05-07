@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class LogInTest {
 
     @Test
-    void getPlayerNameFromValidEmail() {
+    void whenGetPlayerNameCalled_thenReturnsCorrectPlayer() {
         LogIn login = new LogIn();
         String email = "matthew.barr@glasgow.ac.uk";
         assertEquals("Matt Barr", login.getPlayer(email).getName());
 
     }
     @Test
-    void correctCredentialsLoginSuccessful(){
+    void whenCredentialsCorrect_thenLoginSuccessful(){
         LogIn login = new LogIn();
         String email = "derek.somerville@glasgow.ac.uk";
         String password = "1234";
@@ -24,7 +24,7 @@ class LogInTest {
     }
 
     @Test
-    void unknownUserLoginChangesStatusToRegister() {
+    void whenUnknownUser_thenLoginStatusIsRegister() {
         LogIn login = new LogIn();
         String email = "test@test.com";
         String password = "1234";
@@ -33,7 +33,7 @@ class LogInTest {
     }
 
     @Test
-    void incorrectPasswordLoginChangesStatusToRetryPassword() {
+    void whenIncorrectPassword_thenLoginStatusIsRetryPassword() {
         LogIn login = new LogIn();
         String email = "derek.somerville@glasgow.ac.uk";
         String password = "1111";

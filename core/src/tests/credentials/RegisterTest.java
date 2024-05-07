@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RegisterTest {
 
     @Test
-    void validRegisterSavesNewPlayerInfo() {
+    void whenRegisterDetailsValid_thenSavesNewPlayerInfo() {
         String email = "testRegister@test.com";
         String forename = "testName";
         String surname = "surnameTest";
@@ -27,7 +27,7 @@ class RegisterTest {
     }
 
     @Test
-    void missingEmailRegisterSetsStatusMissingEmail() {
+    void whenMissingEmail_thenRegisterStatusIsMissingEmail() {
         String email = "";
         String forename = "testName";
         String surname = "surnameTest";
@@ -39,7 +39,7 @@ class RegisterTest {
     }
 
     @Test
-    void invalidRegisterDoesNotSavePlayerInfo() {
+    void whenInvalidRegister_thenNoSavePlayerInfo() {
         String email = "";
         String forename = "testingName";
         String surname = "TestSurnameTest";
