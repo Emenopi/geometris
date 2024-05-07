@@ -1,4 +1,7 @@
-package main.geometris;
+package main.geometris.credentials;
+
+import main.geometris.credentials.Player;
+import main.geometris.credentials.ReadDelimitedFile;
 
 import java.util.*;
 

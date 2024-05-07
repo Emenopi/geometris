@@ -1,10 +1,8 @@
 package main.geometris.blocks;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import main.geometris.GameScreen;
+import main.geometris.game.GameScreen;
 import main.geometris.blocks.Matrix.colour;
-import main.geometris.Geometris;
 
 public class ActiveBlock extends Block {
 	int gameMatrixHeightIndex;

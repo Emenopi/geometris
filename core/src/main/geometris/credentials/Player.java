@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.credentials;
 
 public class Player {
     private String forename;

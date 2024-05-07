@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -6,21 +6,29 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import main.geometris.credentials.AllPlayers;
 
-public class GameOverScreen implements Screen {
-    private Geometris geometris;
+import java.util.*;
+
+public class LeaderboardScreen implements Screen {
+    private final Geometris geometris;
     Stage stage;
     int score;
     Skin skin;
     Table table;
     BitmapFont font;
     String scoreLabelText;
+    AllPlayers allPlayers;
+    Map<String, Integer> scoreList;
 
-    public GameOverScreen(Geometris geo) {
+    public LeaderboardScreen(Geometris geo) {
         geometris = geo;
         score = geometris.getScore();
         stage = new Stage(new ScreenViewport());
@@ -28,6 +36,9 @@ public class GameOverScreen implements Screen {
         stage.draw();
         skin = new Skin(Gdx.files.internal("skin/comic-ui.json"));
         font = skin.getFont("title");
+        allPlayers = new AllPlayers();
+        scoreList = allPlayers.getScoreList();
+        getScores();
     }
     @Override
     public void show() {
@@ -35,27 +46,35 @@ public class GameOverScreen implements Screen {
         table = new Table(skin);
         table.setFillParent(true);
         stage.addActor(table);
-        Label gameOver = new Label("GAME OVER", skin, "title");
-        gameOver.setBounds( gameOver.getX(), gameOver.getY(), gameOver.getWidth(), gameOver.getHeight() );
+        Label leaderboard = new Label("LEADERBOARD", skin, "title");
+        leaderboard.setBounds( leaderboard.getX(), leaderboard.getY(), leaderboard.getWidth(), leaderboard.getHeight() );
 
-        gameOver.setAlignment( Align.center );
+        leaderboard.setAlignment( Align.center );
 
         TextButton playAgain = new TextButton("Play Again", skin);
         TextButton quit = new TextButton("Quit", skin);
-        scoreLabelText = "You Scored: " + geometris.getScore();
-        if (geometris.getIsHighScore()) {
-            scoreLabelText = "!!!HIGH SCORE!!! : " + geometris.getScore();
-        }
-        Label scoreLabel = new Label(scoreLabelText, skin, "half-tone");
 
-        table.add(gameOver).fillX().uniformX().pad(0, 0, 0, 0);
+        table.add(leaderboard).fillX().uniformX().pad(0, 0, 0, 0);
         table.row().pad(70, 0, 10, 0);
-        table.add(scoreLabel).fillX().uniformX().pad(0, 0, 30, 0);
-        table.row().pad(10, 0, 10, 0);
+
+        for (String key : scoreList.keySet()) {
+            scoreLabelText = key + ": " + scoreList.get(key);
+            Label score = new Label(scoreLabelText, skin, "half-tone");
+            table.add(score).fillX().uniformX().pad(0, 0, 0, 0);
+            table.row().pad(10, 0, 10, 0);
+        }
+        table.row().pad(50, 0, 10, 0);
         table.add(playAgain).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
         table.add(quit).fillX().uniformX();
 
+
+        playAgain.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                geometris.restart();
+            }
+        });
         playAgain.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -65,15 +84,20 @@ public class GameOverScreen implements Screen {
         quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                Gdx.app.exit();
+                geometris.setStrategy(new LeaderboardStatus());
             }
         });
 
     }
 
+    public void getScores() {
+        AllPlayers allPlayers = new AllPlayers();
+        allPlayers.getScoreList();
+    }
+
     @Override
     public void render(float delta) {
-        geometris.changeScreen(Geometris.GAMEOVER);
+        geometris.setStrategy(new LeaderboardStatus());
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));

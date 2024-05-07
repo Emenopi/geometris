@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.credentials;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,32 +7,26 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import main.geometris.game.Geometris;
 import main.geometris.controllers.FormStage;
+import main.geometris.controllers.PauseStatus;
 
-public class RegisterScreen implements Screen {
+public class LoginScreen implements Screen {
 
     private Geometris geometris;
     FormStage stage;
     main.loader.Assets assets;
     Skin skin;
     String email = "";
-    String forename = "";
-    String surname = "";
     String password = "";
-
-    Register register;
     LogIn login;
-
-    Register.RegisterStatus status = Register.RegisterStatus.LOGGED_OUT;
-    public RegisterScreen(Geometris geo) {
+    public LoginScreen(Geometris geo) {
         geometris = geo;
         assets = geometris.assets;
         geometris.assetManager.queueAddSkin();
         geometris.assetManager.manager.finishLoading();
         skin = geometris.assetManager.manager.get(main.loader.Assets.skin);
         stage = new FormStage(new ScreenViewport());
-        register = new Register();
-        // init login
         login = new LogIn();
         if (geometris.getPlayer() != null) {
             login.setLoginStatus(LogIn.Status.LOGGED_IN);
@@ -49,7 +43,7 @@ public class RegisterScreen implements Screen {
         stage.addActor(table);
 
 
-        Label geometrisLabel = new Label("REGISTER", skin, "title");
+        Label geometrisLabel = new Label("LOG IN", skin, "title");
         table.add(geometrisLabel).center().uniformX().pad(0, 0, 70, 0);
 
         TextField emailField = new TextField("email:    ", skin);
@@ -69,40 +63,6 @@ public class RegisterScreen implements Screen {
 
         table.row().pad(50, 0, 10, 0);
         table.add(emailField).width(400).expandX().pad(50, 0, 10, 0);
-
-        TextField forenameField = new TextField("Forename:    ", skin);
-        forenameField.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if (stage.getIsBackspace() && !forename.isEmpty()) {
-                    forename = forename.substring(0, forename.length()-1);
-                } else {
-                    forename += stage.getChar();
-                }
-            }
-        });
-
-        forenameField.setText(forenameField.getText() + forename);
-
-
-        table.row().pad(50, 0, 10, 0);
-        table.add(forenameField).width(400).expandX().pad(10, 0, 10, 0);
-
-        TextField surnameField = new TextField("Surname:    ", skin);
-        surnameField.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if (stage.getIsBackspace() && !surname.isEmpty()) {
-                    surname = surname.substring(0, surname.length()-1);
-                } else {
-                    surname += stage.getChar();
-                }
-            }
-        });
-        table.row().pad(10,0, 10, 0);
-        surnameField.setText(surnameField.getText() + surname);
-        table.add(surnameField).width(400).expandX().pad(10, 0, 10, 0);
-
         TextField passwordField = new TextField("Password:    ", skin);
 
         passwordField.addListener(new ChangeListener() {
@@ -120,39 +80,28 @@ public class RegisterScreen implements Screen {
 
         table.row().pad(10,0, 10, 0);
         table.add(passwordField).width(400).expandX().pad(10, 0, 10, 0);
-
-        TextButton registerButton = new TextButton("Register", skin);
+        TextButton loginButton = new TextButton("Log In", skin);
         table.row().pad(70, 0, 10, 0);
-        table.add(registerButton).expandX().uniformX();
-        registerButton.addListener(new ChangeListener() {
+        table.add(loginButton).expandX().uniformX();
+        loginButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                register.register(email, forename, surname, password);
+                login.logIn(email, password);
             }
         });
 
-        switch(register.getRegisterStatus()) {
-            case MISSING_EMAIL:
-                registerButton.setText("MISSING EMAIL");
+        switch(login.getLoginStatus()) {
+            case REGISTER:
+                geometris.setStrategy(new RegisterStrategy());
+                break;
+            case RETRY_PASSWORD:
+                loginButton.setText("WRONG PASSWORD");
+                password = "";
                 login.setLoginStatus(LogIn.Status.LOGGED_OUT);
                 break;
-            case MISSING_FORENAME:
-                registerButton.setText("MISSING FORENAME");
-                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
-                break;
-            case MISSING_SURNAME:
-                registerButton.setText("MISSING SURNAME");
-                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
-                break;
-            case MISSING_PASSWORD:
-                registerButton.setText("MISSING PASSWORD");
-                login.setLoginStatus(LogIn.Status.LOGGED_OUT);
-                break;
-            case LOG_IN:
-                geometris.changeScreen(Geometris.LOGIN);
-            case REGISTERED:
-                geometris.setPlayer(register.getPlayer());
-                geometris.changeScreen(Geometris.PAUSE);
+            case LOGGED_IN:
+                geometris.setPlayer(login.getPlayer(email));
+                geometris.setStrategy(new PauseStatus());
         }
 
         TextButton quitButton = new TextButton("Quit", skin);
@@ -172,7 +121,7 @@ public class RegisterScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        geometris.changeScreen(Geometris.REGISTER);
+        geometris.setStrategy(new LoginStrategy());
         Gdx.gl.glClearColor(0f, 0f, 0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
