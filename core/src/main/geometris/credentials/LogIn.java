@@ -14,7 +14,7 @@ public class LogIn {
     Status loginStatus = Status.LOGGED_OUT;
     AllPlayers allPlayers = new AllPlayers();
     List<Player> listOfPlayers = allPlayers.getListOfPlayers();
-    private String getPassword(String emailAddress){
+    public String getPassword(String emailAddress){
         String password = "";
 
         for (Player player :listOfPlayers){
