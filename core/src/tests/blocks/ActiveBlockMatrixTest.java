@@ -27,21 +27,21 @@ class ActiveBlockMatrixTest {
         initMatrix = new Block[3][3];
     }
     @Test
-    public void activeBlockCyanTest() {
+    public void whenColourIsCyan_thenMatrixIsCyanBlockShape() {
         activeBlockMatrix = spy(new ActiveBlockMatrix("CYAN", gameScreen));
         String[][] purpleBlock = new String[][]{{"CYAN", "NULL", "NULL"}, {"NULL", "NULL", "NULL"}, {"NULL", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
-    public void activeBlockPurpleTest() {
+    public void whenColourIsPurple_thenMatrixIsPurpleLineShape() {
         activeBlockMatrix = spy(new ActiveBlockMatrix("PURPLE", gameScreen));
         String[][] purpleBlock = new String[][]{{"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}, {"PURPLE", "NULL", "NULL"}};
         assertArrayEquals(purpleBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
-    public void activeBlockMagentaTest() {
+    public void whenColourIsMagenta_thenMatrixIsMagentaSquareShape() {
         Block[][] init = new Block[3][3];
         activeBlockMatrix = new ActiveBlockMatrix("MAGENTA", gameScreen);
         String[][] magentaBlock = new String[][]{{"MAGENTA", "MAGENTA", "NULL"}, {"MAGENTA", "MAGENTA", "NULL"}, {"NULL", "NULL", "NULL"}};
@@ -49,21 +49,21 @@ class ActiveBlockMatrixTest {
     }
 
     @Test
-    public void activeBlockOrangeTest() {
+    public void whenColourIsOrange_thenMatrixIsOrangeShape() {
         activeBlockMatrix = new ActiveBlockMatrix("ORANGE", this.gameScreen);
         String[][] orangeBlock = new String[][]{{"ORANGE", "NULL", "NULL"}, {"ORANGE", "ORANGE", "NULL"}, {"NULL", "NULL", "NULL"}};
         assertArrayEquals(orangeBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
-    public void activeBlockMatrixYellowTest() {
+    public void whenColourIsYellow_thenMatrixIsYellowShape() {
         activeBlockMatrix = new ActiveBlockMatrix("YELLOW", gameScreen);
         String[][] yellowBlock = new String[][]{{"YELLOW", "YELLOW", "NULL"}, {"YELLOW", "NULL", "NULL"}, {"YELLOW", "NULL", "NULL"}};
         assertArrayEquals(yellowBlock, activeBlockMatrix.getMatrixString());
     }
 
     @Test
-    public void activeBlockGreenTest() {
+    public void whenColourIsGreen_thenMatrixIsGreenShape() {
         activeBlockMatrix = new ActiveBlockMatrix("GREEN", gameScreen);
         String[][] greenBlock = new String[][]{{"GREEN", "NULL", "NULL"}, {"GREEN", "GREEN", "NULL"}, {"GREEN", "NULL", "NULL"}};
         assertArrayEquals(greenBlock, activeBlockMatrix.getMatrixString());
