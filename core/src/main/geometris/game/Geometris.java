@@ -1,10 +1,14 @@
-package main.geometris;
+package main.geometris.game;
 
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.GL20;
+import main.geometris.*;
+import main.geometris.credentials.LoginScreen;
+import main.geometris.credentials.Player;
+import main.geometris.credentials.RegisterScreen;
 import main.loader.Assets;
 
 public class Geometris extends Game {

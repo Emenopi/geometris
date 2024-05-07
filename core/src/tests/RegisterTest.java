@@ -1,8 +1,8 @@
 package tests;
 
-import main.geometris.LogIn;
-import main.geometris.ReadDelimitedFile;
-import main.geometris.Register;
+import main.geometris.credentials.LogIn;
+import main.geometris.credentials.ReadDelimitedFile;
+import main.geometris.credentials.Register;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

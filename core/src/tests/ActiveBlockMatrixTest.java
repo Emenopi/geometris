@@ -1,7 +1,7 @@
 package tests;
 
-import main.geometris.GameScreen;
-import main.geometris.Geometris;
+import main.geometris.game.GameScreen;
+import main.geometris.game.Geometris;
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.blocks.Block;
 import org.junit.jupiter.api.BeforeEach;

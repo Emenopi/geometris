@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.credentials;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import main.geometris.game.Geometris;
 import main.geometris.controllers.FormStage;
 import main.geometris.controllers.PauseStatus;
 

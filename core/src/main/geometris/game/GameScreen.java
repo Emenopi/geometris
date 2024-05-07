@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import main.geometris.blocks.ActiveBlockMatrix;
 import main.geometris.blocks.GameMatrix;
 import main.geometris.controllers.InputController;
+import main.geometris.credentials.ReadDelimitedFile;
 import main.loader.Assets;
 
 public class GameScreen implements Screen {

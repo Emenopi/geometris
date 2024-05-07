@@ -1,7 +1,7 @@
 package main.geometris.controllers;
 
-import main.geometris.Geometris;
-import main.geometris.PauseScreen;
+import main.geometris.game.Geometris;
+import main.geometris.game.PauseScreen;
 import main.geometris.ScreenStrategy;
 
 public class PauseStatus implements ScreenStrategy {

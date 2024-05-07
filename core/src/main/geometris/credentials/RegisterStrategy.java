@@ -1,6 +1,9 @@
-package main.geometris;
+package main.geometris.credentials;
 
-public class RegisterStrategy implements ScreenStrategy{
+import main.geometris.game.Geometris;
+import main.geometris.ScreenStrategy;
+
+public class RegisterStrategy implements ScreenStrategy {
     @Override
     public void changeScreen(Geometris geo) {
         if(geo.registerScreen == null) geo.registerScreen = new RegisterScreen(geo);

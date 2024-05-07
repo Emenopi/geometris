@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.credentials;
 
 import java.util.List;
 

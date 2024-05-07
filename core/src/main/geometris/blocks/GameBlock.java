@@ -1,8 +1,6 @@
 package main.geometris.blocks;
 
-import main.geometris.GameScreen;
-import main.geometris.Geometris;
-import main.geometris.blocks.Block;
+import main.geometris.game.GameScreen;
 import main.geometris.blocks.Matrix.colour;
 
 public class GameBlock extends Block {

@@ -1,4 +1,4 @@
-package main.geometris;
+package main.geometris.game;
 
 import com.badlogic.gdx.Gdx;
 import main.geometris.blocks.ActiveBlock;
